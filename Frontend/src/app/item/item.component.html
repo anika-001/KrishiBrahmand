@@ -135,18 +135,19 @@
             </div>
         </div>
 
-        <div class="comment" *ngFor="let x of number">
+        <div class="comment" *ngFor="let x of item.comments">
             <div class="commentcontentcont">
                 <i class="fa fa-user commentusericon">
                     <!-- <i class="fa fa-user" style="background-color: aqua;"></i> -->
                 </i>
                 <div class="commentuserbody">
                     <div class="commentusername">
-                        vaishnavisdesai@Gmail.com
+                        {{x.email}} <span><ngb-rating [rate]="x.rating" [readonly]="true" [max]="5" [starTemplate]="t"></ngb-rating></span>
                     </div>
                     <div class="commentcontent">
-                        Was amazing! Were fresh and super delicious!
+                        {{x.content}}
                     </div>
+
                 </div>
             </div>
             <div class="commentstat">

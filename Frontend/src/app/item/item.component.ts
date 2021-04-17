@@ -104,6 +104,7 @@ export class ItemComponent implements OnInit {
     this.httpClient.post<any>(this.urls.comment, data).subscribe(
       (res) => {
         console.log(res);
+        this.defaultApiCall();
       },
       (err) => {
         console.log(err);

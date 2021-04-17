@@ -199,7 +199,7 @@ export class ProductsModel {
         product.updateOne({ _id: body.id, "comments.uid": body.uid }, { "$set": { "comments.$.content": body.content, "comments.$.rating": body.rating, "comments.$.date": body.date, "comments.$.email": body.email } }).then(val => {
           if (val.nModified == 0 && val.n == 0) {
             product.updateOne({ _id: body.id }, { $push: { comments: body } }).then(val => {
-              product.updateOne({ _id: body.id }, { rating: (Number(Number(body.rating) + Number(prod.rating)) / 5) }).then(val => {
+              product.updateOne({ _id: body.id }, { rating: (Number(Number(body.rating) + Number(prod.rating))  / Number(prod.noOfUsers)) }).then(val => {
                 resolve({ statusCode: 0, message: "Rating added" });
               })
                 .catch(e => {
@@ -212,7 +212,15 @@ export class ProductsModel {
               })
           }
           else {
-            product.updateOne({ _id: body.id }, { rating: (Number(Number(body.rating) + Number(prod.rating)) / 5) }).then(val => {
+            let currrate = 0;
+            for(let x of prod.comments){
+              if(x.uid == body.uid){
+                  currrate = x.rating;
+                  break;
+              }
+            }
+            console.log(prod.rating, prod.noOfUsers, currrate, body.rating)
+            product.updateOne({ _id: body.id }, { rating: Number(Number(Number(prod.rating) * Number(prod.noOfUsers) - Number(currrate) + Number(body.rating)) / Number(prod.noOfUsers)) }).then(val => {
               resolve({ statusCode: 0, message: "Rating added" });
             })
               .catch(e => {
