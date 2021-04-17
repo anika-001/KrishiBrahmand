@@ -41,7 +41,7 @@ class ProductsCntrlr {
       .post(Validator.validate, ProductsCntrlr.addProduct);
 
     router.route('/product/comment')
-      .post(Validator.validate, ProductsCntrlr.addProduct);
+      .post(Validator.validate, ProductsCntrlr.addreview);
   }
 
   /**
