@@ -722,7 +722,7 @@ export class AddItemsComponent implements OnInit {
     //console.log(state);
     this.httpClient.get<any>(this.urls.district + "?state=" + state).subscribe(
       (res) => {
-        //console.log(res);
+        console.log(res);
         this.districts = res.payload.districts;
       },
       (err) => {
