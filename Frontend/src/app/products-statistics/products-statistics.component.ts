@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import 'firebase/storage'
+import 'firebase/storage';
 import { AngularFireDatabase } from '@angular/fire/database';
 //import * as firebase from 'firebase/app';
 

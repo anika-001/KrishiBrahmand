@@ -42,7 +42,7 @@
                             </div>
                             <!-- <input placeholder="Upload Image" formControlName="image" type="text" class="ip"> -->
                             <input type="file" id="inpFile" formControlName="image" name="inpFile"
-                                (change)="imageUpload($event)" accept="image/*">
+                                (change)="imageUploadPrev($event)" accept="image/*">
                             <!-- <input type="submit" value="Submit Image" (click)="imageUpload()"> -->
                             <div class="image-preview" id="imagePreview" *ngIf="url == ''">
                                 <img src="" alt="Image Preview">
