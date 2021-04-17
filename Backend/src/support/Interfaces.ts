@@ -89,6 +89,15 @@ export interface I3_0{
     }
 }
 
+export interface I3_1{
+    uid: String,
+    email: String,
+    content: String,
+    rating: Number,
+    date: Date,
+    id: String
+}
+
 export interface itemreturn{
     // id: "exoticvegetables" | "fruits" | "dailyvegetables" | "orgranic" | "exotic" | "herbsandsesoning";
     image: String,

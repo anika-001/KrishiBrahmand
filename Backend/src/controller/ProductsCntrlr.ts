@@ -3,7 +3,7 @@ import * as express from 'express';
 
 import { Validator } from '../support/Validator';
 import { ProductsModel } from '../ViewModels/ProductsModel';
-import { I13, I14, I15, I3_0 } from '../support/Interfaces';
+import { I13, I14, I15, I3_0, I3_1 } from '../support/Interfaces';
 
 
 class ProductsCntrlr {
@@ -40,6 +40,8 @@ class ProductsCntrlr {
     router.route('/product')
       .post(Validator.validate, ProductsCntrlr.addProduct);
 
+    router.route('/product/comment')
+      .post(Validator.validate, ProductsCntrlr.addProduct);
   }
 
   /**
@@ -126,6 +128,18 @@ class ProductsCntrlr {
     let body: I3_0 = req.body;
 
     ProductsModel.addProduct(body).then(resp => {
+      res.status(200).send(resp);
+    })
+      .catch(resp => {
+        res.status(500).send(resp);
+      });;
+  }
+
+  public static addreview(req: express.Request, res: express.Response): void {
+    //console.log('postProduct -', req.url);
+    let body: I3_1 = req.body;
+
+    ProductsModel.addreview(body).then(resp => {
       res.status(200).send(resp);
     })
       .catch(resp => {
