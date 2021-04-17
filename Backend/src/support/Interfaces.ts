@@ -107,7 +107,8 @@ export interface itemreturn{
         content: String
     }],
     sellername: string,
-    uid: string
+    uid: string,
+    ratingpermission: Boolean
 }
 
 export interface I4_0 {

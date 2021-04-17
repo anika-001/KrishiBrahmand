@@ -101,10 +101,11 @@ class ProductsCntrlr {
   public static getItem(req: express.Request, res: express.Response): void {
     //console.log('getItem -', req.url);
     let id: string = req.query.id?.toString()!;
+    let uid: string = req.query.uid?.toString()!;
     //console.log("id =", id); // TODO Delete this later
     //let body: I14 = req.body;
 
-    ProductsModel.getItem(id).then(resp => {
+    ProductsModel.getItem(id, uid).then(resp => {
       res.status(200).send(resp);
     })
       .catch(resp => {
