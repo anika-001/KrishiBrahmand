@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { FilldbentryService } from '../services/filldbentry.service';
 import { CookieService } from 'ngx-cookie-service';
+import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-home',
@@ -423,8 +424,15 @@ export class HomeComponent implements OnInit {
 
   // role: string = "";
 
-  constructor(private route: ActivatedRoute, private router: Router, private as: AuthService, private fs: FilldbentryService, private cs: CookieService) { }
+  constructor(config: NgbCarouselConfig, private route: ActivatedRoute, private router: Router, private as: AuthService,
+     private fs: FilldbentryService, private cs: CookieService) {
+      config.interval = 4000;  
+      config.wrap = true;  
+      config.keyboard = false;  
+      config.pauseOnHover = true; 
+      }
 
+  
   ngOnInit(): void {
 
     if (this.cs.check('role')) {
