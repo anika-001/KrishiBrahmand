@@ -4,6 +4,7 @@ import { product } from '../DatabaseSchemaModels/Product';
 import { users } from '../DatabaseSchemaModels/UserData';
 import { pickup } from '../DatabaseSchemaModels/Pickup';
 import { DatabaseOperations } from '../support/DatabaseOperations';
+import { pastorders } from '../DatabaseSchemaModels/PastOrders';
 
 
 export class ProductsModel {
@@ -91,7 +92,18 @@ export class ProductsModel {
     })
   }
 
-  public static getItem(id: string): Promise<IGetResponse> {
+  public static ifuserhaspurchased(uid: string, prodid: string): Promise<any>{
+    return new Promise((resolve, reject) => {
+      pastorders.findOne({uid: uid, "Orders.itemsList.itemId": { "$regex": prodid, "$options": "i" }}).then(val => {
+        if(val) resolve(true);
+        else resolve(false);
+      })
+      .catch(e => {
+        reject(e);
+      })
+    })
+  }
+  public static getItem(id: string, uid?: string): Promise<IGetResponse> {
     return new Promise((resolve, reject) => {
       product.findById(id).then(val => {
         let retvalue: any = val;
@@ -106,13 +118,26 @@ export class ProductsModel {
           rating: retvalue.rating!,
           comments: retvalue.comments!,
           sellername: '',
-          baseprice: retvalue.baseprice!
+          baseprice: retvalue.baseprice!,
+          ratingpermission: false
         };
         users.findById(retvalue.uid).then(val => {
           let user: any = val;
           itemReturn["sellername"] = user.name;
           // for (let i in itemReturn) console.log(itemReturn[i]);
-          resolve({ "statusCode": 0, "message": "Item retrieved", "payload": itemReturn })
+          // this.ifuserhaspurchased().then()
+          if(uid != undefined){
+            this.ifuserhaspurchased(uid, id).then(val => {
+              if(val) itemReturn["ratingpermission"] = true;
+              else itemReturn["ratingpermission"] = false;
+              resolve({ "statusCode": 0, "message": "Item retrieved", "payload": itemReturn })
+
+            })
+            .catch(e => {
+              reject({ "statusCode": 2, "message": e, "payload": "" })
+            })
+          }
+          else resolve({ "statusCode": 0, "message": "Item retrieved", "payload": itemReturn })
         })
 
           .catch(e => {

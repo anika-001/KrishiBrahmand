@@ -58,7 +58,7 @@ export class EmailserviceModel {
             }
             else {
               if (userdis) {
-                EmailserviceModel.sendemail(body.email, "Please verify your email.", "Hi user! \n Welcome to Krishi Bazaar \n Please click on the link below to veryfiy your email.", "http://localhost:4200/verifyemail", keys.serverkeys.Secretemail).then(info => {
+                EmailserviceModel.sendemail(body.email, "Please verify your email.", "Hi user! \n Welcome to Krishi Brahmand \n Please click on the link below to veryfiy your email.", "http://localhost:4200/verifyemail", keys.serverkeys.Secretemail).then(info => {
                   resolve({ "statusCode": 0, "message": "Email to verify email sent successfully." });
                 }).catch(e => {
                   reject({ "statusCode": 2, "message": e });
@@ -76,7 +76,7 @@ export class EmailserviceModel {
             }
             else {
               if (useren) {
-                EmailserviceModel.sendemail(body.email, "Reset Password", "Hi user! \n Welcome to Krishi Bazaar \n Please click on the link below to reset your password.", "http://localhost:4200/resetPassword", keys.serverkeys.Secretpassword).then(info => {
+                EmailserviceModel.sendemail(body.email, "Reset Password", "Hi user! \n Welcome to Krishi Brahmand \n Please click on the link below to reset your password.", "http://localhost:4200/resetPassword", keys.serverkeys.Secretpassword).then(info => {
                   resolve({ "statusCode": 0, "message": "Email to reset password sent successfully." });
                 }).catch(e => {
                   console.log("cannot send mail")
