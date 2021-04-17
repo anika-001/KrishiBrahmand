@@ -10,7 +10,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { FirebaseApp } from '@angular/fire';
-import { AuthService } from '../../../../../Major Project - Krishi Kalyan/mainwebsite/FrontEnd/Krishi-Bazaar/src/app/services/auth.service';
+import { AuthService } from '../services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({
