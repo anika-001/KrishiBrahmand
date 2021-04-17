@@ -74,7 +74,6 @@
         </mat-sidenav>
 
         <mat-sidenav-content class="content">
-
             <div class="nav-bar html.translated-ltr">
                 <div class="nav-bar-left">
                     <div class="nav-bar-hamburger" (click)="sidenav.toggle()">
@@ -240,11 +239,10 @@
                   </div>
                 </div>
             </div> -->
-            <div class="mainpage" (swipeleft)="sidenav.close()" (swiperight)="sidenav.open()">
-                <!-- <div class="desktop"> -->
-                <router-outlet></router-outlet>
-                <!-- </div> -->
-            </div>
+            <ng-particles class = "particles" [id]="id" [options]="particlesOptions" (particlesLoaded)="particlesLoaded($event)" (particlesInit)="particlesInit($event)"></ng-particles>
+                <div class="mainpage" (swipeleft)="sidenav.close()" (swiperight)="sidenav.open()">
+                    <router-outlet></router-outlet>
+                </div>
         </mat-sidenav-content>
     </mat-sidenav-container>
 
