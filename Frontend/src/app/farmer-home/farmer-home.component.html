@@ -1,0 +1,66 @@
+<ng-template #t let-fill="fill">
+  <span class="star1" [class.full]="fill === 100">
+    <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+  </span>
+</ng-template>
+
+<ng-template #itemnode let-node>
+  <div *ngFor="let item of node; let ndx = index" class="tree">
+    <i [class]=item.getClass() (click)=item.clicked() style="height: 3vh;"> </i>
+    <input *ngIf="!item.children.length" type="checkbox" (change)=onChange(item,$event) [checked]=item.checked style="display: inline;">
+    <label> {{item.name}} </label>
+    <div *ngIf="item.expanded">
+      <ng-container *ngTemplateOutlet="itemnode; context: {$implicit: item.children}"></ng-container>
+    </div>
+  </div>
+</ng-template>
+
+<div class="main" *ngIf="!error500">
+  <div class="catfilter" style="color: black;">
+    <div class="cattitle">
+      <div class="title">
+        Filter Categories
+      </div>
+    </div>
+
+    <div class="allcat">
+      <ng-container *ngTemplateOutlet="itemnode; context: {$implicit: categories}"></ng-container>
+    </div>
+
+    <div class="buttonfilter">
+      <button class="buttonfil" (click)="getData()">
+        Filter
+      </button>
+    </div>
+
+  </div>
+  <div class="itemsmain">
+    <div class="itemshead">
+      <div class="title">
+        <i class="fa fa-lemon-o" style="font-size: 80%;"></i>
+        My Products
+      </div>
+    </div>
+
+    <div class="itemsbody1">
+      <div *ngFor="let i of items" class="itemcont1" (click)="gotoStats(i)">
+        <div class="itempic1">
+          <div class="pic1" style="background-image: url({{i.image}}); background-size: cover;"> </div>
+        </div>
+        <div class="itemdesc1">
+          <div class="itemtitle1">
+            {{i.title}}
+          </div>
+          <div class="itemprice1">
+            Price: ₹{{i.baseprice}} for 1 Kg
+          </div>
+        </div>
+        <div class="itemrating1">
+          <ngb-rating [rate]="i.rating" [readonly]="true" [max]="5" [starTemplate]="t"></ngb-rating>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-error500 *ngIf="error500"></app-error500>

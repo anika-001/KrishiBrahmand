@@ -1,0 +1,24 @@
+<div [hidden]="user">
+  
+    <div id="recaptcha-container" class = "rc-cont" (click) = "onSignInSubmit()">
+      <!-- <button>SMS Text Login Code</button> -->
+    </div>
+  
+    <button (click)="onSignInSubmit()">SMS Text Login Code</button>
+  
+    <div *ngIf="windowRef.confirmationResult">
+      <hr>
+      <label for="code">Enter your Verification Code Here</label><br>
+      <input type="text" name="code" [(ngModel)]="verificationCode">
+  
+      <button (click)="verifyLoginCode()">Verify</button>
+    </div>
+  
+  </div>
+  
+  <div *ngIf="user">
+    You have successfully logged in with your phone number!
+  
+    UserId: {{ user?.uid }}
+  
+  </div>

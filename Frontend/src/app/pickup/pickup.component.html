@@ -1,0 +1,37 @@
+<style>
+  td {
+    border-left: 2px solid;
+  }
+</style>
+<div class="main" style="color: black;">
+
+  <div class="heading">
+        <div >
+            <i class="fa fa-truck" aria-hidden="true"></i>
+            My Pickups
+        </div>
+    </div>
+  <table style="background-color: white; width: 100%;">
+    <div *ngFor="let n of pickups">
+      <tr>
+        <td style="padding-right: 2em"><b>Product Name</b></td>
+        <td style="padding-right: 2em"><b>Quantity</b></td>
+        <td style="padding-right: 2em"><b>Pickup Date</b></td>
+        <td style="padding-right: 2em"><b>Pickup Person</b></td>
+        <td style="padding-right: 2em; word-wrap: break-word"><b>Pickup Address</b></td>
+      </tr>
+      <tr>
+        <td>{{n.name}}</td>
+        <td>{{n.quantity}}</td>
+        <td>{{n.pickupDate | date:'mediumDate'}}</td>
+        <td>{{n.pickupPerson}}</td>
+        <td>{{n.pickupaddress.address}}</td>
+      </tr>
+      <div class="rowbreak"></div>
+    </div>
+  </table>
+
+  <div class="vsdCard" *ngFor="let n of pickups, let ndx = index;">
+
+  </div>
+</div>

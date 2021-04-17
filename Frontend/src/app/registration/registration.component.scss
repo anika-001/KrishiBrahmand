@@ -1,0 +1,260 @@
+*{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.main{
+    min-height: calc(106vh - 39px);
+    background-image: url("../../assets/images/bg1.png");
+    //background-color: bisque;
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    min-width: 100%;
+    top: -6vh;
+    left: 0;
+    z-index: 1000;
+
+}
+
+.registercard{
+    // border: solid black;
+    height: 90vh;
+    width: 30vw;
+    margin-top: 6vh;
+    margin-left: 60%;
+    background-color: rgba(255, 255, 255, 0.3);
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    // box-shadow: 1px 1px 5px  black;
+}
+.registertitle{
+    // border: solid black;
+    //padding: 5%;
+    color: white;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 300%;
+    text-align: center;
+    flex-basis: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.registerfield{
+    // border: solid pink;
+    //background-color: aquamarine;
+    flex-basis: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    
+}
+
+.error{
+
+    flex-basis: 10%;
+    background-color: rgb(255, 0, 0, 0.2); 
+    border: red solid thin;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.input{
+    
+    display: flex;
+    flex-direction: column;
+    padding-top: none;
+    padding-bottom: none;
+    padding: 20px;
+    flex-basis: 90%;
+    justify-content: space-evenly;
+
+}
+
+.ip{
+    
+    height: 7%;
+    border: none;
+    border-radius: 5px;
+    font-size: 150%;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    justify-content: space-evenly;
+
+}
+
+.errormsg{
+
+    //height: 15%; 
+    width: 200%; 
+    display: flex; 
+    margin-left: -100%; 
+    justify-content: space-between;
+}
+
+.iperror{
+    border: red thin solid; 
+    flex-basis: 50%; 
+    height: 100%; 
+    box-shadow: 0 4px 8px 0 rgba(255, 0, 0, 0.2), 0 6px 20px 0 rgba(255, 0, 0, 0.2);
+}
+.message {
+    flex-basis: 40%;
+    background:  #EF9E25;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-left: 8%;
+    font-weight: 900;
+    color: #000;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    position: relative;
+    transition: 2s ease-in;
+    animation: 0.5s cloud ease-in forwards;
+    opacity: 0;
+  }
+  
+  .sb1:before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 10px solid  #EF9E25;
+    border-right: 10px solid transparent;
+    border-top: 10px solid  #EF9E25;
+    border-bottom: 10px solid transparent;
+    right: -19px;
+    top: 6px;
+    animation: 0.5s cloud ease-in forwards;
+    opacity: 0;
+  }
+  
+@keyframes cloud{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+.submit{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 10%;
+    justify-content: center;
+
+}
+.login{
+    color: var(--vt1);
+    align-self: center;
+    font-weight: bolder;
+    font-size: 120%;
+    cursor: pointer;
+    color: white;
+
+}
+
+.submitbutton{
+    // border: blue solid;
+    width: fit-content;
+    align-self: center;
+    padding: 2% 5% ;
+    font-size: 150%;
+    background-color: #EF9E25;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px  black;
+    cursor: pointer;
+
+
+}
+
+.submitbutton:hover{
+    box-shadow: none;
+}
+
+// .dropfill{
+//     background-color: white;
+// }
+
+// .dropdown{
+//     width: 100%;
+//     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+//     display: flex;
+//     color: black;
+// }
+
+
+// .d{
+//     font-size: 150%;
+//     color: black;
+// }
+
+@media (max-width: 1200px){
+
+    .main{
+        align-content: center;
+    }
+
+    .registercard{
+        margin-left: 0;
+        align-self: center;
+        width: 90vw;
+        height: 90vh;
+    }
+
+    .registertitle{
+        font-size: 200%;
+    }
+
+    .ip{
+        font-size: 100%;
+
+    }
+    .errormsg{
+        width: 100%;
+        margin-left: 0;
+        flex-direction: column;
+        height: 30%;
+        margin-top: 5%;
+    }
+
+    .message{
+        // height: 5px;
+        // flex-basis: -100%;
+        padding: 0;
+        height: 50%;
+        margin-bottom: 10px;
+        //margin-top: 12px;
+        width: 100%;
+        margin-left: 0;
+        background: var(--vt3);
+        color: black;
+    }
+
+    .iperror{
+        height: 100%;
+        flex-basis: 100%;
+    }
+
+    .login{
+        font-size: 100%;
+    }
+    
+    .submitbutton{
+        font-size: 100%;
+    }
+
+    .sb1:before {
+    display: none;
+      }
+}

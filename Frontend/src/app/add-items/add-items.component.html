@@ -1,0 +1,442 @@
+<div class="main" *ngIf="!error500">
+    <div class="additem">
+        <div class="additemtitle">
+            <div><i class="fa fa-cart-plus"></i>
+                Add a Product</div>
+        </div>
+        <div class="infotabcont">
+            <div class="infotabs infotabsnselected" *ngIf="!details" (click)="detailsToggle(details)">
+                Details
+            </div>
+            <div class="infotabs infotabsselected" *ngIf="details" (click)="detailsToggle(details)">
+                Details
+            </div>
+            <div class="infotabs infotabsnselected" *ngIf="!productcosting"
+                (click)="productcostingToggle(productcosting)">
+                Costing
+            </div>
+            <div class="infotabs infotabsselected" *ngIf="productcosting"
+                (click)="productcostingToggle(productcosting)">
+                Costing
+            </div>
+            <div class="infotabs infotabsnselected" *ngIf="!address" (click)="addressToggle(address)">
+                Pickup Address
+            </div>
+            <div class="infotabs infotabsselected" *ngIf="address" (click)="addressToggle(address)">
+                Pickup Address
+            </div>
+        </div>
+        <!-- [formGroup]="form" -->
+        <div class="divider">
+
+            <form [formGroup]="form" class="input" *ngIf="details">
+                <div class="side1">
+                    <!-- <div class="additemheading">
+                        Details:
+                    </div> -->
+                    <div class="body1">
+                        <div class="imgpreview">
+                            <div class="uploadimgheading">
+                                <div style="color: red;">*</div>
+                                Upload image of produce
+                            </div>
+                            <!-- <input placeholder="Upload Image" formControlName="image" type="text" class="ip"> -->
+                            <input type="file" id="inpFile" formControlName="image" name="inpFile"
+                                (change)="imageUpload($event)" accept="image/*">
+                            <!-- <input type="submit" value="Submit Image" (click)="imageUpload()"> -->
+                            <div class="image-preview" id="imagePreview" *ngIf="!file">
+                                <img src="" alt="Image Preview">
+                            </div>
+                            <div class="image-preview" id="imagePreview" *ngIf="file">
+                                <img [src]="url">
+                            </div>
+
+                        </div>
+                        <!-- <span class="help-block">
+                                <span *ngIf="form.get('title')!.errors &&
+                                </span>
+                            </span> -->
+                        <div class="inputfield">
+                            <div style="display: flex; color: red; position: relative;" *ngIf="!title">
+                                <div style="font-size: 200%;">*</div>
+                                <input placeholder="Title" formControlName="title" type="text" class="ip">
+                            </div>
+                            <div *ngIf="title" class="errormsg">
+                                <div style="display: flex; color: red; position: relative;">
+                                    <div style="font-size: 200%;">*</div>
+                                    <input placeholder="Title" formControlName="title" type="text" class="ip iperror">
+                                </div>
+                                <div class="message sb1">
+                                    {{messagetitle}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="inputfield">
+                            <div style="display: flex; color: red; position: relative;" *ngIf="!description">
+                                <div style="font-size: 200%;">*</div>
+                                <textarea placeholder="Description" formControlName="description" type="text"
+                                    class="ip ipta"></textarea>
+                            </div>
+                            <div *ngIf="description" class="errormsg">
+                                <div style="display: flex; color: red; position: relative;">
+                                    <div style="font-size: 200%;">*</div>
+                                    <textarea placeholder="Description" formControlName="description" type="text"
+                                        class="ip ipta iperror"></textarea>
+                                </div>
+                                <div class="message sb1">
+                                    {{messagedescription}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="inputfield">
+                            <div style="display: flex; color: red; position: relative;" *ngIf="!productremaining">
+                                <div style="font-size: 200%;">*</div>
+                                <input placeholder="Total Produce Quantity (in kg)" formControlName="productRemaining"
+                                    type="text" class="ip">
+                            </div>
+                            <div *ngIf="productremaining" class="errormsg">
+                                <div style="display: flex; color: red; position: relative;">
+                                    <div style="font-size: 200%;">*</div>
+                                    <input placeholder="Total Produce Quantity (in kg)"
+                                        formControlName="productRemaining" type="number" class="ip iperror">
+                                </div>
+                                <div class="message sb1">
+                                    {{messageproductremaining}}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="side2">
+                    <div class="categoryheading">
+                        <div style="color: red;">*</div>
+                        Categories:
+                        <div *ngIf="categories" style="color: red; right: 0;">Please select a category</div>
+                    </div>
+                    <div class="allcategories">
+                        <div class="maincat" *ngFor="let categ of categoriesJson" style="color:black;">
+                            <i class="fa fa-plus-circle" *ngIf="!categ.Showcategory"
+                                (click)="categ.Showcategory=true"></i>
+                            <i class="fa fa-minus-circle" *ngIf="categ.Showcategory"
+                                (click)="categ.Showcategory=false"></i>
+                            {{categ.name}}
+                            <div *ngIf="categ.Showcategory">
+                                <div *ngFor="let i of categ.value" class="subcat">
+                                    <i class="fa fa-plus-circle" *ngIf="!i.Showsubcategories && i.Havesubsubcategories"
+                                        (click)="i.Showsubcategories=true"></i>
+                                    <i class="fa fa-minus-circle" *ngIf="i.Showsubcategories && i.Havesubsubcategories"
+                                        (click)="i.Showsubcategories=false"></i>
+                                    <input *ngIf="!i.Havesubsubcategories" type="checkbox" name="{{i.Name}}"
+                                        id="{{i.id}}" (change)=onChange(i,$event) [checked]=i.checked>
+                                    <label>{{i.Name}}</label>
+                                    <div *ngIf="i.Havesubsubcategories && i.Showsubcategories">
+                                        <div *ngFor="let x of i.sub" class="subcat">
+                                            <input type="checkbox" name="{{x.name}}" id="{{x.id}}"
+                                                (change)=onChange(x,$event) [checked]=x.checked>
+                                            <label>{{x.name}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <form [formGroup]="form" *ngIf="productcosting" class="input">
+                <div class="side1">
+                    <div class="additemheading2">
+                        Costing:
+                    </div>
+                    <div class="basecosting">
+                        <div style="color:black; font-size: 150%; color: blue; margin-bottom:2%;">Baseprice of item -
+                        </div>
+                        <div class="baseprice">
+
+                            <div class="inputfield">
+                                <div style="display: flex; color: red; position: relative;" *ngIf="!baseprice">
+                                    <div style="font-size: 200%;">*</div>
+                                    <input placeholder="Price for 1kg of item" [formGroup]="form"
+                                        formControlName="baseprice" type="number" class="ip" *ngIf="!baseprice"
+                                        oninput="validity.valid||(value='');">
+                                </div>
+                                <div *ngIf="baseprice" class="errormsg">
+                                    <div style="display: flex; color: red; position: relative;">
+                                        <div style="font-size: 200%;">*</div>
+                                        <input placeholder="Price for 1kg of item" [formGroup]="form"
+                                            formControlName="baseprice" type="number" class="ip iperror">
+                                    </div>
+                                    <div class="message sb1">
+                                        {{messagebaseprice}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="add-buttons">
+                            <div class="costingicon">
+                                <div
+                                    style="color:black; align-content: center; display: flex; flex-direction: column; justify-content: center; flex-basis: 90%; font-size: 80%; margin-top:2%;">
+                                    Add Discount according to Quantity Purchased:</div>
+                                <i class="fa fa-plus-circle" style="flex-basis: 5%;" (click)="addCostingButton()"
+                                    style="margin-right: 1%;"></i>
+
+                                <i class="fa fa-minus-circle" style="flex-basis: 5%;"
+                                    (click)="removeCostingButton()"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="discounterrors">
+                        <div class="message md sbd1" *ngIf="discount">
+                            {{messagediscount}}
+                        </div>
+                        <div class="message md sbd1" *ngIf="quantity">
+                            {{messagequantity}}
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="side2">
+                    <div class="fullcosting-body">
+                        <div class="array">
+                            <div formArrayName="costing" *ngFor="let cost of getCostingControls(); let i = index"
+                                class="array">
+                                <div [formGroupName]="i">
+                                    <div class="costing-tags">
+                                        <hr size="10" width="100%" color="grey">
+                                    </div>
+                                    <div class="repeatbody2">
+                                        <div class="body2">
+                                            <div class="inputfield">
+                                                <div style="display: flex; color: red; position: relative;"
+                                                    *ngIf="!title">
+                                                    <div style="font-size: 200%;">*</div>
+                                                    <div class="costinginput">
+
+                                                        %: <input placeholder="Discount Percentage on Base Price"
+                                                            formControlName="discount" type="number"
+                                                            oninput="validity.valid||(value='');" class="ip ip1">
+                                                    </div>
+                                                </div>
+                                                <div *ngIf="title" class="errormsg">
+                                                    <div style="display: flex; color: red; position: relative;">
+                                                        <div style="font-size: 200%;">*</div>
+                                                        <div class="costinginput">
+
+                                                            %: <input placeholder="Discount Percentage on Base Price"
+                                                                formControlName="discount" type="number"
+                                                                oninput="validity.valid||(value='');"
+                                                                class="ip ip1 iperror">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="inputfield">
+                                                <div style="display: flex; color: red; position: relative;"
+                                                    *ngIf="!title">
+                                                    <div style="font-size: 200%;">*</div>
+                                                    <div class="costinginput">
+
+                                                        Kg: <input placeholder="Upto Quantity in kg"
+                                                            formControlName="quantity" type="number" class="ip ip1"
+                                                            oninput="validity.valid||(value='');">
+                                                    </div>
+                                                </div>
+                                                <div *ngIf="title" class="errormsg">
+                                                    <div style="display: flex; color: red; position: relative;">
+                                                        <div style="font-size: 200%;">*</div>
+                                                        <div class="costinginput">
+
+                                                            Kg: <input placeholder="Upto Quantity in kg"
+                                                                formControlName="quantity" type="number"
+                                                                class="ip ip1 iperror"
+                                                                oninput="validity.valid||(value='');">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                           
+                                        </div>
+                                        <div class="discount">
+                                            Price per kg: <br> ₹{{calcPrice(cost.get('discount')!.value)}}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- </div> -->
+            </form>
+
+            <!-- PICK UP ADDRESS -->
+            <div *ngIf="address" class="input">
+                <div class="side1">
+                    <div class="additemheading2">
+                        Existing Address:
+                    </div>
+                    <div style="color: red; font-size: 150%;" *ngIf="existingadd">* {{messageexistingadd}}</div>
+                    <!-- <div class="addressbody1"> -->
+                    <mat-radio-group class="addressbody1" [(ngModel)]="selectedPickupAddress">
+                        <mat-radio-button class="addresses" *ngFor="let address of addressesList" [value]="address">
+                            <!-- {{season}} -->
+                            <div class="addresscard">
+                                <div class="addresscardtitle">
+                                    {{address.addresstitle}}
+                                </div>
+                                <div class="addresscardcont">
+                                    {{address.address}}
+                                </div>
+                                <div class="addresscardcont">
+                                    {{address.district}}
+                                </div>
+                                <div class="addresscardcont">
+                                    {{address.state}}
+                                </div>
+                                <div class="addresscardcont">
+                                    {{address.pincode}}
+                                </div>
+
+                            </div>
+                        </mat-radio-button>
+                    </mat-radio-group>
+
+                </div>
+                <div class="side2">
+                    <div class="additemheading2">
+                        Add an Address:
+                    </div>
+                    <form [formGroup]="tempform" class="addressbody2">
+                        <div class="inputfield">
+                            <div style="display: flex; color: red; position: relative;" *ngIf="!addresstitle">
+                                <div style="font-size: 200%;">*</div>
+                                <input placeholder="Enter Address Title" [formGroup]="tempform"
+                                    formControlName="addresstitle" type="text" class="ip"
+                                    oninput="validity.valid||(value='');">
+                            </div>
+                            <div *ngIf="addresstitle" class="errormsg">
+                                <div style="display: flex; color: red; position: relative;">
+                                    <div style="font-size: 200%;">*</div>
+                                    <input placeholder="Enter Address Title" [formGroup]="tempform"
+                                        formControlName="addresstitle" type="text" class="ip iperror">
+                                </div>
+                                <div class="message sb1">
+                                    {{messageaddresstitle}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="inputfield">
+                            <div style="display: flex; color: red; position: relative;" *ngIf="!pickupaddress">
+                                <div style="font-size: 200%;">*</div>
+                                <input placeholder="Enter your address" [formGroup]="tempform"
+                                    formControlName="pickupaddress" type="text" class="ip"
+                                    oninput="validity.valid||(value='');">
+                            </div>
+                            <div *ngIf="pickupaddress" class="errormsg">
+                                <div style="display: flex; color: red; position: relative;">
+                                    <div style="font-size: 200%;">*</div>
+                                    <input placeholder="Enter your address" [formGroup]="tempform"
+                                        formControlName="pickupaddress" type="text" class="ip iperror">
+                                </div>
+                                <div class="message sb1">
+                                    {{messagepickupaddress}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inputfield"></div>
+                        <div style="display: flex; color: red; position: relative;" *ngIf="!pickuppincode">
+                            <div style="font-size: 200%;">*</div>
+                            <input placeholder="Enter Pincode" [formGroup]="tempform" formControlName="pickuppincode"
+                                type="number" class="ip" oninput="validity.valid||(value='');">
+                        </div>
+                        <div *ngIf="pickuppincode" class="errormsg">
+                            <div style="display: flex; color: red; position: relative;">
+                                <div style="font-size: 200%;">*</div>
+                                <input placeholder="Enter Pincode" [formGroup]="tempform"
+                                    formControlName="pickuppincode" type="number" class="ip iperror">
+                            </div>
+                            <div *ngIf="pickuppincode" class="errormsg">
+                                <div style="display: flex; color: red; position: relative;">
+                                    <div style="font-size: 200%;">*</div>
+                                    <input placeholder="Enter Pincode" [formGroup]="form"
+                                        formControlName="pickuppincode" type="number" class="ip iperror">
+                                </div>
+                                <div class="message sb1">
+                                    {{messagepickuppincode}}
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display: flex; color: red; position: relative;">
+                            <div style="font-size: 200%;">*</div>
+                            <mat-form-field appearance="fill" class="dd" *ngIf="!pickupstate">
+                                <mat-label style="font-size: 150%; color: black;">Select State</mat-label>
+                                <mat-select [(value)]="selectedState" class="ipp">
+                                    <div *ngFor="let state of states" (click)="getDistricts(state.name)">
+                                        <mat-option value="{{state.name}}" style="color: white;">
+                                            {{state.name}}</mat-option>
+                                    </div>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field appearance="fill" class="dd dderror" *ngIf="pickupstate">
+                                <mat-label style="font-size: 150%; color: black;">Select State</mat-label>
+                                <mat-select [(value)]="selectedState" class="ipp">
+                                    <div *ngFor="let state of states" (click)="getDistricts(state.name)">
+                                        <mat-option value="{{state.name}}" style="color: white;">
+                                            {{state.name}}</mat-option>
+                                    </div>
+                                </mat-select>
+                                <div class="message sb1">
+                                    {{messagepickupstate}}
+                                </div>
+                            </mat-form-field>
+                        </div>
+
+                        <div style="display: flex; color: red; position: relative;">
+                            <div style="font-size: 200%;">*</div>
+                            <mat-form-field appearance="fill" class="dd" *ngIf="!pickupdistrict">
+                                <mat-label style="font-size: 150%; color: black;">Select District</mat-label>
+                                <mat-select [(value)]="selectedDistrict" class="ipp">
+                                    <div *ngFor="let district of districts">
+                                        <mat-option value="{{district}}" style="color: white;">
+                                            {{district}}</mat-option>
+                                    </div>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field appearance="fill" class="dd dderror" *ngIf="pickupdistrict">
+                                <mat-label style="font-size: 150%; color: black;">Select District</mat-label>
+                                <mat-select [(value)]="selectedDistrict" class="ipp">
+                                    <div *ngFor="let district of districts">
+                                        <mat-option value="{{district}}" style="color: white;">
+                                            {{district}}</mat-option>
+                                    </div>
+                                </mat-select>
+                                <div class="message sb1">
+                                    {{messagepickupdistrict}}
+                                </div>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="addaddressbut">
+                            <button class="addressbutton" (click)=addAddress()>Add</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="btn">
+                <button class="submit" (click)="onSubmit()">{{tabChange}}</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<app-error500 *ngIf="error500"></app-error500>

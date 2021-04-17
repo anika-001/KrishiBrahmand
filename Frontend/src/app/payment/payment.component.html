@@ -1,0 +1,111 @@
+<div class="main" *ngIf="!error500">
+    <div class="basketheading">
+        <div class="path">
+            <div class="pathtrace">
+                <div class="pathitem">
+                    <div class="pathtraceitem">
+                        <div class="pathtraceitemline ptilbefore">
+
+                        </div>
+                    </div>
+                    <div class="pathtraceitem">
+                        <div class="pathtraceitemline ptilbefore">
+
+                        </div>
+                    </div>
+                    <div class="pathtraceitem">
+                        <div class="pathtraceitemline ptilbefore">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="pathitem">
+                    <div class="pathtraceitem">
+                        <div class="pathtraceitemline ptilbefore">
+
+                        </div>
+                    </div>
+                    <div class="pathtraceitem">
+                        <div class="pathtraceitemline ptilbefore">
+
+                        </div>
+                    </div>
+                    <div class="pathtraceitem">
+                        <div class="pathtraceitemline ptilbefore">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="pathitem">
+                    <div class="pathtraceitem">
+                        <div class="pathtraceitemline ptilbefore">
+
+                        </div>
+                    </div>
+                    <div class="pathtraceitem">
+                        <i class="fa fa-shopping-basket" style="color: var(--col4vl);"></i>
+                    </div>
+                    <div class="pathtraceitem">
+                        <div class="pathtraceitemline ptilafter">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pathitems">
+                <div class="pathitem pitext">
+                    Bag
+                </div>
+                <div class="pathitem pitext">
+                    Address
+                </div>
+                <div class="pathitem pitext">
+                    Payment
+                </div>
+            </div>
+        </div>
+        <div class="baskettitle">
+            <i class="fa fa-address-card"></i>
+            Payment
+        </div>
+
+    </div>
+    <div class="basketbody">
+        <div class="basket">
+            <div class="addresses">
+                <!-- {{season}} -->
+                <div class="addresscard">
+                    <div class = "addresscardtitle">
+                        Selected Delivery Address
+                    </div>
+                    <div class = "addresscardcont">
+                        {{selectedDeliveryAddress.addresstitle}}
+                    </div>
+                    <div class = "addresscardcont">
+                        {{selectedDeliveryAddress.address}}
+                    </div>
+                    <div class = "addresscardcont">
+                        {{selectedDeliveryAddress.district}}
+                    </div>
+                    <div class = "addresscardcont">
+                        {{selectedDeliveryAddress.state}}
+                    </div>
+                    <div class = "addresscardcont">
+                        {{selectedDeliveryAddress.pincode}}
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="order">
+            <div class="orderbill">
+                <app-ordersummary></app-ordersummary>
+                <button class="checkoutbuttoncont" (click) = "proceed()">
+                    Checkout Now
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<app-error500 *ngIf="error500"></app-error500>

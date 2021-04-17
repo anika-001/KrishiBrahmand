@@ -1,0 +1,84 @@
+<ng-template #t let-fill="fill">
+    <span class="star1" [class.full]="fill === 100">
+        <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+    </span>
+</ng-template>
+
+<div class="main" *ngIf="!error500">
+    <div class="catfilter" style="color: black;">
+        <div class = "cattitle">
+            <div class = "title">
+                Filter Categories
+            </div>
+        </div>
+        <div class="allcat">
+            <div *ngFor="let i of categoryValue" class="maincat">
+                <i class="fa fa-plus-circle" *ngIf="!i.Showsubcategories && i.Havesubsubcategories"
+                    (click)="i.Showsubcategories=true" style="color: var(--col4);"></i>
+                <i class="fa fa-minus-circle" *ngIf="i.Showsubcategories && i.Havesubsubcategories"
+                    (click)="i.Showsubcategories=false"></i>
+                <input *ngIf="!i.Havesubsubcategories" type="checkbox" name="{{i.Name}}" id="{{i.id}}"
+                    (change)=onChange(i,$event) [checked]=i.checked>
+                <label>{{i.Name}}</label>
+                <div *ngIf="i.Havesubsubcategories && i.Showsubcategories">
+                    <div *ngFor="let x of i.sub" class="subcat">
+                        <input type="checkbox" name="{{x.name}}" id="{{x.id}}" (change)=onChange(x,$event) [checked]=x.checked>
+                        <label>{{x.name}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="buttonfilter">
+            <button class = "buttonfil" (click)="apiCall()">
+                Filter
+            </button>
+        </div>
+
+    </div>
+    <div class="itemsmain">
+        <div class="itemshead">
+            <div class = "title">
+                <i class="fa fa-lemon-o" style = "font-size: 80%;"></i>
+                {{titlecat}}
+            </div>
+        </div>
+        <!-- <div class="itemsbody">
+            <div *ngFor="let i of items" class="itemcont" (click)="gotoItem(i)">
+                <div class="itempic">
+                    <img class="pic" src="{{i.image}}">
+                </div>
+                <div class="itemdesc">
+                    <div class="itemtitle">
+                        {{i.title}}
+                    </div>
+                    <div class="itemprice">
+                        Price: Rs.{{i.costing[0].price}} for 1 Kg
+                    </div>
+                </div>
+                <div class="itemrating">
+                    <ngb-rating [rate]="i.rating" [readonly]="true" [max]="5" [starTemplate]="t"></ngb-rating>
+                </div>
+            </div>
+        </div> -->
+        <div class="itemsbody1">
+            <div *ngFor="let i of items" class="itemcont1" (click)="gotoItem(i)">
+                <div class="itempic1">
+                    <div class="pic1" style="background-image: url({{i.image}}); background-size: cover;"> </div>
+                </div>
+                <div class="itemdesc1">
+                    <div class="itemtitle1">
+                        {{i.title}}
+                    </div>
+                    <div class="itemprice1">
+                        Price:  ₹{{i.baseprice}} for 1 Kg
+                    </div>
+                </div>
+                <div class="itemrating1">
+                    <ngb-rating [rate]="i.rating" [readonly]="true" [max]="5" [starTemplate]="t"></ngb-rating>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-error500 *ngIf="error500"></app-error500>

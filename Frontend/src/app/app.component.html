@@ -1,0 +1,245 @@
+<div class="common_main">
+    <mat-sidenav-container>
+        <mat-sidenav #sidenav mode="over" [(opened)]="opened" class="nav-drawer">
+            <!-- <div  *ngIf = "!x"> -->
+            <div class="nav-drawer-hamburger" (click)="sidenav.toggle();">
+                <i class="fa fa-bars"></i>
+            </div>
+            <div class="greeting" (swipeleft)="sidenav.toggle();">
+                <i class="fa fa-user menuicon"
+                    style="width: 100%; text-align: center; display: flex; flex-direction: column; justify-content: center; font-size: 200%;"></i>
+                <div class="user">Welcome <br>{{ user?.email }} </div>
+            </div>
+            <div class="nav-drawer-items" (swipeleft)="sidenav.toggle();" *ngIf="selectedRole == 'consumer'">
+                <a class="nav-drawer-item" routerLink="/home"><i class="fa fa-home menuicon"
+                        style="flex-basis: 45%; text-align: right; display: flex; flex-direction: column; justify-content: center; color: white;"></i>
+                    <div class="nav-drawer-item-text">Home &#8594;</div>
+                </a>
+
+                <a class="nav-drawer-item" routerLink="/profile"><i class="fa fa-user menuicon"
+                        style="flex-basis: 45%; text-align: right; display: flex; flex-direction: column; justify-content: center; color: white;"></i>
+                    <div class="nav-drawer-item-text">Profile &#8594;</div>
+                </a>
+
+                <a class="nav-drawer-item" routerLink="/login"><i class="fa fa-home menuicon"
+                        style="flex-basis: 45%; text-align: right; display: flex; flex-direction: column; justify-content: center; color: white;"></i>
+                    <div class="nav-drawer-item-text">About us &#8594;</div>
+                </a>
+
+                <a class="nav-drawer-item" routerLink="/login"><i class="fa fa-sign-in menuicon"
+                        style="flex-basis: 45%; text-align: right; display: flex; flex-direction: column; justify-content: center; color: white;"></i>
+                    <div class="nav-drawer-item-text">Logout &#8594;</div>
+                </a>
+
+
+
+                <!-- <a class="row r2" routerLink="/login"><i class="fa fa-shopping-cart col-4" aria-hidden="true"></i>
+                  <div class="ff col-8">Cart &#8594;</div>
+              </a>
+              <a routerLink="/profile" class="row r2"><i class="fa fa-user menuicon col-4"></i>
+                  <div class="ff col-8">My Profile &#8594;</div>
+              </a>
+              <a routerLink="/orders" class="row r2"><i class="fa fa-shopping-bag col-4" aria-hidden="true"></i>
+                  <div class="ff col-8">My Orders &#8594;</div>
+              </a>
+              <a routerLink="/sub" class="row r2"><i class="fa fa-heart col-4" aria-hidden="true"></i>
+                  <div class="ff col-8">My Subscriptions &#8594;</div>
+              </a>
+              <a routerLink="/not" class="row r2"><i class="fa fa-bell col-4" aria-hidden="true"></i>
+                  <div class="ff col-8">My Notifications &#8594;</div>
+              </a>
+              <div class="row r2" (click)="logout()"><i class="fa fa-sign-in menuicon col-4"></i>
+                  <div class="ff col-8">Log Out &#8594;</div>
+              </div> -->
+            </div>
+            <div class="nav-drawer-items" (swipeleft)="sidenav.toggle();" *ngIf="selectedRole == 'farmer'">
+                <a class="nav-drawer-item" routerLink="/home"><i class="fa fa-home menuicon"
+                        style="flex-basis: 45%; text-align: right; display: flex; flex-direction: column; justify-content: center; color: white;"></i>
+                    <div class="nav-drawer-item-text">Home &#8594;</div>
+                </a>
+
+
+                <a class="nav-drawer-item" routerLink="/login"><i class="fa fa-home menuicon"
+                        style="flex-basis: 45%; text-align: right; display: flex; flex-direction: column; justify-content: center; color: white;"></i>
+                    <div class="nav-drawer-item-text">About us &#8594;</div>
+                </a>
+
+                <a class="nav-drawer-item" routerLink="/login"><i class="fa fa-sign-in menuicon"
+                        style="flex-basis: 45%; text-align: right; display: flex; flex-direction: column; justify-content: center; color: white;"></i>
+                    <div class="nav-drawer-item-text">Logout &#8594;</div>
+                </a>
+
+            </div>
+            <!-- </div>  -->
+        </mat-sidenav>
+
+        <mat-sidenav-content class="content">
+
+            <div class="nav-bar html.translated-ltr">
+                <div class="nav-bar-left">
+                    <div class="nav-bar-hamburger" (click)="sidenav.toggle()">
+                        <i class="fa fa-bars"></i>
+                    </div>
+                    <div class="siteinfo">
+                        <div class="siteimage">
+
+                        </div>
+                        <div class="sitename">
+                            Krishi Bazaar
+                        </div>
+                    </div>
+
+                </div>
+                <div class="nav-bar-right">
+                    <a class="nav-bar-item" *ngIf="selectedRole == 'consumer'" routerLink="/home"><i
+                            class="fa fa-home menuicon"
+                            style="display: flex; flex-direction: column; justify-content: center; margin: 0 3px;"></i>
+                        <div class="nav-bar-item-text">Home</div>
+                    </a>
+
+                    <a class="nav-bar-item" *ngIf="selectedRole == 'farmer'" routerLink="/home/farmer"><i
+                            class="fa fa-home menuicon"
+                            style="display: flex; flex-direction: column; justify-content: center; margin: 0 3px;"></i>
+                        <div class="nav-bar-item-text">Home</div>
+                    </a>
+
+                    <a class="nav-bar-item" *ngIf="selectedRole == 'farmer'" routerLink="/add-items"><i
+                            class="fa fa-cart-plus menuicon"
+                            style="display: flex; flex-direction: column; justify-content: center; margin: 0 3px;"></i>
+                        <div class="nav-bar-item-text">Add Product</div>
+                    </a>
+
+                    <a class="nav-bar-item" *ngIf="selectedRole == 'consumer'" routerLink="/profile"><i
+                            class="fa fa-user menuicon"
+                            style="display: flex; flex-direction: column; justify-content: center; margin: 0 3px;"></i>
+                        <div class="nav-bar-item-text">Profile</div>
+                    </a>
+
+                    <a class="nav-bar-item" *ngIf="selectedRole == 'consumer'" routerLink="/aboutus"><i
+                            class="fa fa-users menuicon"
+                            style="display: flex; flex-direction: column; justify-content: center; margin: 0 3px;"></i>
+                        <div class="nav-bar-item-text">About us</div>
+                    </a>
+
+                    <a class="nav-bar-item" *ngIf="selectedRole == 'consumer'" routerLink="/cart"><i
+                            class="fa fa-shopping-cart menuicon"
+                            style="display: flex; flex-direction: column; justify-content: center; margin: 0 3px;"></i>
+                        <div class="nav-bar-item-text">Cart</div>
+                    </a>
+
+
+                    <a class="nav-bar-item" *ngIf="selectedRole == 'consumer'" routerLink="/orders"><i
+                            class="fa fa-list-alt" aria-hidden="true"
+                            style="display: flex; flex-direction: column; justify-content: center; margin: 0 3px;"></i>
+                        <div class="nav-bar-item-text">Orders</div>
+                    </a>
+
+                    <a class="nav-bar-item" *ngIf="selectedRole == 'farmer'" routerLink="/pickup"><i class="fa fa-truck"
+                            aria-hidden="true"
+                            style="display: flex; flex-direction: column; justify-content: center; margin: 0 3px;"></i>
+                        <div class="nav-bar-item-text">Pickup</div>
+                    </a>
+
+
+                    <a class="nav-bar-item" *ngIf="selectedRole == 'farmer'" routerLink="/shipment"><i
+                            class="fa fa-plane" aria-hidden="true"
+                            style="display: flex; flex-direction: column; justify-content: center; margin: 0 3px;"></i>
+                        <div class="nav-bar-item-text">Shipment</div>
+                    </a>
+
+                    <div *ngIf="show">
+                        <mat-form-field color="accent">
+                            <mat-label style="font-size: 80%; color: black;">Select Role</mat-label>
+                            <mat-select [(value)]="selectedRole"
+                                style="text-align: center; background-color: var(--col4); font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+                                <mat-option value="farmer" (click)="changeroletofarmer()">
+                                    farmer</mat-option>
+                                <mat-option value="consumer" (click)="changeroletoconsumer()">
+                                    consumer</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <a class="nav-bar-item"><i class="fa fa-sign-in menuicon"
+                            style="display: flex; flex-direction: column; justify-content: center; margin: 0 3px;"></i>
+                        <div class="nav-bar-item-text" (click)="logout()">Logout</div>
+                    </a>
+
+                    <!-- <a class="icon" routerLink="/profile"><i class="fa fa-user menuicon"></i>
+                      <div class="tag">Profile</div>
+                  </a>
+                  <a class="icon" routerLink="/orders"><i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                      <div class="tag">My Orders</div>
+                  </a>
+                  <a class="icon" routerLink="/not"><i class="fa fa-bell" aria-hidden="true"></i>
+                      <div class="tag">My Notifications</div>
+                  </a>
+
+                  <div class="icon" (click)="logout()"><i class="fa fa-sign-in menuicon"></i>
+                      <div class="tag">Logout</div>
+                  </div> -->
+                </div>
+            </div>
+            <!-- <div class="nav-bar html.translated-ltr" *ngIf = "selectedRole == 'farmer'">
+                <div class="nav-bar-left">
+                    <div class="nav-bar-hamburger" (click)="sidenav.toggle()">
+                        <i class="fa fa-bars"></i>
+                    </div>
+                    <div class="siteinfo">
+                        <div class="siteimage">
+
+                        </div>
+                        <div class="sitename">
+                            Krishi Bazaar
+                        </div>
+                    </div>
+
+                </div>
+                <div class="nav-bar-right">
+                    <a class="nav-bar-item" routerLink="/home"><i class="fa fa-home menuicon"
+                            style="display: flex; flex-direction: column; justify-content: center; margin: 0 3px;"></i>
+                        <div class="nav-bar-item-text">Home</div>
+                    </a>
+
+                    <div>
+                        <mat-form-field color = "accent">
+                            <mat-label style="font-size: 80%; color: black;">Select Role</mat-label>
+                            <mat-select [(value)]="selectedRole" style="text-align: center; background-color: var(--col4); font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+                                <mat-option value="farmer" (click) = "changerole()">
+                                    farmer</mat-option>
+                                <mat-option value="consumer"(click) = "changerole()">
+                                    consumer</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+
+                    <a class="nav-bar-item"><i class="fa fa-sign-in menuicon"
+                            style="display: flex; flex-direction: column; justify-content: center; margin: 0 3px;"></i>
+                        <div class="nav-bar-item-text" (click)="logout()">Logout</div>
+                    </a>
+
+                    <a class="icon" routerLink="/profile"><i class="fa fa-user menuicon"></i>
+                      <div class="tag">Profile</div>
+                  </a>
+                  <a class="icon" routerLink="/orders"><i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                      <div class="tag">My Orders</div>
+                  </a>
+                  <a class="icon" routerLink="/not"><i class="fa fa-bell" aria-hidden="true"></i>
+                      <div class="tag">My Notifications</div>
+                  </a>
+
+                  <div class="icon" (click)="logout()"><i class="fa fa-sign-in menuicon"></i>
+                      <div class="tag">Logout</div>
+                  </div>
+                </div>
+            </div> -->
+            <div class="mainpage" (swipeleft)="sidenav.close()" (swiperight)="sidenav.open()">
+                <!-- <div class="desktop"> -->
+                <router-outlet></router-outlet>
+                <!-- </div> -->
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+
+</div>

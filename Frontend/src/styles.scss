@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+html, body { height: 100%; }
+body{
+    margin: 0;
+   }
+
+:root {
+   --col1d: rgb(53,64,27);
+   --col1m: rgb(97, 117, 49);
+   --col1l: rgb(147, 175, 80);
+   --col2d:	rgb(107,29,13);
+   --col2m: rgb(145, 40, 20);
+   --col2l: rgb(212, 64, 35);
+   --col2vl: rgb(247, 126, 102);
+   --col3d: rgb(142,158,55);
+   --col3m: rgb(193, 212, 84);
+   --col3l: rgb(221, 240, 113);
+   --col3vl: rgb(245, 255, 191);
+   --col4: rgb(54, 106, 86);
+   --col4d:rgb(45, 88, 72);
+   --col4l: rgb(66, 126, 103);
+   --col4vl: rgb(123, 228, 188);
+   --appbg: #FFF4F4;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

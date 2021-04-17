@@ -1,0 +1,40 @@
+<div class="main" *ngIf="!error500">
+    <div class="logincard">
+
+        <div class="logintitle">
+            Verifying email
+        </div>
+        <div class="loginfield">
+            <div *ngIf = "error" class = "error">{{errormessage}}
+            </div> 
+            <div class="error" *ngIf="emailsent"
+                style="background-color: rgba(0, 128, 0, 0.7); border: green solid thin;">
+                {{errormessage}}
+            </div>
+            <form [formGroup]="form" class="input">
+                <input placeholder="Enter Email" formControlName="email" type="email" class="ip" *ngIf="!email">
+                <div *ngIf="email" class="errormsg">
+                    <div class="message sb1">
+                        {{messageemail}}
+                    </div>
+                    <input placeholder="Enter Email" formControlName="email" type="email" class="ip iperror">
+                </div>
+            </form>
+
+            <div class="submit" (click)="validate()">
+                <div class="submitbutton">
+                    Send email
+
+                </div>
+
+            </div>
+
+            <!-- <div class = "error" *ngIf = "error && emailsent" style="background-color: rgba(0, 128, 0, 0.2); border: green solid thin;">
+                {{errormessage}}
+                <div style = "align-self: flex-end; background-color: black; padding: 2%; border-radius: 5px; cursor: pointer; margin-right: 2%; box-shadow: 1px 1px 2px rgb(75, 75, 75);" (click) = "resendmail()">Resend email</div>
+            </div> -->
+        </div>
+        
+    </div>
+</div>
+<app-error500 *ngIf="error500"></app-error500>

@@ -1,0 +1,136 @@
+<div class="main">
+    <!-- <div class = "product-button-cont">
+        <a class = "product-button" routerLink="/add-items">
+            Add Product
+        </a>
+    </div> -->
+
+    <!-- <div class = "advertisement_cont"> -->
+    <ngb-carousel class="advertisement_cont" [interval]="4000">
+
+        <ng-template ngbSlide class="mySlides">
+            <!-- <img src="../../assets/images/bellpepper.jpg" class="slidesimg"> -->
+            <div class="slidesimg"
+                style="background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(255, 244, 244, 1)), url(https://firebasestorage.googleapis.com/v0/b/krishibazaar-14ac4.appspot.com/o/ads%2FFrame%201.png?alt=media&token=5a8839d5-fd2d-494c-9740-00a635cd2a1e); background-size: cover;">
+
+            </div>
+        </ng-template>
+
+        <ng-template ngbSlide class="mySlides">
+            <!-- <img src="../../assets/images/cabbage_veggie_2.jpg" class="slidesimg1"> -->
+            <div class="slidesimg"
+                style="background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(255, 244, 244, 1)), url(https://firebasestorage.googleapis.com/v0/b/krishibazaar-14ac4.appspot.com/o/ads%2FFrame%202.png?alt=media&token=1dc04ba9-7222-4e7d-aacd-842414edaaee); background-size: cover;">
+            </div>
+        </ng-template>
+
+        <ng-template ngbSlide class="mySlides">
+            <!-- <img src="../../assets/images/Exotic Fruits.png" class="slidesimg1"> -->
+            <div class="slidesimg"
+                style="background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(255, 244, 244, 1)), url(https://firebasestorage.googleapis.com/v0/b/krishibazaar-14ac4.appspot.com/o/ads%2FFrame%203.png?alt=media&token=b602c3ca-7774-49bb-9601-b020395fdd7c); background-size: cover;">
+            </div>
+        </ng-template>
+
+        <ng-template ngbSlide class="mySlides">
+            <!-- <img src="../../assets/images/Exotic Fruits.png" class="slidesimg1"> -->
+            <div class="slidesimg"
+                style="background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(255, 244, 244, 1)), url(https://firebasestorage.googleapis.com/v0/b/krishibazaar-14ac4.appspot.com/o/ads%2FFrame%204.png?alt=media&token=32df2eda-ed40-45bd-b833-fca50c2957c2); background-size: cover;">
+            </div>
+        </ng-template>
+
+        <ng-template ngbSlide class="mySlides">
+            <!-- <img src="../../assets/images/Exotic Fruits.png" class="slidesimg1"> -->
+            <div class="slidesimg"
+                style="background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(255, 244, 244, 1)), url(https://firebasestorage.googleapis.com/v0/b/krishibazaar-14ac4.appspot.com/o/ads%2FFrame%205.png?alt=media&token=08545e85-46d0-4e4c-afca-75bd197afc89); background-size: cover;">
+            </div>
+        </ng-template>
+
+        <ng-template ngbSlide class="mySlides">
+            <!-- <img src="../../assets/images/Exotic Fruits.png" class="slidesimg1"> -->
+            <div class="slidesimg"
+                style="background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(255, 244, 244, 1)), url(https://firebasestorage.googleapis.com/v0/b/krishibazaar-14ac4.appspot.com/o/ads%2FFrame%206.png?alt=media&token=7871ba81-376d-4522-814a-cede5c5d59e0); background-size: cover;">
+            </div>
+        </ng-template>
+
+
+    </ngb-carousel>
+    <!-- </div> -->
+
+    <!-- <div class="product-button-cont" *ngIf="roleFarmer">
+        <a class="product-button" routerLink="/add-items">
+            + Add Product
+        </a>
+    </div> -->
+    <div class="add_product">
+        <div class="add_heading">
+            <div class = "heading_text">Shop By Category</div>
+        </div>
+        <div class="add_images">
+
+            <div class="add_image">
+                <div class="add_image_image" style="background-image: url('../../assets/images/fruits_2.jpg');"
+                    (click)="navigate('fruits')">
+
+                </div>
+                <div class="add_image_text">
+                    <div style="margin: 2%;">Fruits</div>
+                </div>
+            </div>
+            <div class="add_image">
+                <div class="add_image_image" style="background-image: url('../../assets/images/cabbage_veggie_2.jpg');"
+                    (click)="navigate('dailyvegetables')">
+
+                </div>
+                <div class="add_image_text">
+                    <div style="margin: 2%;">Daily Vegetables</div>
+                </div>
+            </div>
+            <div class="add_image">
+                <div class="add_image_image" style="background-image: url('../../assets/images/bellpepper.jpg');"
+                    (click)="navigate('exoticvegetables')">
+
+                </div>
+                <div class="add_image_text">
+                    <div style="margin: 2%;">Exotic Vegetables</div>
+                </div>
+            </div>
+            <div class="add_image">
+                <div class="add_image_image"
+                    style="background-image: url('../../assets/images/herbsandseasoning_2.jpg');"
+                    (click)="navigate('herbsandseasoning')">
+
+                </div>
+                <div class="add_image_text">
+                    <div style="margin: 2%;">Herbs and Seasoning</div>
+                </div>
+            </div>
+            <div class="add_image">
+                <div class="add_image_image" style="background-image: url('../../assets/images/organic_2.jpg');"
+                    (click)="navigate('organic')">
+
+                </div>
+                <div class="add_image_text">
+                    <div style="margin: 2%;">Organic</div>
+                </div>
+            </div>
+
+            <div class="add_image">
+                <div class="add_image_image" style="background-image: url('../../assets/images/kiwi.jpg');"
+                    (click)="navigate('exotic')">
+
+                </div>
+                <div class="add_image_text">
+                    <div style="margin: 2%;">Exotic</div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class = "product-button" (click) = "addtodb()">
+            + Add Product to Database
+        </div> -->
+    </div>
+</div>
+
+<!-- <div class = "main" *ngIf = "rolee == 'farmer'">
+
+
+
+</div> -->

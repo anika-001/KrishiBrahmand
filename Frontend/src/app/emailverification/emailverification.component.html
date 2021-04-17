@@ -1,0 +1,17 @@
+<div class="main" *ngIf="!error500">
+    <div class="logincard">
+
+        <div class="logintitle">
+            Verifying email
+        </div>
+        <div class="loginfield">
+            <div class="loader" *ngIf = "!error"><div class="loader l1"><div class="loader l2"></div></div></div>
+             <div *ngIf = "error" style = "font-size: 150%; color: white; text-align: center; display: flex; padding: 2%;"><div style = "padding: 2%; flex-basis: 50%;">{{errormessage}}</div>
+                <div style = "align-self: flex-start; flex-basis: 50%; background-color: black; padding: 2%; border-radius: 5px; cursor: pointer; box-shadow: 1px 1px 2px rgb(75, 75, 75);" (click) = "resendmail()">Resend email</div>
+            </div> 
+        </div>
+        
+    </div>
+</div>
+
+<app-error500 *ngIf="error500"></app-error500>

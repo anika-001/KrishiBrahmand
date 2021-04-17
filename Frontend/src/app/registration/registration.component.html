@@ -1,0 +1,166 @@
+<div class="main" *ngIf="!error500">
+    <div class="registercard">
+
+        <div class="registertitle">
+            Registration
+        </div>
+        <div class="registerfield">
+            <div class="error" *ngIf="error">
+                {{errormessage}}
+                <div *ngIf="resendemail"
+                    style="align-self: flex-end; background-color: black; padding: 2%; border-radius: 5px; cursor: pointer; margin-right: 2%; box-shadow: 1px 1px 2px rgb(75, 75, 75);"
+                    (click)="resendmail()">Resend email</div>
+            </div>
+            <!-- <div class="error" *ngIf="error && emailsent"
+                style="background-color: rgba(0, 128, 0, 0.2); border: green solid thin;">
+                {{errormessage}}
+                <div style="align-self: flex-end; background-color: black; padding: 2%; border-radius: 5px; cursor: pointer; margin-right: 2%; box-shadow: 1px 1px 2px rgb(75, 75, 75);"
+                    (click)="resendmail()">Resend email</div>
+            </div> -->
+
+            <form [formGroup]="form" class="input">
+                <!-- <div class="input" > -->
+                <input placeholder="Enter Name" formControlName="name" type="text" class="ip" *ngIf="!name">
+                <div *ngIf="name" class="errormsg">
+                    <div class="message sb1">
+                        {{messagename}}
+                    </div>
+                    <input placeholder="Enter Name" formControlName="name" type="text" class="ip iperror">
+                </div>
+
+                <input placeholder="Enter Email" formControlName="email" type="email" class="ip" *ngIf="!email">
+                <div *ngIf="email" class="errormsg">
+                    <div class="message sb1">
+                        {{messageemail}}
+                    </div>
+                    <input placeholder="Enter Email" formControlName="email" type="email" class="ip iperror">
+                </div>
+
+                <input placeholder="Enter Contact Number" formControlName="phone" type="number" class="ip"
+                    *ngIf="!phone">
+                <div *ngIf="phone" class="errormsg">
+                    <div class="message sb1">
+                        {{messagephone}}
+                    </div>
+                    <input placeholder="Enter Contact Number" formControlName="phone" type="number" class="ip iperror">
+                </div>
+                <input placeholder="Enter Password" formControlName="password" type="password" class="ip"
+                    *ngIf="!password">
+                <div *ngIf="password" class="errormsg">
+                    <div class="message sb1">
+                        {{messagepassword}}
+                    </div>
+                    <input placeholder="Enter Password" formControlName="password" type="password" class="ip iperror">
+                </div>
+                <input placeholder="Confirm Password" formControlName="confirmpassword" type="password" class="ip"
+                    *ngIf="!confirmpassword">
+                <div *ngIf="confirmpassword" class="errormsg">
+                    <div class="message sb1">
+                        {{messageconfirmpassword}}
+                    </div>
+                    <input placeholder="Confirm Password" formControlName="confirmpassword" type="password"
+                        class="ip iperror">
+                </div>
+
+                <mat-form-field appearance="fill" style="background-color: black;">
+                    <mat-label style="font-size: 150%;">Select Role</mat-label>
+                    <mat-select [(value)]="selectedRole" class="ip" style="font-size: 100%;">
+                        <mat-option value="farmer">Farmer + Consumer</mat-option>
+                        <mat-option value="consumer">Consumer</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!-- drop down box  -->
+
+                <input placeholder="Enter Address" formControlName="address" type="text" class="ip" *ngIf="!address">
+                <div *ngIf="address" class="errormsg">
+                    <div class="message sb1">
+                        {{messageaddress}}
+                    </div>
+                    <input placeholder="Enter Address" formControlName="address" type="text" class="ip iperror">
+                </div>
+
+                <!-- <input placeholder="Enter District" formControlName="district" type="text" class="ip" *ngIf="!district">
+                <div *ngIf="district" class="errormsg">
+                    <div class="message sb1">
+                        {{messagedistrict}}
+                    </div>
+                    <input placeholder="Enter District" formControlName="district" type="text" class="ip iperror">
+                </div> -->
+
+                <!-- <input placeholder="Enter State" formControlName="state" type="text" class="ip" *ngIf="!state">
+                <div *ngIf="state" class="errormsg">
+                    <div class="message sb1">
+                        {{messagestate}}
+                    </div>
+                    <input placeholder="Enter State" formControlName="state" type="text" class="ip iperror">
+                </div> -->
+
+                <mat-form-field appearance="fill" style="background-color: black;">
+                    <mat-label style="font-size: 150%;">Select State</mat-label>
+                    <mat-select [(value)]="selectedState" class="ip" style="font-size: 100%;">
+                        <div *ngFor="let state of states" (click)="getDistricts(state.name)">
+                            <mat-option value="{{state.name}}" class="options">
+                                {{state.name}}</mat-option>
+                        </div>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" style="background-color: black;">
+                    <mat-label style="font-size: 150%;">Select District</mat-label>
+                    <mat-select [(value)]="selectedDistrict" class="ip" style="font-size: 100%;">
+                        <div *ngFor="let district of districts">
+                            <mat-option value="{{district}}" class="options">
+                                {{district}}</mat-option>
+                        </div>
+                    </mat-select>
+                </mat-form-field>
+
+                <input placeholder="Enter Pincode" formControlName="pincode" type="number" class="ip"
+                    *ngIf="!pincode">
+                <div *ngIf="pincode" class="errormsg">
+                    <div class="message sb1">
+                        {{messagepincode}}
+                    </div>
+                    <input placeholder="Enter Pincode" formControlName="pincode" type="number" class="ip iperror">
+                </div>
+
+                <div>
+                    <div [hidden]="phuser">
+
+                        <div id="recaptcha-container"></div>
+
+                        <div *ngIf="windowRef.confirmationResult">
+
+                            <form [formGroup]="form2">
+                                <input placeholder="Enter Verification code" formControlName="code" type="text">
+                            </form>
+
+
+                            <button (click)="verifyLoginCode()">Verify</button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <a routerLink="/login" class="login">
+                    Already registered? Click here to login.
+                </a>
+
+                <!-- </div> -->
+            </form>
+
+            <div class="submit" (click)="submit()">
+                <div class="submitbutton">
+                    Register
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+<app-error500 *ngIf="error500"></app-error500>

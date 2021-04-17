@@ -1,0 +1,333 @@
+.main {
+    max-height: calc(94vh - 39px);
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    width: 80vw;
+    color: black;
+}
+
+.basketheading{
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    //justify-content: space-evenly;
+    align-items: center;
+    color: black;
+    font-size: 300%;
+}
+
+.baskettitle{
+    flex-basis: 70%;
+    //margin-left: 10%;
+    align-items: center;
+}
+.path{
+    flex-basis: 30%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 40%;
+}
+
+.pathtrace{
+    flex-basis: 20%;
+    //background-color: aquamarine;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pathitems{
+    flex-basis: 40%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pathitem{
+    flex-basis: 33.3%;
+    display: flex;
+    justify-content: space-between;
+    //margin: 0% 10%;
+}
+
+.pitext{
+    justify-content: center;
+}
+
+.pathtraceitem{
+    flex-basis: 33.3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pathtraceitem_icon{
+    justify-content: center;
+}
+
+.pathtraceitemline{
+    flex-basis: 50%;
+    width: 100%;
+}
+
+.ptilbefore{
+    border-bottom: solid var(--col4vl);
+}
+
+.ptilafter{
+    border-bottom: solid black;
+}
+.basketbody{
+    height: calc(74vh - 39px);
+    display: flex;
+}
+
+.cartempty{
+    flex-basis: 70%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 300%;
+}
+
+.basket{
+    flex-basis: 70%;
+    // overflow-y: auto;
+}
+
+.markings{
+    height: 5vh;
+    display: flex;
+    color: gray;
+    font-size: 120%;
+}
+
+.markingspace{
+    flex-basis: 10%;
+}
+.marking{
+    flex-basis: 17%;
+    text-align: center;
+}
+
+.basketitems{
+    height: calc(65vh - 39px);
+    overflow-y: auto;
+}
+
+.item{
+    height: 10vh;
+    border-top: solid thin silver;
+    border-bottom: solid thin silver;
+    margin: 1% 0%;
+    display: flex;
+    cursor: pointer;
+}
+
+.item:hover{
+    background-color: rgb(223, 223, 223);
+}
+
+.itempic{
+    flex-basis: 10%;
+}
+
+.itempart{
+    flex-basis: 17%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 110%;
+
+}
+
+.partdisc{
+    //background-color: greenyellow;
+    //color: rgb(255, 166, 0);
+    color: blue;
+}
+
+.partdelete{
+    flex-basis: 5%;
+}
+
+.delete{
+    box-shadow: 2px 2px 5px silver;
+    cursor: pointer;
+}
+
+.delete:hover{
+    box-shadow: none;
+    color: red;
+}
+.quantity{
+    display: flex;
+    flex-direction: row;
+    //justify-content: space-around;
+}
+
+.quantitybutton{
+    background-color: var(--col4);
+    color: white;
+    flex-basis: 20%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0% 1%;
+    //font-size: 150%;
+    padding: 2% 0%;
+    border: solid rgba(0, 0, 0, 0);
+}
+
+.qb1:hover{
+    background-color: var(--col4d);
+    border: solid silver;
+    box-shadow: none;
+}
+// .iteminfo{
+//     flex-basis: 60%;
+//     padding: 2%;
+//     display: flex;
+//     flex-direction: column;
+// }
+
+// .itemname{
+//     color: black;
+//     font-size: 250%;
+//     flex-basis: 40%;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+// }
+
+// .itemquantity{
+//     color: black;
+//     font-size: 150%;
+//     flex-basis: 30%;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+// }
+// .purchaseinfo{
+//     flex-basis: 20%;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: flex-end;
+// }
+
+// .price{
+//     color: black;
+//     font-size: 150%;
+// }
+.order{
+    flex-basis: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.orderbill{
+    width: 80%;
+    height: 50vh;
+    margin-top: 10%;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.orderbilltitle{
+    flex-basis: 20%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 200%;
+    text-decoration: underline;
+}
+
+.orderbillbody{
+    flex-basis: 70%;
+    padding: 5%;
+    font-size: 150%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.st{
+    font-size: 150%;
+}
+
+.billitem{
+    padding: 5% 0%;
+}
+
+.checkoutbuttoncont{
+    flex-basis: 10%;
+    background-color: var(--col4);
+    position: relative;
+    border-radius: 2px;
+    font-size: 150%;
+    color: white;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: solid rgba(0, 0, 0, 0);
+    cursor: pointer;
+}
+
+.checkoutbuttoncont::after {
+    content: '';
+    display: block;
+    position: absolute;
+    background-color: var(--col4vl);
+   // background-color: rgb(216, 216, 216);
+    width: 100%;
+    height: 100%;
+    //border-radius: 100%;
+    opacity: 0.6;
+    transform: scale(0);
+    //visibility: visible;
+}
+
+@keyframes ripple {
+    0% {
+      transform: scale(0);
+    }
+    20% {
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1);
+    }
+  }
+
+.checkoutbuttoncont:hover{
+    background-color: var(--col4d);
+    border: solid silver;
+    box-shadow: none;
+}
+
+.checkoutbuttoncont:not(:active)::after {
+    animation: ripple 1s ease-out;
+  }
+
+.checkoutbuttoncont::after {
+    visibility: hidden;
+   // display: none;
+  }
+  
+.checkoutbuttoncont:focus::after {
+    visibility: visible;
+    //display: block;
+  }
+
+.pic{
+    width: 100%;
+    height: 100%;
+}

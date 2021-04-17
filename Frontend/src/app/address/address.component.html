@@ -1,0 +1,250 @@
+<div class="main" *ngIf="!error500">
+    <div class="basketheading">
+        <div class="path">
+            <div class="pathtrace">
+                <div class="pathitem">
+                    <div class="pathtraceitem">
+                        <div class="pathtraceitemline ptilbefore">
+
+                        </div>
+                    </div>
+                    <div class="pathtraceitem">
+                        <div class="pathtraceitemline ptilbefore">
+
+                        </div>
+                    </div>
+                    <div class="pathtraceitem">
+                        <div class="pathtraceitemline ptilbefore">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="pathitem">
+                    <div class="pathtraceitem">
+                        <div class="pathtraceitemline ptilbefore">
+
+                        </div>
+                    </div>
+                    <div class="pathtraceitem">
+                        <i class="fa fa-shopping-basket" style="color: var(--col4vl);"></i>
+
+                    </div>
+                    <div class="pathtraceitem">
+                        <div class="pathtraceitemline ptilafter">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="pathitem">
+                    <div class="pathtraceitem">
+                        <div class="pathtraceitemline ptilafter">
+
+                        </div>
+                    </div>
+                    <div class="pathtraceitem">
+                        <div class="pathtraceitemline ptilafter">
+
+                        </div>
+                    </div>
+                    <div class="pathtraceitem">
+                        <div class="pathtraceitemline ptilafter">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pathitems">
+                <div class="pathitem pitext">
+                    Bag
+                </div>
+                <div class="pathitem pitext">
+                    Address
+                </div>
+                <div class="pathitem pitext">
+                    Payment
+                </div>
+            </div>
+        </div>
+        <div class="baskettitle">
+            <i class="fa fa-address-card"></i>
+            Pick an address
+        </div>
+
+    </div>
+    <div class="basketbody">
+        <div class="basket" *ngIf="!isempty">
+
+            <!-- <div class = "cards" *ngFor = "let x of number">
+
+            </div> -->
+            <div style = "color: red; font-size: 150%;" *ngIf = "existingadd">* {{messageexistingadd}}</div> 
+            <mat-radio-group [(ngModel)]="selectedDeliveryAddress">
+                <mat-radio-button class="addresses" *ngFor="let address of addressesList" [value]="address">
+                    <!-- {{season}} -->
+                    <div class="addresscard">
+                        <div class = "addresscardtitle">
+                            {{address.addresstitle}}
+                        </div>
+                        <div class = "addresscardcont">
+                            {{address.address}}
+                        </div>
+                        <div class = "addresscardcont">
+                            {{address.district}}
+                        </div>
+                        <div class = "addresscardcont">
+                            {{address.state}}
+                        </div>
+                        <div class = "addresscardcont">
+                            {{address.pincode}}
+                        </div>
+
+                    </div>
+                </mat-radio-button>
+            </mat-radio-group>
+
+            <form [formGroup]="form" class="addresscardip">
+                <div style = "font-size: 200%; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Add an address</div>
+                <div class="inputfield">
+                    <div style="display: flex; color: red; position: relative;" *ngIf="!addresstitle">
+                        <div style="font-size: 200%;">*</div>
+                        <input placeholder="Enter Address Title" [formGroup]="form" formControlName="addresstitle"
+                            type="text" class="ip" oninput="validity.valid||(value='');">
+                    </div>
+                    <div *ngIf="addresstitle" class="errormsg">
+                        <div style="display: flex; color: red; position: relative;">
+                            <div style="font-size: 200%;">*</div>
+                            <input placeholder="Enter Address Title" [formGroup]="form" formControlName="addresstitle"
+                                type="text" class="ip iperror">
+                        </div>
+                        <div class="message sb1">
+                            {{messageaddresstitle}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inputfield">
+                    <div style="display: flex; color: red; position: relative;" *ngIf="!pickupaddress">
+                        <div style="font-size: 200%;">*</div>
+                        <input placeholder="Enter your address" [formGroup]="form" formControlName="pickupaddress"
+                            type="text" class="ip" oninput="validity.valid||(value='');">
+                    </div>
+                    <div *ngIf="pickupaddress" class="errormsg">
+                        <div style="display: flex; color: red; position: relative;">
+                            <div style="font-size: 200%;">*</div>
+                            <input placeholder="Enter your address" [formGroup]="form" formControlName="pickupaddress"
+                                type="text" class="ip iperror">
+                        </div>
+                        <div class="message sb1">
+                            {{messagepickupaddress}}
+                        </div>
+                    </div>
+                </div>
+                <div class="inputfield"></div>
+                <div style="display: flex; color: red; position: relative;" *ngIf="!pickuppincode">
+                    <div style="font-size: 200%;">*</div>
+                    <input placeholder="Enter Pincode" [formGroup]="form" formControlName="pickuppincode" type="number"
+                        class="ip" oninput="validity.valid||(value='');">
+                </div>
+                <div *ngIf="pickuppincode" class="errormsg">
+                    <div style="display: flex; color: red; position: relative;">
+                        <div style="font-size: 200%;">*</div>
+                        <input placeholder="Enter Pincode" [formGroup]="form" formControlName="pickuppincode"
+                            type="number" class="ip iperror">
+                    </div>
+                    <div class="message sb1">
+                        {{messagepickuppincode}}
+                    </div>
+                </div>
+                <!-- <div class="inputfield"> -->
+                <div style="display: flex; color: red; position: relative;">
+                    <div style="font-size: 200%;">*</div>
+                    <mat-form-field appearance="fill" class="dd" *ngIf="!pickupstate">
+                        <mat-label style="font-size: 150%; color: black;">Select State</mat-label>
+                        <mat-select [(value)]="selectedState" class="ipp">
+                            <div *ngFor="let state of states" (click)="getDistricts(state.name)">
+                                <mat-option value="{{state.name}}" style="color: white;">
+                                    {{state.name}}</mat-option>
+                            </div>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="dd dderror" *ngIf="pickupstate">
+                        <mat-label style="font-size: 150%; color: black;">Select State</mat-label>
+                        <mat-select [(value)]="selectedState" class="ipp">
+                            <div *ngFor="let state of states" (click)="getDistricts(state.name)">
+                                <mat-option value="{{state.name}}" style="color: white;">
+                                    {{state.name}}</mat-option>
+                            </div>
+                        </mat-select>
+                        <div class="message sb1">
+                            {{messagepickupstate}}
+                        </div>
+                    </mat-form-field>
+                </div>
+
+                <div style="display: flex; color: red; position: relative;">
+                    <div style="font-size: 200%;">*</div>
+                    <mat-form-field appearance="fill" class="dd" *ngIf="!pickupdistrict">
+                        <mat-label style="font-size: 150%; color: black;">Select District</mat-label>
+                        <mat-select [(value)]="selectedDistrict" class="ipp">
+                            <div *ngFor="let district of districts">
+                                <mat-option value="{{district}}" style="color: white;">
+                                    {{district}}</mat-option>
+                            </div>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="dd dderror" *ngIf="pickupdistrict">
+                        <mat-label style="font-size: 150%; color: black;">Select District</mat-label>
+                        <mat-select [(value)]="selectedDistrict" class="ipp">
+                            <div *ngFor="let district of districts">
+                                <mat-option value="{{district}}" style="color: white;">
+                                    {{district}}</mat-option>
+                            </div>
+                        </mat-select>
+                        <div class="message sb1">
+                            {{messagepickupdistrict}}
+                        </div>
+                    </mat-form-field>
+                </div>
+
+                <div class="addaddressbut">
+                    <button class="addressbutton" (click)=addAddress()>Add</button>
+                </div>
+                <!-- <input placeholder="Price for 1kg of item" [formGroup]="form" formControlName="baseprice"
+                        type="number" class="ip" *ngIf="!baseprice" oninput="validity.valid||(value='');"> -->
+            </form>
+
+
+        </div>
+        <div class="order">
+            <div class="orderbill" *ngIf="!isempty">
+                <app-ordersummary></app-ordersummary>
+                <button class="checkoutbuttoncont" (click)=checkout()>
+                    Checkout Now
+                </button>
+            </div>
+            <div class="orderbill" *ngIf="isempty">
+                <div class="orderbilltitle">
+                    Fill you cart
+                </div>
+                <div class="orderbillbody">
+                    <div class="billitem">
+                        Fresh groceries
+                    </div>
+                    <div class="billitem">
+                        Fast delivery
+                    </div>
+                    <div class="billitem">
+                        Easy tracking
+                    </div>
+                    <div class="billitem">
+                        Amazing discounts
+                    </div>
+                </div>
+                <button class="checkoutbuttoncont" routerLink="/home">
+                    Shop now ->
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<app-error500 *ngIf="error500"></app-error500>

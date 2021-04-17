@@ -1,0 +1,223 @@
+<div class="main" *ngIf="!error500">
+    <div class="basketheading">
+        <div class="path">
+            <div class = "pathtrace">
+                <div class = "pathitem">
+                    <div class = "pathtraceitem">
+                        <div class = "pathtraceitemline ptilbefore">
+                        
+                        </div>
+                    </div>
+                    <div class = "pathtraceitem">
+                        <i class="fa fa-shopping-basket" style="color: var(--col4vl);"></i>
+                    </div>
+                    <div class = "pathtraceitem">
+                        <div class = "pathtraceitemline ptilafter">
+                        
+                        </div>
+                    </div>
+                </div>
+                <div class = "pathitem">
+                    <div class = "pathtraceitem">
+                        <div class = "pathtraceitemline ptilafter">
+                        
+                        </div>
+                    </div>
+                    <div class = "pathtraceitem">
+                        <div class = "pathtraceitemline ptilafter">
+                        
+                        </div>
+                    </div>
+                    <div class = "pathtraceitem">
+                        <div class = "pathtraceitemline ptilafter">
+                        
+                        </div>
+                    </div>
+                </div>
+                <div class = "pathitem">
+                    <div class = "pathtraceitem">
+                        <div class = "pathtraceitemline ptilafter">
+                        
+                        </div>
+                    </div>
+                    <div class = "pathtraceitem">
+                        <div class = "pathtraceitemline ptilafter">
+                        
+                        </div>
+                    </div>
+                    <div class = "pathtraceitem">
+                        <div class = "pathtraceitemline ptilafter">
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class = "pathitems">
+                <div class = "pathitem pitext">
+                    Bag
+                </div>
+                <div class = "pathitem pitext">
+                    Address
+                </div>
+                <div class = "pathitem pitext">
+                    Payment
+                </div>
+            </div>
+            <!-- <div class="pathitem">
+                Basket
+            </div>
+            <div class="pathitem">
+                Address
+            </div>
+            <div class="pathitem">
+                Payment
+            </div> -->
+        </div>
+        <div class = "baskettitle">
+            <i class="fa fa-shopping-basket"></i>
+            Your basket
+        </div>
+
+    </div>
+    <div class="basketbody">
+        <div class="cartempty" *ngIf="isempty">
+            Your cart is empty.
+        </div>
+        <div class="basket" *ngIf="!isempty">
+            <!-- <div class="path">
+                <div class="pathitem">
+                    Basket
+                </div>
+                <div class="pathitem">
+                    Address
+                </div>
+                <div class="pathitem">
+                    Payment
+                </div>
+            </div> -->
+            <div class="markings">
+                <div class="markingspace">
+                </div>
+                <div class="marking">
+                    Item Name
+                </div>
+                <div class="marking">
+                    Price per kg
+                </div>
+                <div class="marking">
+                    Quantity (kg)
+                </div>
+                <div class="marking">
+                    Discount
+                </div>
+                <div class="marking">
+                    Subtotal
+                </div>
+
+                <div class="marking partdelete">
+                    <div class="delete">
+                        <i class="fa fa-trash" (click)=deleteCart()></i>
+                    </div>
+                </div>
+            </div>
+            <div class="basketitems">
+                <div class="item" *ngFor="let x of itemsInfo">
+                    <div class="itempic" (click)=clickOnItem(x.productid)>
+                        <img src="{{x.image}}" class="pic">
+                    </div>
+                    <div class="itempart" style="text-decoration: underline;" (click)=clickOnItem(x.productid)>
+                        {{x.title}}
+                    </div>
+                    <div class="itempart" (click)=clickOnItem(x.productid)>
+                        ₹{{x.baseprice}}
+                    </div>
+                    <div class="itempart quantity">
+                        <div class="quantitybutton qb1" (click)="subqty(x)">
+                            -
+                        </div>
+                        <div class="quantitybutton">
+                            {{x.quantity}}
+                        </div>
+                        <div class="quantitybutton qb1" (click)=addqty(x)>
+                            +
+                        </div>
+
+                    </div>
+                    <div class="itempart">
+                        <div class="partdisc"> ₹{{x.discount}}</div>
+                    </div>
+                    <div class="itempart">
+                        ₹{{x.total}}
+                    </div>
+                    <div class="itempart partdelete">
+                        <div class="delete" (click)=deleteItem(x.productid)>
+                            &#10008;
+                        </div>
+                    </div>
+                    <!-- <div class = "iteminfo">
+                        <div class = "itemname">
+                            {{x.title}}
+                        </div>
+                        <div class = "itemquantity">
+                            Quantity: {{x.quantity}}kg
+                        </div>
+                    </div>
+                    <div class = "purchaseinfo">
+                        <div class = "price">
+                            Total: Rs.{{x.totalCost}}
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="order">
+            <div class="orderbill" *ngIf="!isempty">
+                <!-- <div class = "orderbilltitle">
+                    Order Summary
+                </div> -->
+                <!-- <div class = "orderbillbody">
+                    <div class = "billitem">
+                        Items:  ₹{{cartTotal}}
+                    </div>
+                    <div class = "billitem">
+                        Shipping:  ₹{{deliveryCharge}}
+                    </div>
+                    <div class = "billitem st">
+                        Subtotal:  ₹{{cartSubtotal}}
+                    </div>  
+                    <div class = "billitem" style="color: blue;">
+                        Your Savings:  ₹{{cartDiscount}}
+                    </div>   
+                </div> -->
+                <app-ordersummary></app-ordersummary>
+                <button class="checkoutbuttoncont" routerLink="/address">
+                    Checkout Now
+                </button>
+            </div>
+            <div class="orderbill" *ngIf="isempty">
+                <div class="orderbilltitle">
+                    Fill you cart
+                </div>
+                <div class="orderbillbody">
+                    <div class="billitem">
+                        Fresh groceries
+                    </div>
+                    <div class="billitem">
+                        Fast delivery
+                    </div>
+                    <div class="billitem">
+                        Easy tracking
+                    </div>
+                    <div class="billitem">
+                        Amazing discounts
+                    </div>
+                </div>
+                <button class="checkoutbuttoncont" routerLink="/home">
+                    Shop now ->
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-error500 *ngIf="error500"></app-error500>

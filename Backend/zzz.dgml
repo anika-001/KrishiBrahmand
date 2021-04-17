@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph Title="zzz" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="1.1" Label="ServerAPI" />
+    <Node Id="10.1" Label="keys" />
+    <Node Id="11.1" Bounds="929.032260183285,36.3110303521849,0,0" Label="logicticscntrlr" UseManualLocation="True" />
+    <Node Id="13.1" Label="consumercntrlr" />
+    <Node Id="14.1" Label="ConsumerModel" />
+    <Node Id="14.2" Label="consumermodel" />
+    <Node Id="15.1" Label="product" />
+    <Node Id="16.1" Label="pickup" />
+    <Node Id="17.1" Bounds="1143.2591574308,175.493630630664,0,0" Label="ongoingorders" UseManualLocation="True" />
+    <Node Id="18.1" Bounds="1169.80835792271,164.855927190452,0,0" Label="logisticsorders" UseManualLocation="True" />
+    <Node Id="19.1" Bounds="1093.42505632542,164.606150011915,0,0" Label="carts" UseManualLocation="True" />
+    <Node Id="2.1" Label="passport_config" />
+    <Node Id="20.1" Bounds="932.018505519646,30.6069157667903,0,0" Label="farmerscntrlr" UseManualLocation="True" />
+    <Node Id="21.1" Bounds="1260.59392914771,59.6027212960141,0,0" Label="FarmersModel" UseManualLocation="True" />
+    <Node Id="21.2" Bounds="1260.59392914771,59.6027212960141,0,0" Label="farmersmodel" UseManualLocation="True" />
+    <Node Id="22.1" Label="productscntrlr" />
+    <Node Id="23.1" Label="ProductsModel" />
+    <Node Id="23.2" Label="productsmodel" />
+    <Node Id="24.1" Label="emailservicecntrlr" />
+    <Node Id="25.1" Bounds="971.68637104219,24.3809257708864,0,0" Label="locationcntrlr" UseManualLocation="True" />
+    <Node Id="26.1" Bounds="1353.60106571478,36.536411191264,0,0" Label="LocationModel" UseManualLocation="True" />
+    <Node Id="26.2" Bounds="1353.60106571478,36.536411191264,0,0" Label="locationmodel" UseManualLocation="True" />
+    <Node Id="27.1" Bounds="1375.32645153895,67.5543090340671,0,0" Label="districts" UseManualLocation="True" />
+    <Node Id="28.1" Bounds="1381.39887005737,66.3466527770251,0,0" Label="states" UseManualLocation="True" />
+    <Node Id="29.1" Label="userscntrlr" />
+    <Node Id="3.1" Label="UsersModel" />
+    <Node Id="3.2" Label="usersmodel" />
+    <Node Id="30.1" Bounds="771.47306540756,68.6461017140655,0,0" Label="middleware" UseManualLocation="True" />
+    <Node Id="31.1" Bounds="987.6772849409,31.6256552122655,0,0" Label="configuration" UseManualLocation="True" />
+    <Node Id="4.1" Bounds="764.281348822562,116.558565942197,0,0" Label="address" UseManualLocation="True" />
+    <Node Id="5.1" Label="EmailserviceModel" />
+    <Node Id="5.2" Label="emailservicemodel" />
+    <Node Id="6.1" Label="users" />
+    <Node Id="7.1" Bounds="748.962858960556,154.791716707386,0,0" Label="tempusers" UseManualLocation="True" />
+    <Node Id="file:1" Bounds="856.169206111117,34.549626815085,102.433333333333,25" Group="Collapsed" Label="ServerAPI.ts" />
+    <Node Id="file:10" Bounds="627.66150206961,263.105919270204,75.74,25" Group="Collapsed" Label="Keys.ts" UseManualLocation="True" />
+    <Node Id="file:11" Bounds="938.871567664616,57.3952606693225,126.656666666667,25" Group="Collapsed" Label="LogisticsCntrlr.ts" UseManualLocation="True" />
+    <Node Id="file:13" Bounds="1317.14412292763,72.7667343256362,135.22,25" Group="Collapsed" Label="ConsumerCntrlr.ts" UseManualLocation="True" />
+    <Node Id="file:14" Bounds="1262.86275125013,217.663565201225,139.736666666667,25" Group="Collapsed" Label="ConsumerModel.ts" UseManualLocation="True" />
+    <Node Id="file:15" Bounds="1025.4299822405,301.970590651509,93.1500000000003,25" Group="Collapsed" Label="Product.ts" UseManualLocation="True" />
+    <Node Id="file:16" Bounds="1196.32748325501,308.885731488093,86.7366666666671,25" Group="Collapsed" Label="Pickup.ts" UseManualLocation="True" />
+    <Node Id="file:17" Bounds="1151.22431110616,199.857630108245,134.286666666667,25" Group="Collapsed" Label="OngoingOrders.ts" UseManualLocation="True" />
+    <Node Id="file:18" Bounds="1179.64766540404,195.77946498892,132.946666666667,25" Group="Collapsed" Label="LogisticsOrders.ts" UseManualLocation="True" />
+    <Node Id="file:19" Bounds="1091.08236406796,174.913995944738,78.6300000000001,25" Group="Collapsed" Label="Carts.ts" UseManualLocation="True" />
+    <Node Id="file:2" Bounds="801.1323994396,89.549726815085,131.666666666667,25" Group="Collapsed" Label="PassportConfig.ts" UseManualLocation="True" />
+    <Node Id="file:20" Bounds="933.892659325614,49.348453826468,122.91,25" Group="Collapsed" Label="FarmersCntrlr.ts" UseManualLocation="True" />
+    <Node Id="file:21" Bounds="1259.18831379323,84.9037976765792,127.426666666667,25" Group="Collapsed" Label="FarmersModel.ts" UseManualLocation="True" />
+    <Node Id="file:22" Bounds="1159.3607895943,108.001123350134,127.783333333333,25" Group="Collapsed" Label="ProductsCntrlr.ts" UseManualLocation="True" />
+    <Node Id="file:23" Bounds="1015.2759142656,199.223189637002,132.3,25" Group="Collapsed" Label="ProductsModel.ts" UseManualLocation="True" />
+    <Node Id="file:24" Bounds="625.489066106266,100.418951943852,145.643333333333,25" Group="Collapsed" Label="EmailserviceCntrlr.ts" UseManualLocation="True" />
+    <Node Id="file:25" Bounds="993.239139810819,47.8078483454836,126.423333333333,25" Group="Collapsed" Label="LocationCntrlr.ts" UseManualLocation="True" />
+    <Node Id="file:26" Bounds="1348.44714274837,63.7116413777967,130.94,25" Group="Collapsed" Label="LocationModel.ts" UseManualLocation="True" />
+    <Node Id="file:27" Bounds="1371.10960547553,94.7295392205998,94.0233333333335,25" Group="Collapsed" Label="Districts.ts" UseManualLocation="True" />
+    <Node Id="file:28" Bounds="1383.27302386334,96.8016521240008,83.3566666666666,25" Group="Collapsed" Label="States.ts" UseManualLocation="True" />
+    <Node Id="file:29" Bounds="962.799066106266,96.802425800578,110.179999999999,25" Group="Collapsed" Label="UsersCntrlr.ts" UseManualLocation="True" />
+    <Node Id="file:3" Bounds="763.632966725235,155.419131943852,114.696666666667,25" Group="Collapsed" Label="UsersModel.ts" UseManualLocation="True" />
+    <Node Id="file:30" Bounds="772.410142310544,103.786485575961,119.083333333333,25" Group="Collapsed" Label="Middlewares.ts" UseManualLocation="True" />
+    <Node Id="file:31" Bounds="994.705361713279,46.6188856600078,106.953333333333,25" Group="Collapsed" Label="appConfig.ts" UseManualLocation="True" />
+    <Node Id="file:4" Bounds="697.280350259214,135.768642453367,94.27,25" Group="Collapsed" Label="Address.ts" UseManualLocation="True" />
+    <Node Id="file:5" Bounds="583.472866725235,155.419131943852,150.16,25" Group="Collapsed" Label="EmailserviceModel.ts" UseManualLocation="True" />
+    <Node Id="file:6" Bounds="889.262618666285,301.970590651509,100.24,25" Group="Collapsed" Label="UserData.ts" UseManualLocation="True" />
+    <Node Id="file:7" Bounds="746.151628251605,190.869177472265,109.423333333333,25" Group="Collapsed" Label="TempUsers.ts" UseManualLocation="True" />
+  </Nodes>
+  <Links>
+    <Link Source="file:1" Target="1.1" Category="Contains" />
+    <Link Source="file:1" Target="10.1" />
+    <Link Source="file:1" Target="11.1" />
+    <Link Source="file:1" Target="13.1" />
+    <Link Source="file:1" Target="20.1" />
+    <Link Source="file:1" Target="22.1" />
+    <Link Source="file:1" Target="24.1" />
+    <Link Source="file:1" Target="25.1" />
+    <Link Source="file:1" Target="29.1" />
+    <Link Source="file:1" Target="31.1" />
+    <Link Source="file:1" Target="file:11" Category="Contains" />
+    <Link Source="file:1" Target="file:2" Bounds="881.48181870846,59.549626815085,16.717675316182,22.7479126506538" />
+    <Link Source="file:1" Target="file:20" Category="Contains" />
+    <Link Source="file:1" Target="file:25" Category="Contains" />
+    <Link Source="file:1" Target="file:31" Category="Contains" />
+    <Link Source="file:10" Target="10.1" Category="Contains" />
+    <Link Source="file:11" Target="11.1" Category="Contains" />
+    <Link Source="file:13" Target="13.1" Category="Contains" />
+    <Link Source="file:13" Target="14.1" />
+    <Link Source="file:14" Target="14.1" Category="Contains" />
+    <Link Source="file:14" Target="14.2" Category="Contains" />
+    <Link Source="file:14" Target="15.1" />
+    <Link Source="file:14" Target="16.1" />
+    <Link Source="file:14" Target="17.1" />
+    <Link Source="file:14" Target="18.1" />
+    <Link Source="file:14" Target="19.1" />
+    <Link Source="file:14" Target="6.1" />
+    <Link Source="file:14" Target="file:17" Category="Contains" />
+    <Link Source="file:14" Target="file:18" Category="Contains" />
+    <Link Source="file:14" Target="file:19" Category="Contains" />
+    <Link Source="file:15" Target="15.1" Category="Contains" />
+    <Link Source="file:16" Target="16.1" Category="Contains" />
+    <Link Source="file:17" Target="17.1" Category="Contains" />
+    <Link Source="file:18" Target="18.1" Category="Contains" />
+    <Link Source="file:19" Target="19.1" Category="Contains" />
+    <Link Source="file:2" Target="2.1" Category="Contains" />
+    <Link Source="file:2" Target="3.1" />
+    <Link Source="file:20" Target="20.1" Category="Contains" />
+    <Link Source="file:20" Target="21.1" />
+    <Link Source="file:20" Target="file:21" Category="Contains" />
+    <Link Source="file:21" Target="21.1" Category="Contains" />
+    <Link Source="file:21" Target="21.2" Category="Contains" />
+    <Link Source="file:22" Target="22.1" Category="Contains" />
+    <Link Source="file:22" Target="23.1" />
+    <Link Source="file:23" Target="15.1" />
+    <Link Source="file:23" Target="16.1" />
+    <Link Source="file:23" Target="23.1" Category="Contains" />
+    <Link Source="file:23" Target="23.2" Category="Contains" />
+    <Link Source="file:23" Target="6.1" />
+    <Link Source="file:24" Target="24.1" Category="Contains" />
+    <Link Source="file:24" Target="5.1" />
+    <Link Source="file:25" Target="25.1" Category="Contains" />
+    <Link Source="file:25" Target="26.1" />
+    <Link Source="file:25" Target="file:26" Category="Contains" />
+    <Link Source="file:26" Target="26.1" Category="Contains" />
+    <Link Source="file:26" Target="26.2" Category="Contains" />
+    <Link Source="file:26" Target="27.1" />
+    <Link Source="file:26" Target="28.1" />
+    <Link Source="file:26" Target="file:27" Category="Contains" />
+    <Link Source="file:26" Target="file:28" Category="Contains" />
+    <Link Source="file:27" Target="27.1" Category="Contains" />
+    <Link Source="file:28" Target="28.1" Category="Contains" />
+    <Link Source="file:29" Target="29.1" Category="Contains" />
+    <Link Source="file:29" Target="3.1" />
+    <Link Source="file:29" Target="30.1" />
+    <Link Source="file:29" Target="file:30" Category="Contains" />
+    <Link Source="file:3" Target="10.1" />
+    <Link Source="file:3" Target="3.1" Category="Contains" />
+    <Link Source="file:3" Target="3.2" Category="Contains" />
+    <Link Source="file:3" Target="4.1" />
+    <Link Source="file:3" Target="5.1" />
+    <Link Source="file:3" Target="6.1" />
+    <Link Source="file:3" Target="7.1" />
+    <Link Source="file:3" Target="file:4" Category="Contains" />
+    <Link Source="file:3" Target="file:7" Category="Contains" />
+    <Link Source="file:30" Target="30.1" Category="Contains" />
+    <Link Source="file:31" Target="31.1" Category="Contains" />
+    <Link Source="file:4" Target="4.1" Category="Contains" />
+    <Link Source="file:5" Target="10.1" />
+    <Link Source="file:5" Target="3.1" />
+    <Link Source="file:5" Target="5.1" Category="Contains" />
+    <Link Source="file:5" Target="5.2" Category="Contains" />
+    <Link Source="file:6" Target="6.1" Category="Contains" />
+    <Link Source="file:7" Target="7.1" Category="Contains" />
+  </Links>
+  <Categories>
+    <Category Id="Contains" Label="Contains" Description="Whether the source of the link contains the target object" CanBeDataDriven="False" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Contained By" IsContainment="True" OutgoingActionLabel="Contains" />
+  </Categories>
+  <Properties>
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="CanBeDataDriven" Label="CanBeDataDriven" Description="CanBeDataDriven" DataType="System.Boolean" />
+    <Property Id="CanLinkedNodesBeDataDriven" Label="CanLinkedNodesBeDataDriven" Description="CanLinkedNodesBeDataDriven" DataType="System.Boolean" />
+    <Property Id="Group" Label="Group" Description="Display the node as a group" DataType="Microsoft.VisualStudio.GraphModel.GraphGroupStyle" />
+    <Property Id="IncomingActionLabel" Label="IncomingActionLabel" Description="IncomingActionLabel" DataType="System.String" />
+    <Property Id="IsContainment" DataType="System.Boolean" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="OutgoingActionLabel" Label="OutgoingActionLabel" Description="OutgoingActionLabel" DataType="System.String" />
+    <Property Id="Title" DataType="System.String" />
+    <Property Id="UseManualLocation" DataType="System.Boolean" />
+  </Properties>
+</DirectedGraph>

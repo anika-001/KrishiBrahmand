@@ -1,0 +1,436 @@
+
+.main {
+    max-height: calc(94vh - 39px);
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    width: 80vw;
+    color: black;
+}
+
+.basketheading{
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    //justify-content: space-evenly;
+    align-items: center;
+    color: black;
+    font-size: 300%;
+}
+
+.baskettitle{
+    flex-basis: 70%;
+    //margin-left: 10%;
+    align-items: center;
+}
+.path{
+    flex-basis: 30%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 40%;
+}
+
+.pathtrace{
+    flex-basis: 20%;
+    //background-color: aquamarine;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pathitems{
+    flex-basis: 40%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pathitem{
+    flex-basis: 33.3%;
+    display: flex;
+    justify-content: space-between;
+    //margin: 0% 10%;
+}
+
+.pitext{
+    justify-content: center;
+}
+
+.pathtraceitem{
+    flex-basis: 33.3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pathtraceitem_icon{
+    justify-content: center;
+}
+
+.pathtraceitemline{
+    flex-basis: 50%;
+    width: 100%;
+}
+
+.ptilbefore{
+    border-bottom: solid var(--col4vl);
+}
+
+.ptilafter{
+    border-bottom: solid black;
+}
+
+.basketbody{
+    height: calc(74vh - 39px);
+    display: flex;
+}
+
+
+.basket{
+    flex-basis: 70%;
+    //background-color: white;
+    overflow-y: auto;
+}
+
+.cards{
+    background-color: white;
+    height: 40vh;
+    width: 60%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.addresscardip{
+    //height: 70vh;
+    width: 80%;
+    margin-top: 5%;
+}
+.order{
+    flex-basis: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.orderbill{
+    width: 80%;
+    height: 50vh;
+    margin-top: 10%;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.orderbilltitle{
+    flex-basis: 20%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 200%;
+    text-decoration: underline;
+}
+
+.orderbillbody{
+    flex-basis: 70%;
+    padding: 5%;
+    font-size: 150%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.st{
+    font-size: 150%;
+}
+
+.billitem{
+    padding: 5% 0%;
+}
+
+.checkoutbuttoncont{
+    flex-basis: 10%;
+    background-color: var(--col4);
+    position: relative;
+    border-radius: 2px;
+    font-size: 150%;
+    color: white;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: solid rgba(0, 0, 0, 0);
+    cursor: pointer;
+}
+
+.checkoutbuttoncont::after {
+    content: '';
+    display: block;
+    position: absolute;
+    background-color: var(--col4vl);
+   // background-color: rgb(216, 216, 216);
+    width: 100%;
+    height: 100%;
+    //border-radius: 100%;
+    opacity: 0.6;
+    transform: scale(0);
+    //visibility: visible;
+}
+
+@keyframes ripple {
+    0% {
+      transform: scale(0);
+    }
+    20% {
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1);
+    }
+  }
+
+.checkoutbuttoncont:hover{
+    background-color: var(--col4d);
+    border: solid silver;
+    box-shadow: none;
+}
+
+.checkoutbuttoncont:not(:active)::after {
+    animation: ripple 1s ease-out;
+  }
+
+.checkoutbuttoncont::after {
+    visibility: hidden;
+   // display: none;
+  }
+  
+.checkoutbuttoncont:focus::after {
+    visibility: visible;
+    //display: block;
+  }
+
+.pic{
+    width: 100%;
+    height: 100%;
+}
+
+// DONE BY TWINKLE
+.inputfield{
+    width: 100%;
+    position: relative;
+    margin: 2% 0;
+    //display: flex;
+}
+
+.ip {
+    height: 5vh;
+    //width: 80%;
+    width: 30vw;
+    margin: 5px 0;
+    //flex-basis: 80%;
+    border-radius: 5px;
+    background-color: rgb(228, 228, 228);
+    font-size: 200%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: relative;
+}
+
+.ipp{
+    height: 7%;
+    border: none;
+    border-radius: 5px;
+    font-size: 150%;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    justify-content: space-evenly;
+    color: black;
+}
+
+.dd{
+    width: 30vw;
+    height: 7vh;
+    margin: 5px 0;
+    background-color: rgb(128, 128, 128);
+    color: black;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.dderror{
+    border: solid red thin;
+}
+
+.errormsg {
+    //height: 15%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    //margin-left: -150%;
+    justify-content: space-between;
+    position: relative;
+    // background-color: aquamarine;
+}
+
+.iperror {
+    border: red thin solid;
+    flex-basis: 80%;
+    //height: 100%;
+    box-shadow: 0 4px 8px 0 rgba(255, 0, 0, 0.2), 0 6px 20px 0 rgba(255, 0, 0, 0.2);
+}
+
+.message {
+    //flex-basis: 40%;
+    width: 20vw;
+    background:  grey;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    //margin-left: 8%;
+    font-weight: 900;
+    color: white;
+    border-radius: 5px;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    position: absolute;
+    transition: 2s ease-in;
+    animation: 0.5s cloud ease-in forwards;
+    top: 0;
+    margin-left: 10vw;
+    padding: 0.5%;
+    border: red solid thin;
+    //margin-right: -10%;
+    //margin-top: 5vh;
+    //opacity: 0;
+}
+
+.sb1{
+    position: relative;
+}
+.sb1:before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    //border-left: 10px solid #ef9e25;
+    border-right: 10px solid grey;
+    border-left: 10px solid transparent;
+    //border-top: 10px solid #ef9e25;
+    border-top: 10px solid grey;
+    border-bottom: 10px solid transparent;
+    // right: -19px;
+    // top: 6px;
+    top: -10px;
+    left: 90%;
+    animation: 0.5s cloud ease-in forwards;
+    transform: rotate(-45deg);
+    //opacity: 0;
+}
+
+.addaddressbut{
+    height: 5vh;
+    width: 100%;
+}
+
+.addressbutton{
+    display: flex;
+    flex-direction: column;
+    // justify-content:flex-end;
+    // flex-basis: 50%;
+    position: relative;
+    float: left;
+    font-size: 150%;
+    border-radius: 5px;
+    background-color: var(--col4);
+    color: white;
+    border: solid rgba(0, 0, 0, 0);
+    padding: 0.2% 1%;
+}
+
+.addressbutton::after{
+    content: '';
+    display: block;
+    position: absolute;
+    background-color: var(--col4vl);
+   // background-color: rgb(216, 216, 216);
+    width: 100%;
+    height: 100%;
+    //border-radius: 100%;
+    opacity: 0.6;
+    transform: scale(0);
+    top:0;
+    left: 0;
+}
+
+.addressbutton:hover {
+    background-color: var(--col4d);
+    border: solid silver;
+}
+
+.addressbutton:not(:active)::after {
+    animation: ripple 1s ease-out;
+  }
+
+.addressbutton::after {
+    visibility: hidden;
+   // display: none;
+  }
+  
+.addressbutton:focus::after {
+    visibility: visible;
+    //display: block;
+  }
+
+
+  .addresses {
+    background-color: white;
+    //background-color: rgb(204, 204, 204);
+    margin: 2%;
+    padding: 1% 2%;
+    border: solid thin silver;
+    box-shadow: 5px 10px 10px rgb(136, 130, 130);
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.addresses:hover{
+    box-shadow: none;
+    background-color: #f1f1f1;
+}
+
+.addresscard {
+    
+    flex-basis: 100%;
+    width: 100%;
+    height: 15vh;
+    display: flex;
+    color: black;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.addresscardtitle{
+    
+    font-size: 150%;
+    text-decoration: underline;
+    font-weight: bolder;
+}
+
+
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: pink!important;   /*inner circle color change*/
+}
+
+::ng-deep.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+   border-color: var(--col4d)!important; /*outer ring color change*/
+}
+
+
+// ::ng-deep .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+//     //opacity: 0.5 !important;     /*click effect color change*/
+//     //background-color: silver !important;
+//     //width: 5px;
+//     //height: 5px;
+    
+// }
