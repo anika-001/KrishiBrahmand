@@ -14,7 +14,7 @@ export let browserRefresh = false;
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent implements OnDestroy{
+export class AppComponent implements OnDestroy {
   x: boolean = true;
   opened: boolean = false;
   user: any;
@@ -26,12 +26,12 @@ export class AppComponent implements OnDestroy{
   //private role = new BehaviorSubject<string>("");
   show: Boolean = false;
 
-  constructor(private as: AuthService, private router: Router, private cookieService: CookieService) { 
+  constructor(private as: AuthService, private router: Router, private cookieService: CookieService) {
     this.subscription = router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         browserRefresh = !router.navigated;
       }
-  });
+    });
   }
 
   // setValuerole(value: any)
@@ -43,11 +43,11 @@ export class AppComponent implements OnDestroy{
   //   return this.role.asObservable();
   // }
 
-  setShow(val: Boolean){
+  setShow(val: Boolean) {
     this.show = val;
   }
 
-  setSelectedRole(val: string){
+  setSelectedRole(val: string) {
     this.selectedRole = val;
   }
   ngOnDestroy() {
@@ -55,6 +55,13 @@ export class AppComponent implements OnDestroy{
   }
 
   ngOnInit(): void {
+    (function (d, m) {
+      var kommunicateSettings = { "appId": "19d8672dfe4946903ad4557af8f048e6b", "popupWidget": true, "automaticChatOpenOnNavigation": true };
+      var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
+      s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
+      var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
+      (window as any).kommunicate = m; m._globals = kommunicateSettings;
+    })(document, (window as any).kommunicate || {});
 
     // this.getValuerole().subscribe(res => {
     //   if(res == "consumeron"){
@@ -69,18 +76,18 @@ export class AppComponent implements OnDestroy{
     //   }
     // })
 
-    if(this.cookieService.check('role')){
-      if(this.cookieService.get('role') == 'farmer'){
+    if (this.cookieService.check('role')) {
+      if (this.cookieService.get('role') == 'farmer') {
         this.selectedRole = "farmer";
         this.show = true;
       }
 
-      if(this.cookieService.get('role') == 'consumer'){
+      if (this.cookieService.get('role') == 'consumer') {
         this.selectedRole = "consumer";
         this.show = true;
       }
 
-      if(this.cookieService.get('role') == 'consumeronly'){
+      if (this.cookieService.get('role') == 'consumeronly') {
         this.show = false;
       }
 
@@ -107,11 +114,11 @@ export class AppComponent implements OnDestroy{
   logout() {
     this.as.logout().subscribe(
       (res) => {
-          //console.log(res);
-          //console.log(this.cs.);
-          // this.cs.delete('connect.sid', '/');
-          this.cookieService.delete('role', '/');
-          this.router.navigate(['/login']);
+        //console.log(res);
+        //console.log(this.cs.);
+        // this.cs.delete('connect.sid', '/');
+        this.cookieService.delete('role', '/');
+        this.router.navigate(['/login']);
       },
       (err) => {
         console.log(err);
@@ -120,14 +127,14 @@ export class AppComponent implements OnDestroy{
     )
   }
 
-  changeroletofarmer(){
+  changeroletofarmer() {
 
     this.cookieService.delete('role', '/');
-    this.cookieService.set('role', 'farmer', {path: '/'});
+    this.cookieService.set('role', 'farmer', { path: '/' });
     // if(this.selectedRole == 'farmer');
-      
-      //this.setValuerole("farmer");
-      this.router.navigate(['/home/farmer']);
+
+    //this.setValuerole("farmer");
+    this.router.navigate(['/home/farmer']);
 
     // }
 
@@ -140,10 +147,12 @@ export class AppComponent implements OnDestroy{
 
   }
 
-  changeroletoconsumer(){
+  changeroletoconsumer() {
     this.cookieService.delete('role', '/');
-    this.cookieService.set( 'role', 'consumer', {path: '/'});
+    this.cookieService.set('role', 'consumer', { path: '/' });
     //this.setValuerole("consumer");
     this.router.navigate(['/home']);
   }
 }
+
+//kommunicate
