@@ -39,7 +39,7 @@ export class UsersModel {
       .catch(e => { if(e != "Early return") return done(e); })
   }
 
-  public static registration(body: I0_2): Promise<IPostResponse> {
+  public static registrationCopy(body: I0_2): Promise<IPostResponse> {
     return new Promise((resolve, reject) => {
       DatabaseOperations.FindOneOp(users, { 'email': body.email })
         .then((val) => { if (val) return resolve({ "statusCode": 1, "message": "User with the given username already exists" }); else { return DatabaseOperations.FindOneOp(tempusers, { 'email': body.email }) } })
@@ -231,7 +231,7 @@ export class UsersModel {
   */
 
 
-  public static registrationCopy(body: I0_2): Promise<IPostResponse> {
+  public static registration(body: I0_2): Promise<IPostResponse> {
     return new Promise((resolve, reject) => {
       // Check if user has already registered
       UsersModel.userenabled(String(body.email)).then(val => {
