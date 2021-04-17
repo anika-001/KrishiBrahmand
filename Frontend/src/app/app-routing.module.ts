@@ -22,6 +22,7 @@ import { PickupComponent } from './pickup/pickup.component';
 import {PaymentComponent} from './payment/payment.component';
 import { ShipmentsComponent } from './shipments/shipments.component';
 import { ProductsStatisticsComponent } from './products-statistics/products-statistics.component';
+import { AidComponent } from './aid/aid.component';
 
 const routes: Routes = [
   {
@@ -122,6 +123,10 @@ const routes: Routes = [
   {
     path: 'productstats',
     component: ProductsStatisticsComponent
+  },
+  {
+    path: 'aid',
+    component: AidComponent
   },
 
   {
