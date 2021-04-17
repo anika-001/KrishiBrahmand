@@ -147,6 +147,12 @@
                         <div class="nav-bar-item-text">Shipment</div>
                     </a>
 
+                    <a class="nav-bar-item" *ngIf="selectedRole == 'farmer'" routerLink="/aid"><i
+                        class="fa fa-handshake-o" aria-hidden="true"
+                        style="display: flex; flex-direction: column; justify-content: center; margin: 0 3px;"></i>
+                    <div class="nav-bar-item-text">Aid</div>
+                </a>
+
                     <div *ngIf="show">
                         <mat-form-field color="accent">
                             <mat-label style="font-size: 80%; color: black;">Select Role</mat-label>

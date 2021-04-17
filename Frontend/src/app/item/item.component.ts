@@ -70,7 +70,7 @@ export class ItemComponent implements OnInit {
   }
 
   defaultApiCall() {
-    this.httpClient.get<any>(this.urls.default + "?id=" + this.prodId).subscribe(
+    this.httpClient.get<any>(this.urls.default + "?id=" + this.prodId +"&uid="+this.user.payload.uid).subscribe(
       (res) => {
         console.log(res);
         this.item = res.payload;
