@@ -18,13 +18,13 @@ export class EmailserviceModel {
     var transporter = nm.createTransport({
       service: 'gmail',
       auth: {
-        user: 'twinkishavaish@gmail.com',
-        pass: '0618062020'
+        user: 'projecthts.16.4@gmail.com',
+        pass: 'hts_project16'
       }
     });
 
     var mailOptions = {
-      from: 'twinkishavaish@gmail.com',
+      from: 'projecthts.16.4@gmail.com',
       to: String(email),
       subject: message,
       html: "Hello,<br>" + body + "<br><div style = \" background-color: #FFF4F4; display: flex; justify-content: center; \"><a href=" + link + " style = \" font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; padding: 2%; background-color: black; margin: 5%; margin-left: 45%; border-radius: 5px; color: white; font-weight: bold; align-self: center; font-size: 150%; \">Click here</a></div>"

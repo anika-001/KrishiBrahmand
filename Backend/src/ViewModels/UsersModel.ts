@@ -49,7 +49,7 @@ export class UsersModel {
           else return UsersModel.hashpassword(String(body.password)); 
         })
         .then((hashed) => { body.password = String(hashed); return DatabaseOperations.SaveOp(tempusers, body) })
-        .then((val) => { return EmailserviceModel.sendemail(String(body.email), "Please verify your email.", "Hi user! \n Welcome to Krishi Bazaar \n Please click on the link below to veryfiy your email.", "http://localhost:4200/verifyemail", keys.serverkeys.Secretemail) })
+        .then((val) => { return EmailserviceModel.sendemail(String(body.email), "Please verify your email.", "Hi user! \n Welcome to Krishi Brahmand \n Please click on the link below to verify your email.", "http://localhost:4200/verifyemail", keys.serverkeys.Secretemail) })
         .then((val) => { resolve({ "statusCode": 0, "message": "Saved!" }); })
         .catch(e => {
           reject({ "statusCode": 2, "message": e });
@@ -250,7 +250,7 @@ export class UsersModel {
                 // Store user data in temporary account collection
                 user.save().then(val => {
                   //send verification mail
-                  EmailserviceModel.sendemail(String(body.email), "Please verify your email.", "Hi user! \n Welcome to Krishi Bazaar \n Please click on the link below to veryfiy your email.", "http://localhost:4200/verifyemail", keys.serverkeys.Secretemail)
+                  EmailserviceModel.sendemail(String(body.email), "Please verify your email.", "Hi user! \n Welcome to Krishi Brahmand \n Please click on the link below to verify your email.", "http://localhost:4200/verifyemail", keys.serverkeys.Secretemail)
                     .then(info => {
                       resolve({ "statusCode": 0, "message": "Saved!" });
                     })
