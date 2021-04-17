@@ -20,7 +20,12 @@
                     ₹{{item.baseprice}} per kg
                 </div>
                 <div class="itemrating">
-                    <ngb-rating [rate]="item.rating" [readonly]="true" [max]="5" [starTemplate]="t"></ngb-rating>
+                    <div class = "rating">
+                        <ngb-rating [rate]="item.rating" [readonly]="true" [max]="5" [starTemplate]="t"></ngb-rating>
+                    </div>
+                    <div class = "rating">
+                        <ngb-rating [rate]="item.rating" [readonly]="true" [max]="5" [starTemplate]="t"></ngb-rating>
+                    </div>
                 </div>
             </div>
 
@@ -118,6 +123,8 @@
             Reviews:
         </div>
         <div class="addcomment">
+            <textarea placeholder="Write a review" type="number" class="ip review"></textarea>
+            <button class = "addtocartbutton reviewsubmit">Submit</button>
         </div>
         <div class="comment" *ngFor="let x of number">
             <div class="commentcontentcont">

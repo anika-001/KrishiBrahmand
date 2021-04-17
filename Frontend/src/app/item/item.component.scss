@@ -66,6 +66,13 @@
 .itemrating {
     flex-basis: 20%;
     display: flex;
+    //flex-direction: column;
+    //justify-content: spa;
+}
+
+.rating{
+    flex-basis: 50%;
+    display: flex;
     flex-direction: column;
     justify-content: center;
 }
@@ -244,6 +251,20 @@
     cursor: pointer;
 }
 
+.addcomment{
+    margin: 2% 0;
+}
+
+.reviewsubmit{
+    width: 5%;
+    padding: 0.2%;
+    align-self: flex-end;
+    font-size: 100%;
+}
+
+.review{
+    height: 10vh;
+}
 .addtocartbutton::after {
     content: '';
     display: block;
@@ -307,6 +328,9 @@
     padding: 2%;
 }
 
+.addcomment{
+
+}
 .commenttitle {
     font-size: 200%;
 }
