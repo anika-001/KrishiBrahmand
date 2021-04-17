@@ -10,8 +10,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { FirebaseApp } from '@angular/fire';
-import { AuthService } from '../services/auth.service';
-import { ThrowStmt } from '@angular/compiler';
+import { AuthService } from '../../../../../Major Project - Krishi Kalyan/mainwebsite/FrontEnd/Krishi-Bazaar/src/app/services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({
@@ -207,8 +206,8 @@ export class AddItemsComponent implements OnInit {
       ]
     }];
 
-  selectedPickupAddress:any;
-  addressesList:any[] = [];
+  selectedPickupAddress: any;
+  addressesList: any[] = [];
 
   error: boolean = false;
   errormessage: string = "";
@@ -250,13 +249,13 @@ export class AddItemsComponent implements OnInit {
 
   selectedState: string = "";
   selectedDistrict: string = "";
-  
-  pickupstate:boolean = false;
-  messagepickupstate:string = "";
-  pickupdistrict:boolean = false;
-  messagepickupdistrict:string = "";
 
-  existingadd:boolean = false;
+  pickupstate: boolean = false;
+  messagepickupstate: string = "";
+  pickupdistrict: boolean = false;
+  messagepickupdistrict: string = "";
+
+  existingadd: boolean = false;
   messageexistingadd: string = "";
 
   /* Tab validation variables */
@@ -269,38 +268,39 @@ export class AddItemsComponent implements OnInit {
   user: any;
 
   totalCostingIndex: number = 0;
-  file: boolean = false;
 
-  url = "./assets/images/previewImage.jpg";
+  url = "";
 
   urls = {
     'state': "http://localhost:5001/v1/location/states",
     'district': "http://localhost:5001/v1/location/states/districts",
-    'address' : "http://localhost:5001/v1/users/address",
+    'address': "http://localhost:5001/v1/users/address",
   }
 
   states: any;
   districts: any;
+  finalImageURL: any;
+  imageEvent: any;
 
   newAddress = {
     "uid": "",
     "newaddress": {
-       "addresstitle" : "",
-        "address": "",
-        "district": "",
-        "state": "",
-        "pincode": "",
+      "addresstitle": "",
+      "address": "",
+      "district": "",
+      "state": "",
+      "pincode": "",
     }
   }
 
 
   constructor(private fb: FormBuilder, private httpClient: HttpClient, private db: AngularFireDatabase, private as: AuthService,
-    private router: Router,private cs: CookieService) { }
+    private router: Router, private cs: CookieService) { }
 
   ngOnInit(): void {
 
-    if(this.cs.check('role')){
-      if(this.cs.get('role') == 'consumer'){
+    if (this.cs.check('role')) {
+      if (this.cs.get('role') == 'consumer') {
         this.router.navigate(['/home']);
       }
 
@@ -309,7 +309,7 @@ export class AddItemsComponent implements OnInit {
     this.getStates();
     this.as.getUser().subscribe(res => {
       this.user = res;
-      console.log(this.user);
+      //console.log(this.user);
       if (res.payload == "Unauthorized") {
         this.router.navigate(['/401']);
       }
@@ -333,6 +333,7 @@ export class AddItemsComponent implements OnInit {
     rating: [3.5],
     noOfUsers: [0],
     comments: this.fb.array([]),
+
   })
 
   tempform = this.fb.group({
@@ -350,14 +351,14 @@ export class AddItemsComponent implements OnInit {
     if (isChecked) {
       catArray.push(new FormControl({ name }));
       //console.log(catArray);
-      console.log(this.form.controls.categories.value);
+      //console.log(this.form.controls.categories.value);
     }
     else {
       let index = catArray.controls.findIndex(x => x.value.name == (name));
       //console.log(name+" is to be removed at index "+index);
       catArray.removeAt(index);
       //console.log(catArray);
-      console.log(this.form.controls.categories.value);
+      //console.log(this.form.controls.categories.value);
     }
   }
 
@@ -380,7 +381,7 @@ export class AddItemsComponent implements OnInit {
   removeCostingButton() {
     (<FormArray>this.form.get('costing')).removeAt(this.totalCostingIndex);
     --this.totalCostingIndex;
-    console.log(this.totalCostingIndex);
+    //console.log(this.totalCostingIndex);
   }
 
   submitValidate() {
@@ -538,13 +539,13 @@ export class AddItemsComponent implements OnInit {
       flag = 'false';
     }
 
-    if(this.selectedState == ""){
+    if (this.selectedState == "") {
       this.pickupstate = true;
       this.messagepickupstate = "Invalid pickup state. State cannot be empty";
       flag = 'false';
     }
 
-    if(this.selectedDistrict == ""){
+    if (this.selectedDistrict == "") {
       this.pickupdistrict = true;
       this.messagepickupdistrict = "Invalid pickup district. District cannot be empty";
       flag = 'false';
@@ -560,14 +561,9 @@ export class AddItemsComponent implements OnInit {
     }
   }
 
-  imageUpload(e: any) {
-    //  const inpFile = document.getElementById("inpFile");
-    //  const previewContainer = document.getElementById("imagePreview");
-    //  const previewImage = previewContainer?.querySelector(".image-preview__image");
-
+  imageUploadPrev(e: any) {
+    this.imageEvent = e;
     if (e.target.files) {
-      this.file = true;
-      console.log(e.target.files)
       var reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
       reader.onload = (event: any) => {
@@ -575,65 +571,93 @@ export class AddItemsComponent implements OnInit {
         //this.form.controls["image"].setValue(this.url);
         //console.log(this.url);
       }
-
-      const file = e.target.files[0];
-      console.log("Storage file name: ", file.name);
-
-      var metadata = {
-        contentType: file.type
-      };
-
-      var storageRef: firebase.storage.Reference = firebase.storage().ref('products/images/' + file.name);
-
-      var uploadTask = storageRef.put(file, metadata);
-      console.log("Uploading ", file.name);
-
-      // Listen for state changes, errors, and completion of the upload.
-      uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-        (snapshot) => {
-          // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-          var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log('Upload is ' + progress + '% done');
-          switch (snapshot.state) {
-            case firebase.storage.TaskState.PAUSED: // or 'paused'
-              console.log('Upload is paused');
-              break;
-            case firebase.storage.TaskState.RUNNING: // or 'running'
-              console.log('Upload is running');
-              break;
-          }
-        },
-        (error) => {
-          switch (error.code) {
-            case 'storage/unauthorized':
-              // User doesn't have permission to access the object
-              break;
-            case 'storage/canceled':
-              // User canceled the upload
-              break;
-
-            // ...
-
-            case 'storage/unknown':
-              // Unknown error occurred, inspect error.serverResponse
-              break;
-          }
-        },
-        () => {
-          // Upload completed successfully, now we can get the download URL
-          uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-            console.log('File available at', downloadURL);
-            this.form.controls["image"].setValue(downloadURL);
-          });
-
-        }
-      );
-
     }
     else {
       console.log("No image uploaded")
     }
 
+  }
+
+  imageUpload(e: any) {
+
+    return new Promise((resolve, reject) => {
+      if (e.target.files) {
+
+        console.log("image: ");
+        console.log(e.target.files)
+        var reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+        reader.onload = (event: any) => {
+          this.url = event.target.result;
+          //this.form.controls["image"].setValue(this.url);
+          //console.log(this.url);
+        }
+
+        const file = e.target.files[0];
+        console.log("Storage file name: ", file.name);
+
+        var metadata = {
+          contentType: file.type
+        };
+
+        var storageRef: firebase.storage.Reference = firebase.storage().ref('products/images/' + file.name);
+
+        var uploadTask = storageRef.put(file, metadata);
+        console.log("Uploading ", file.name);
+
+        // Listen for state changes, errors, and completion of the upload.
+        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+          (snapshot) => {
+            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload is ' + progress + '% done');
+            switch (snapshot.state) {
+              case firebase.storage.TaskState.PAUSED: // or 'paused'
+                console.log('Upload is paused');
+                break;
+              case firebase.storage.TaskState.RUNNING: // or 'running'
+                console.log('Upload is running');
+                break;
+            }
+          },
+          (error) => {
+            switch (error.code) {
+              case 'storage/unauthorized':
+                // User doesn't have permission to access the object
+                break;
+              case 'storage/canceled':
+                // User canceled the upload
+                break;
+
+              // ...
+
+              case 'storage/unknown':
+                // Unknown error occurred, inspect error.serverResponse
+                break;
+            }
+            reject(error.code);
+          },
+          () => {
+            // Upload completed successfully, now we can get the download URL
+            uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+              console.log('File available at', downloadURL);
+              //this.form.controls["image"].setValue(downloadURL);
+              this.finalImageURL = downloadURL;
+              resolve(null);
+              console.log(this.form.value);
+            }).catch(err => {
+              reject(err);
+            });
+
+          }
+        );
+
+      }
+      else {
+        console.log("No image uploaded")
+      }
+
+    })
   }
 
   calcPrice(discp: any) {
@@ -678,7 +702,7 @@ export class AddItemsComponent implements OnInit {
   getStates() {
     this.httpClient.get<any>(this.urls.state).subscribe(
       (res) => {
-        console.log(res);
+        //console.log(res);
         this.states = res.payload;
       },
       (err) => {
@@ -695,10 +719,10 @@ export class AddItemsComponent implements OnInit {
   }
 
   getDistricts(state: String) {
-    console.log(state);
+    //console.log(state);
     this.httpClient.get<any>(this.urls.district + "?state=" + state).subscribe(
       (res) => {
-        console.log(res);
+        //console.log(res);
         this.districts = res.payload.districts;
       },
       (err) => {
@@ -714,12 +738,11 @@ export class AddItemsComponent implements OnInit {
     );
   }
 
-  addAddress(){
+  addAddress() {
 
-    if(!this.addressValidate())
-    {
-      console.log(this.selectedState);
-      console.log(this.selectedDistrict);
+    if (!this.addressValidate()) {
+      //console.log(this.selectedState);
+      //console.log(this.selectedDistrict);
       console.log("address invalid");
       return;
     }
@@ -729,40 +752,14 @@ export class AddItemsComponent implements OnInit {
     this.newAddress.newaddress.district = this.selectedDistrict;
     this.newAddress.newaddress.state = this.selectedState;
     this.httpClient.post<any>(this.urls.address, this.newAddress).subscribe(
-        (res) => {
-          this.tempform.controls.addresstitle.setValue('');
-          this.tempform.controls.pickupaddress.setValue('');
-          this.tempform.controls.pickuppincode.setValue('');
-          this.states = undefined;
-          this.districts = undefined;
-          console.log(res.message);
-          this.existingAddress();
-        },
-        (err) => {
-          console.log(err);
-          if (err.status == 0 || err.status == 500) {
-            this.error500 = true;
-            console.log("Error");
-          }
-          else {
-            this.error = true;
-            this.errormessage = "Unable to add items. Please contact customer service or try again later."
-          }
-        }
-      );
-  }
-
-  existingAddress(){
-    this.addressesList = [];
-    this.httpClient.get<any>(this.urls.address + "?uid=" + this.user.payload.uid).subscribe(
       (res) => {
-        console.log(res.payload);
-        this.addressesList.push(res.payload.defaultaddress);
-        this.addressesList[0].addresstitle = "Registered Address";
-        for(let add of res.payload.createnewaddress){
-          this.addressesList.push(add);
-        }
-        console.log(this.addressesList);
+        this.tempform.controls.addresstitle.setValue('');
+        this.tempform.controls.pickupaddress.setValue('');
+        this.tempform.controls.pickuppincode.setValue('');
+        this.states = undefined;
+        this.districts = undefined;
+        //console.log(res.message);
+        this.existingAddress();
       },
       (err) => {
         console.log(err);
@@ -776,7 +773,78 @@ export class AddItemsComponent implements OnInit {
         }
       }
     );
-    
+  }
+
+  existingAddress() {
+    this.addressesList = [];
+    this.httpClient.get<any>(this.urls.address + "?uid=" + this.user.payload.uid).subscribe(
+      (res) => {
+        //console.log(res.payload);
+        this.addressesList.push(res.payload.defaultaddress);
+        this.addressesList[0].addresstitle = "Registered Address";
+        for (let add of res.payload.createnewaddress) {
+          this.addressesList.push(add);
+        }
+        //console.log(this.addressesList);
+      },
+      (err) => {
+        console.log(err);
+        if (err.status == 0 || err.status == 500) {
+          this.error500 = true;
+          console.log("Error");
+        }
+        else {
+          this.error = true;
+          this.errormessage = "Unable to add items. Please contact customer service or try again later."
+        }
+      }
+    );
+
+  }
+
+  finSubmit() {
+    let formObj = this.form.getRawValue(); // {name: '', description: ''}
+
+    formObj['uid'] = this.user.payload.uid;
+    formObj['pickupaddress'] = this.selectedPickupAddress;
+    formObj['quantity'] = 0;
+    formObj['image'] = this.finalImageURL;
+    let serializedForm = JSON.stringify(formObj);
+    console.log('Submit Button clicked: ' + serializedForm);
+
+    this.httpClient.post<any>("http://localhost:5001/v1/products/product", formObj).subscribe(
+      (res) => {
+
+        if (res.statusCode == 0) {
+          console.log("Success");
+          this.form.reset();
+          for (let x of this.categoriesJson) {
+            for (let i of x.value) {
+              if (i.Havesubsubcategories == true) {
+                for (let a of i.sub) {
+                  a.checked = false;
+                }
+              }
+              else {
+                i.checked = false;
+              }
+            }
+          }
+        }
+        this.router.navigateByUrl("home/farmer");
+      },
+      (err) => {
+        console.log(err);
+        if (err.status == 0 || err.status == 500) {
+          this.error500 = true;
+          console.log("Error");
+        }
+        else {
+          this.error = true;
+          this.errormessage = "Unable to add items. Please contact customer service or try again later."
+        }
+      }
+    );
   }
 
 
@@ -796,81 +864,33 @@ export class AddItemsComponent implements OnInit {
       this.tabChange = "Sumbit";
     }
     else if (this.address == true) {
-      if (!this.detailsValidate())
-      {
+      if (!this.detailsValidate()) {
         this.existingadd = true; //vaish this is the boolean value for showing error
         this.messageexistingadd = "Please fill Details tab."
         console.log(this.messageexistingadd);
         return;
-      } 
-      if (!this.costingValidate())
-      {
+      }
+      if (!this.costingValidate()) {
         this.existingadd = true; //vaish this is the boolean value for showing error
         this.messageexistingadd = "Please fill Costing tab."
         console.log(this.messageexistingadd);
         return;
       }
-      if (this.selectedPickupAddress == null)
-      {
+      if (this.selectedPickupAddress == null) {
         this.existingadd = true; //vaish this is the boolean value for showing error
         this.messageexistingadd = "You need to choose a pickup address."
         console.log(this.messageexistingadd);
         return;
-      } 
-      //if (!this.addressValidate()) return;
-      //this.tabChange = "Submit";
+      }
 
-      let formObj = this.form.getRawValue(); // {name: '', description: ''}
-
-      formObj['uid'] = this.user.payload.uid;
-      formObj['pickupaddress'] = this.selectedPickupAddress;
-      formObj['quantity'] = 0;
-      let serializedForm = JSON.stringify(formObj);
-      console.log('Submit Button clicked: ' + serializedForm);
-      
-      this.httpClient.post<any>("http://localhost:5001/v1/products/product", formObj).subscribe(
-        (res) => {
-          // if(res.statusCode == 0) this.router.navigate(['/home']);
-          // else{
-          //   this.error = true;
-          //   this.errormessage = res.message;
-          //   if (this.errormessage == "Please verify email") this.resendemail = true;
-          // }
-
-          if (res.statusCode == 0) {
-            console.log("Success");
-            this.form.reset();
-            this.file = false;
-            for (let x of this.categoriesJson) {
-              for (let i of x.value) {
-                if (i.Havesubsubcategories == true) {
-                  for (let a of i.sub) {
-                    a.checked = false;
-                  }
-                }
-                else {
-                  i.checked = false;
-                }
-              }
-            }
-          }
-          this.router.navigateByUrl("home/farmer");
-        },
-        (err) => {
-          console.log(err);
-          if (err.status == 0 || err.status == 500) {
-            this.error500 = true;
-            console.log("Error");
-          }
-          else {
-            this.error = true;
-            this.errormessage = "Unable to add items. Please contact customer service or try again later."
-          }
-        }
-      );
-
+      if (this.imageEvent != undefined) {
+        this.imageUpload(this.imageEvent).then(res => {
+          this.finSubmit();
+        }).catch(e => {
+          this.router.navigateByUrl("/error500");
+        });
+      }
     }
 
   }
-
 }

@@ -24,6 +24,8 @@ import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { PhoneVerComponent } from './phone-ver/phone-ver.component';
 import { WindowService } from './window.service';
 
+// import { Client } from '@speechly/browser-client'
+
 import firebase from 'firebase/app';
 
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
@@ -97,7 +99,7 @@ export class HammerConfig extends HammerGestureConfig {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig, 'Krishi Bazaar'),
+    AngularFireModule.initializeApp(environment.firebaseConfig, 'Krishi-Brahmand'),
     AngularFirestoreModule,
     MatSelectModule,
     NgbModule,

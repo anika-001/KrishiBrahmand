@@ -42,20 +42,17 @@
                             </div>
                             <!-- <input placeholder="Upload Image" formControlName="image" type="text" class="ip"> -->
                             <input type="file" id="inpFile" formControlName="image" name="inpFile"
-                                (change)="imageUpload($event)" accept="image/*">
+                                (change)="imageUploadPrev($event)" accept="image/*">
                             <!-- <input type="submit" value="Submit Image" (click)="imageUpload()"> -->
-                            <div class="image-preview" id="imagePreview" *ngIf="!file">
+                            <div class="image-preview" id="imagePreview" *ngIf="url == ''">
                                 <img src="" alt="Image Preview">
                             </div>
-                            <div class="image-preview" id="imagePreview" *ngIf="file">
+                            <div class="image-preview" id="imagePreview" *ngIf="url != ''">
                                 <img [src]="url">
                             </div>
 
                         </div>
-                        <!-- <span class="help-block">
-                                <span *ngIf="form.get('title')!.errors &&
-                                </span>
-                            </span> -->
+                        
                         <div class="inputfield">
                             <div style="display: flex; color: red; position: relative;" *ngIf="!title">
                                 <div style="font-size: 200%;">*</div>
