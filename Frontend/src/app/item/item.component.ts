@@ -21,6 +21,7 @@ export class ItemComponent implements OnInit {
   item: any;
 
   items: any;
+  ratingp:any;
 
   user: any;
   qty: any = 1;
@@ -39,7 +40,7 @@ export class ItemComponent implements OnInit {
   };
 
   constructor(private httpClient: HttpClient, private route: ActivatedRoute, private router: Router, private as: AuthService,
-    private fb: FormBuilder,private cs: CookieService) { }
+    private fb: FormBuilder, private cs: CookieService) { }
 
   form = this.fb.group({
     quantity: [5, Validators.required]
@@ -47,12 +48,15 @@ export class ItemComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if(this.cs.check('role')){
-      if(this.cs.get('role') == 'farmer'){
+    if (this.cs.check('role')) {
+      if (this.cs.get('role') == 'farmer') {
         this.router.navigate(['/home/farmer']);
       }
 
     }
+
+    this.prodId = this.route.snapshot.queryParams['id'];
+    this.data.itemsList.productId = this.prodId;
 
     this.as.getUser().subscribe(res => {
       this.user = res;
@@ -62,19 +66,19 @@ export class ItemComponent implements OnInit {
         this.router.navigate(['/401']);
       }
       this.callCart(this.user.payload.uid);
+      this.defaultApiCall();
     })
-    this.prodId = this.route.snapshot.queryParams['id'];
-    this.data.itemsList.productId = this.prodId;
-    this.defaultApiCall();
+
 
   }
 
   defaultApiCall() {
-    this.httpClient.get<any>(this.urls.default + "?id=" + this.prodId +"&uid="+this.user.payload.uid).subscribe(
+    this.httpClient.get<any>(this.urls.default + "?id=" + this.prodId + "&uid=" + this.user.payload.uid).subscribe(
       (res) => {
         console.log(res);
         this.item = res.payload;
         console.log(this.item);
+        this.ratingp = res.payload.ratingpermission;
       },
       (err) => {
         console.log(err);
