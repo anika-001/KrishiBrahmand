@@ -32,8 +32,14 @@
             <div class = "bidcol">
                 Price: {{bid.cost}}
             </div>
-            <div class = "bidcol" *ngIf = "permission">
+            <div class = "bidcol" *ngIf = "permission && bid.status != 'Accepted'">
                 <button (click)="acceptBid(bid)">Accept</button>
+            </div>
+            <div class = "bidcol" *ngIf = "bid.status == 'Accepted'">
+                Accepted
+            </div>
+            <div class = "bidcol" *ngIf = "!permission && bid.status == 'Not Accepted'">
+                Not Yet Accepted
             </div>
         </div>
     </div>

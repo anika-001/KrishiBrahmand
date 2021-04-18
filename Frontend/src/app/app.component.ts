@@ -176,6 +176,10 @@ export class AppComponent implements OnDestroy {
       },
       image: "radial-gradient(#d9d7ca, #3c8d93)"
     },
+    size: {
+      height: 100,
+      width: 100
+    },
     fpsLimit: 60,
     interactivity: {
       detectsOn: "canvas",
