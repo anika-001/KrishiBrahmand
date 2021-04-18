@@ -104,7 +104,7 @@ export class ProdbidComponent implements OnInit {
         this.item["sellername"] = res.payload.sellername;
         this.item["title"] = res.payload.title;
         this.item["description"] = res.payload.description;
-        console.log(this.item);
+        console.log(res);
       },
       (err) => {
         console.log(err);
