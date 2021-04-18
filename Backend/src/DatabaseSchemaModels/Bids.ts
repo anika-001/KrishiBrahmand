@@ -17,6 +17,9 @@ class Bids{
         },
         date:{
             type: Date
+        },
+        status:{
+            type: String
         }
     });
 

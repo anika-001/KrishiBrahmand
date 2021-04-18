@@ -195,6 +195,7 @@ export interface I6_0{
     productid: String;
     quantity: String;
     cost: String;
+    bidid: String;
 }
 
 export interface I8 {

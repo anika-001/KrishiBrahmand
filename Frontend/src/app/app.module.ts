@@ -53,7 +53,8 @@ import { AidComponent } from './aid/aid.component';
 import { FarmerBidComponent } from './farmer-bid/farmer-bid.component';
 import { ConsumerBidComponent } from './consumer-bid/consumer-bid.component';
 import { FooterComponent } from './footer/footer.component';
-import { ProdbidComponent } from './prodbid/prodbid.component'
+import { ProdbidComponent } from './prodbid/prodbid.component';
+import { ServiceWorkerModule } from '@angular/service-worker'
 
 firebase.initializeApp(environment.firebaseConfig);
 
@@ -115,7 +116,13 @@ export class HammerConfig extends HammerGestureConfig {
     MatSelectModule,
     NgbModule,
     MatRadioModule,
-    NgParticlesModule
+    NgParticlesModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [WindowService],
   bootstrap: [AppComponent]

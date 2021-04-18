@@ -7,6 +7,7 @@ import { Document } from 'mongoose';
 import * as nm from 'nodemailer';
 import { account } from '../DatabaseSchemaModels/Account';
 import { users } from '../DatabaseSchemaModels/UserData';
+import { bids } from '../DatabaseSchemaModels/Bids';
 
 
 interface IProduct {
@@ -86,7 +87,12 @@ export class FarmersModel {
             html: "Hello,<br>" + "Your bid for quantity " + body.quantity + " and cost " + body.cost + " has been acccepted. Please contact <br>" + "Name: " + farmer.name + "<br>phone number: " + farmer.phone + "<br>email: " + farmer.email
           };
           transporter.sendMail(mailOptions).then(res => {
-            resolve({ "statusCode": 0, "message": "mail sent"});
+            bids.findByIdAndUpdate(body.bidid, {"status": "Accepted"}).then(val => {
+              resolve({ "statusCode": 0, "message": "mail sent"});
+            })
+            .catch(e => {
+              reject({ "statusCode": 2, "message": e});
+            })
           })
           .catch(e => {
             reject({ "statusCode": 2, "message": e});
