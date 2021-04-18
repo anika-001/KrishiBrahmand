@@ -38,8 +38,6 @@ export class ItemComponent implements OnInit {
     }
   }
 
-  bidCost:any;
-  bidQty:any;
 
   urls = {
     'cart': "http://localhost:5001/v1/consumer/cart",
@@ -82,33 +80,8 @@ export class ItemComponent implements OnInit {
 
   }
 
-  postBid() {
-    let bidData = {
-      uid: this.user.payload.uid,
-      productId: this.prodId,
-      cost: this.bidCost,
-      quantity: this.bidQty,
-      date: Date.now(),
-    }
-
-    //console.log(bidData);
-
-    this.httpClient.post<any>(this.urls.bid, bidData).subscribe(
-      (res) => {
-        console.log(res);
-      },
-      (err) => {
-        console.log(err);
-        if (err.status == 0 || err.status == 500) {
-          this.error500 = true;
-        }
-        else {
-          this.error = true;
-          this.errormessage = "Unable to retreive item. Please contact customer service or try again later.";
-        }
-      }
-    );
-
+  gotoItemBid() {
+    this.router.navigate(['/productbid'], { queryParams: { id: this.prodId } });
   }
 
   ratingCall() {

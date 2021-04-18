@@ -16,9 +16,9 @@
         </div>
     </div>
     <div class = "bidinput" *ngIf = "!permission">
-        <input type="number" class="ip" placeholder="price">
-            <input type="number" class="ip" placeholder="quantity">
-            <button>Bid</button>
+        <input type="number" class="ip" [(ngModel)]="bidCost" placeholder="price">
+            <input type="number" class="ip" [(ngModel)]="bidQty" placeholder="quantity">
+            <button (click)="postBid()">Bid</button>
     </div>
     <div class = "bids">
         <div style="margin: 1%; font-size: 150%; font-weight: bolder;">Bids</div>
@@ -33,7 +33,7 @@
                 Price: {{bid.cost}}
             </div>
             <div class = "bidcol" *ngIf = "permission">
-                <button>Accept</button>
+                <button (click)="acceptBid(bid)">Accept</button>
             </div>
         </div>
     </div>

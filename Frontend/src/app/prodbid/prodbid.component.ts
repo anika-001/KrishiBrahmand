@@ -19,15 +19,19 @@ export class ProdbidComponent implements OnInit {
   bids: any;
   bid: boolean = true;
   vals: any = [];
-  item:any;
-  prodId:any;
+  item: any;
+  prodId: any;
   permission: Boolean = false;
   user: any;
+
+  bidCost: any;
+  bidQty: any;
 
   urls = {
     "orders": "http://localhost:5001/v1/consumer/orders",
     "item": "http://localhost:5001/v1/products/categories/items/item",
     "bid": "http://localhost:5001/v1/products/product/bid",
+    "acceptbid": "http://localhost:5001/v1/farmers/farmer/bid",
   }
 
   constructor(private httpClient: HttpClient, private route: ActivatedRoute, private router: Router, private as: AuthService,
@@ -49,7 +53,7 @@ export class ProdbidComponent implements OnInit {
           (res) => {
             this.bids = res.payload;
             console.log(this.bids);
-            // 
+             
             console.log(this.item);
             if (this.bids.length == 0) {
               this.bid = false;
@@ -77,7 +81,68 @@ export class ProdbidComponent implements OnInit {
     })
   }
 
-  callUser(uid:any, item:any){
+  acceptBid(bid:any) {
+
+    console.log(bid);
+
+    let bidData = {
+      farmuid: this.user.uid,
+      consumeruid: bid.uid,
+      productid: bid.productId,
+      quantity: bid.quantity,
+      cost: bid.cost,
+      bidid: bid._id
+    };
+    this.httpClient.post<any>(this.urls.acceptbid, bidData).subscribe(
+      (res) => {
+        console.log(res);
+        location.reload();
+      },
+      (err) => {
+        console.log(err);
+        if (err.status == 0 || err.status == 500) {
+          this.error500 = true;
+        }
+        else {
+          this.error = true;
+          this.errormessage = "Unable to retreive item. Please contact customer service or try again later.";
+        }
+      }
+    );
+  }
+
+  postBid() {
+    let bidData = {
+      uid: this.user.uid,
+      productId: this.prodId,
+      cost: this.bidCost,
+      quantity: this.bidQty,
+      date: Date.now(),
+      status: "Not Accepted"
+    }
+
+    console.log(bidData);
+
+    this.httpClient.post<any>(this.urls.bid, bidData).subscribe(
+      (res) => {
+        console.log(res);
+        location.reload();
+      },
+      (err) => {
+        console.log(err);
+        if (err.status == 0 || err.status == 500) {
+          this.error500 = true;
+        }
+        else {
+          this.error = true;
+          this.errormessage = "Unable to retreive item. Please contact customer service or try again later.";
+        }
+      }
+    );
+
+  }
+
+  callUser(uid: any, item: any) {
     this.as.getProfile(uid).subscribe(
       (res) => {
         console.log("Inside Call User function");
@@ -105,7 +170,7 @@ export class ProdbidComponent implements OnInit {
       (res) => {
         console.log("Inside Call Item function");
         this.item = res.payload;
-        if(this.user.uid == res.payload.uid){
+        if (this.user.uid == res.payload.uid) {
           this.permission = true;
         }
         // this.item["image"] = res.payload.image;
