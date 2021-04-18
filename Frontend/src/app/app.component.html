@@ -74,7 +74,8 @@
         </mat-sidenav>
 
         <mat-sidenav-content class="content">
-            <ng-particles class = "particles" [id]="id" [options]="particlesOptions" (particlesLoaded)="particlesLoaded($event)" (particlesInit)="particlesInit($event)"></ng-particles>
+            <ng-particles class="particles" [id]="id" [options]="particlesOptions"
+                (particlesLoaded)="particlesLoaded($event)" (particlesInit)="particlesInit($event)"></ng-particles>
             <div class="nav-bar html.translated-ltr">
                 <div class="nav-bar-left">
                     <div class="nav-bar-hamburger" (click)="sidenav.toggle()">
@@ -82,7 +83,7 @@
                     </div>
                     <div class="siteinfo">
                         <div class="siteimage">
-                            
+
                         </div>
                         <div class="sitename">
                             Krishi Brahmand
@@ -134,6 +135,12 @@
                         <div class="nav-bar-item-text">Orders</div>
                     </a>
 
+                    <a class="nav-bar-item" *ngIf="selectedRole == 'consumer'" routerLink="/consumerbid"><i
+                        class="fa fa-users menuicon"
+                        style="display: flex; flex-direction: column; justify-content: center; margin: 0 3px;"></i>
+                    <div class="nav-bar-item-text">Bids</div>
+                    </a>
+
                     <a class="nav-bar-item" *ngIf="selectedRole == 'farmer'" routerLink="/pickup"><i class="fa fa-truck"
                             aria-hidden="true"
                             style="display: flex; flex-direction: column; justify-content: center; margin: 0 3px;"></i>
@@ -147,11 +154,17 @@
                         <div class="nav-bar-item-text">Shipment</div>
                     </a>
 
-                    <a class="nav-bar-item" *ngIf="selectedRole == 'farmer'" routerLink="/aid"><i
-                        class="fa fa-handshake-o" aria-hidden="true"
+                    <a class="nav-bar-item" *ngIf="selectedRole == 'farmer'" routerLink="/farmerbid"><i
+                        class="fa fa-plane" aria-hidden="true"
                         style="display: flex; flex-direction: column; justify-content: center; margin: 0 3px;"></i>
-                    <div class="nav-bar-item-text">Aid</div>
-                </a>
+                    <div class="nav-bar-item-text">Bids</div>
+                    </a>
+
+                    <a class="nav-bar-item" *ngIf="selectedRole == 'farmer'" routerLink="/aid"><i
+                            class="fa fa-handshake-o" aria-hidden="true"
+                            style="display: flex; flex-direction: column; justify-content: center; margin: 0 3px;"></i>
+                        <div class="nav-bar-item-text">Aid</div>
+                    </a>
 
                     <div *ngIf="show">
                         <mat-form-field color="accent">
@@ -241,10 +254,10 @@
                 </div>
             </div> -->
             <!-- <ng-particles class = "particles" [id]="id" [options]="particlesOptions" (particlesLoaded)="particlesLoaded($event)" (particlesInit)="particlesInit($event)"></ng-particles> -->
-                <div class="mainpage" (swipeleft)="sidenav.close()" (swiperight)="sidenav.open()">
-                    <router-outlet></router-outlet>
-                </div>
-                <app-footer></app-footer>
+            <div class="mainpage" (swipeleft)="sidenav.close()" (swiperight)="sidenav.open()">
+                <router-outlet></router-outlet>
+            </div>
+            <app-footer></app-footer>
         </mat-sidenav-content>
     </mat-sidenav-container>
 
