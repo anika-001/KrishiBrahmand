@@ -149,8 +149,8 @@ export class PaymentComponent implements OnInit {
     "amount": "10000",
     "name": "Krishi Brahmand",
     "order_id": "",
-    "description": "Fresh from the Farm to your Doorstep",
-    "image": "https://firebasestorage.googleapis.com/v0/b/krishibazaar-14ac4.appspot.com/o/RzpLogo.png?alt=media&token=158c43c9-b418-4f33-b90a-4fc4a267abe5",
+    "description": "",
+    "image": "https://firebasestorage.googleapis.com/v0/b/project-demo-c7787.appspot.com/o/Krishi%20Brahmand.png?alt=media&token=b66ef723-1ba1-4d3d-b61e-614ad0f04b33",
     "prefill": {
       "name": "Test Name",
       "email": "Test email",
@@ -160,7 +160,7 @@ export class PaymentComponent implements OnInit {
     "handler": {},
     "modal": {},
     "theme": {
-      "color": "#386a56"
+      "color": "#3c8d93"
     }
   };
 
