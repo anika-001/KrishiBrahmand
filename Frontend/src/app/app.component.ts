@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Container, Main } from 'tsparticles';
 
 
+
 export let browserRefresh = false;
 
 @Component({
