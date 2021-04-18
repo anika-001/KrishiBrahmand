@@ -33,7 +33,7 @@
                 Price: {{bid.cost}}
             </div>
             <div class = "bidcol" *ngIf = "permission">
-                <button>Accept</button>
+                <button (click)="acceptBid(bid)">Accept</button>
             </div>
         </div>
     </div>
