@@ -240,7 +240,7 @@ export class ProductsModel {
               s1.add(x.productId);
             }
             console.log(val, s1)
-            resolve({ "statusCode": 0, "message": "Bid retrieved", "payload": s1 })
+            resolve({ "statusCode": 0, "message": "Bid retrieved", "payload": Array.from(s1) })
           })
           .catch(e => {
             reject({ "statusCode": 2, "message": e, "payload": "" })
