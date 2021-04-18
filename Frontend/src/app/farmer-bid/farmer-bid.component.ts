@@ -22,15 +22,19 @@ export class FarmerBidComponent implements OnInit {
   error500: boolean = false;
   error: boolean = false;
   errormessage: string = "";
+
   shipments: any;
   dict: any = {};
   keys:any = [];
   ship: boolean = true;
 
+  bids:any;
+  bid:boolean = true;
+
   urls = {
     "orders": "http://localhost:5001/v1/consumer/orders",
     "item": "http://localhost:5001/v1/products/categories/items/item",
-    "shipment": "http://localhost:5001/v1/farmers/farmer/shipments",
+    "bid": "http://localhost:5001/v1/products/product/bid",
   }
   constructor(private httpClient: HttpClient, private router: Router, private as: AuthService, private cs: CartService, private cs_: CookieService) { }
 
@@ -49,38 +53,22 @@ export class FarmerBidComponent implements OnInit {
         this.router.navigate(['/401']);
       }
       else {
-        console.log("Inside Shipments Component");
-        this.httpClient.get<any>(this.urls.shipment + "?id=" + res.payload.uid).subscribe(
+        console.log("Inside Farmer Bid Component");
+        this.httpClient.get<any>(this.urls.bid + "?role=farmer" +"&id="+res.payload.uid).subscribe(
           (res) => {
-            this.shipments = res.payload;
-            //console.log(this.shipments);
-            if (this.shipments == null) {
-              this.ship = false;
+            this.bids = res;
+            console.log(this.bids);
+            if (this.bids == null) {
+              this.bid = false;
             }
             else {
-              for (let order of this.shipments) {
-                order["orderdate"] = new Date(Number(order.ItemsId.split("?")[1])).toString().split(" ", 4).join(" ");
-                let prodid = order.ItemsId.split("?")[2];
-                this.callItem(prodid, order);
-                if (!this.dict.hasOwnProperty(order["orderdate"])) {
-                  this.dict.anotherKey = order["orderdate"];
-                  this.dict[order["orderdate"]] = [order];
-                  this.keys.push(order["orderdate"]);
-                }
-                else {
-                  this.dict[order["orderdate"]].push(order);
-                }
+              for (let item of this.bids) {
+
+                let prodid = item.productId;
+                this.callItem(prodid, item);
+                
               }
-              console.log(this.dict);
-              console.log(this.keys);
-              this.keys.sort(function (a: any, b: any) {
-                var dateA = new Date(a);
-                var dateB = new Date(b);
-                return dateA >= dateB ? -1 : 1;
-              });
               
-              console.log("shipments");
-              console.log(this.shipments);
             }
 
           },
@@ -120,8 +108,8 @@ export class FarmerBidComponent implements OnInit {
   }
 
   gotoItem(item: any) {
-    let prodid = item.ItemsId.split("?")[2];
-    this.router.navigate(['/item'], { queryParams: { id: prodid } });
+    let prodid = item.productId;
+    this.router.navigate(['/prodbid'], { queryParams: { id: prodid } });
   }
 
 }
