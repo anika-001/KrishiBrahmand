@@ -117,6 +117,7 @@ export class ProdbidComponent implements OnInit {
       cost: this.bidCost,
       quantity: this.bidQty,
       date: Date.now(),
+      status: "Not Accepted"
     }
 
     console.log(bidData);
