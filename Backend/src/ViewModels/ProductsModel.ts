@@ -239,6 +239,7 @@ export class ProductsModel {
             for(let x of val){
               s1.add(x.productId);
             }
+            console.log(val, s1)
             resolve({ "statusCode": 0, "message": "Bid retrieved", "payload": s1 })
           })
           .catch(e => {
