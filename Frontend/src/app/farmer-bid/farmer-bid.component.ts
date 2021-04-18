@@ -135,7 +135,7 @@ export class FarmerBidComponent implements OnInit {
   }
 
   gotoItem(item: any) {
-    let prodid = item.productId;
+    let prodid = item.prodId;
     this.router.navigate(['/productbid'], { queryParams: { id: prodid } });
   }
 
