@@ -246,8 +246,17 @@ export class ProductsModel {
         })
       }
 
-      else{
+      else if(role == "consumer"){
         bids.find({uid: id}).then(val => {
+          resolve({ "statusCode": 0, "message": "Bid retrieved", "payload": val })
+        })
+        .catch(e => {
+          reject({ "statusCode": 2, "message": e, "payload": "" })
+        })
+      }
+
+      else{
+        bids.find({productId: id}).then(val => {
           resolve({ "statusCode": 0, "message": "Bid retrieved", "payload": val })
         })
         .catch(e => {
