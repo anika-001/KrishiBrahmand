@@ -4,13 +4,15 @@ import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from '../services/auth.service';
 
+
 @Component({
   selector: 'app-aid',
   templateUrl: './aid.component.html',
   styleUrls: ['./aid.component.scss']
 })
 export class AidComponent implements OnInit {
-
+  WeatherData:any;
+  
   pickups: any;
   error500: boolean = false;
 
@@ -44,6 +46,27 @@ export class AidComponent implements OnInit {
       }
     );
 
+  }
+  getWeatherData(){
+    //fetch('https://api.openweathermap.org/data/2.5/weather?q=mumbai&appid=26e5328b110058f21b8e2cf2969ea645')
+    //.then(response=>response.json())
+    //.then(data=>{this.setWeatherData(data);})
+
+     let data = JSON.parse('{"coord":{"lon":72.85,"lat":19.01},"weather":[{"id":721,"main":"Haze","description":"haze","icon":"50n"}],"base":"stations","main":{"temp":297.15,"feels_like":297.4,"temp_min":297.15,"temp_max":297.15,"pressure":1013,"humidity":69},"visibility":3500,"wind":{"speed":3.6,"deg":300},"clouds":{"all":20},"dt":1580141589,"sys":{"type":1,"id":9052,"country":"IN","sunrise":1580089441,"sunset":1580129884},"timezone":19800,"id":1275339,"name":"Mumbai","cod":200}');
+     this.setWeatherData(data);
+     console.log(data);
+  }
+  setWeatherData(data){
+    console.log(data);
+    this.WeatherData = data;
+    let sunsetTime = new Date(this.WeatherData.sys.sunset * 1000);
+    this.WeatherData.sunset_time = sunsetTime.toLocaleTimeString();
+    let currentDate = new Date();
+    //this.WeatherData.isDay = (currentDate.getTime() < sunsetTime.getTime());
+    this.WeatherData.temp_celcius = (this.WeatherData.main.temp - 273.15).toFixed(0);
+    this.WeatherData.temp_min = (this.WeatherData.main.temp_min - 273.15).toFixed(0);
+    this.WeatherData.temp_max = (this.WeatherData.main.temp_max - 273.15).toFixed(0);
+    this.WeatherData.temp_feels_like = (this.WeatherData.main.feels_like - 273.15).toFixed(0);
   }
 
 }

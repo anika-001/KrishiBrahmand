@@ -28,7 +28,7 @@
     "angular-font-awesome": "^3.1.2",
     "angular-hammer": "^2.2.0",
     "bootstrap": "^4.6.0",
-    "dialogflow": "^1.2.0",
+    "dialogflow": "^4.0.3",
     "firebase": "^8.3.0",
     "font-awesome": "^4.7.0",
     "googleapis": "^67.1.1",

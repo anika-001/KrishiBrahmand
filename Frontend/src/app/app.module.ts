@@ -28,6 +28,7 @@ import { WindowService } from './window.service';
 
 import firebase from 'firebase/app';
 import {NgParticlesModule} from "ng-particles";
+
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { EmailverificationComponent } from './emailverification/emailverification.component';
