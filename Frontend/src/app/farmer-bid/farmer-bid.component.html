@@ -17,11 +17,8 @@
             <!-- <div class="ongoingheading">
                 Ongoing Orders
             </div> -->
-            <div class="ongoingbody" *ngIf="ship">
+            <div class="ongoingbody" *ngIf="bid">
                 <div class="ongoingbodyorder" *ngFor="let date of keys">
-                    <div class="ongoingbodyorderheading">
-                        {{date}}
-                    </div>
                     <div class="ongoingbodyorderbody">
                         <div class="itemcard" *ngFor="let order of dict[date]" (click)=gotoItem(order)>
                             <div class = "iteminfo">
@@ -59,8 +56,8 @@
                     </div>
                 </div>
             </div>
-            <div class="shipmentbody ob1" *ngIf="!ship">
-                No Shipments at the moment
+            <div class="shipmentbody ob1" *ngIf="!bid">
+                No Biddings at the moment
             </div>
         </div>
 
