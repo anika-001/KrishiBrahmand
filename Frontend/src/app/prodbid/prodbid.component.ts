@@ -91,6 +91,7 @@ export class ProdbidComponent implements OnInit {
       productid: bid.productId,
       quantity: bid.quantity,
       cost: bid.cost,
+      bidid: bid._id
     };
     this.httpClient.post<any>(this.urls.acceptbid, bidData).subscribe(
       (res) => {
