@@ -1,9 +1,10 @@
-import { I3_0, IGetResponse, IPostResponse, itemreturn } from '../support/Interfaces';
+import { I3_0, I3_1, IGetResponse, IPostResponse, itemreturn } from '../support/Interfaces';
 import { StatusCodes } from 'http-status-codes';
 import { product } from '../DatabaseSchemaModels/Product';
 import { users } from '../DatabaseSchemaModels/UserData';
 import { pickup } from '../DatabaseSchemaModels/Pickup';
 import { DatabaseOperations } from '../support/DatabaseOperations';
+import { pastorders } from '../DatabaseSchemaModels/PastOrders';
 
 
 export class ProductsModel {
@@ -91,7 +92,18 @@ export class ProductsModel {
     })
   }
 
-  public static getItem(id: string): Promise<IGetResponse> {
+  public static ifuserhaspurchased(uid: string, prodid: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      pastorders.findOne({ uid: uid, "Orders.itemsList.itemId": { "$regex": prodid, "$options": "i" } }).then(val => {
+        if (val) resolve(true);
+        else resolve(false);
+      })
+        .catch(e => {
+          reject(e);
+        })
+    })
+  }
+  public static getItem(id: string, uid?: string): Promise<IGetResponse> {
     return new Promise((resolve, reject) => {
       product.findById(id).then(val => {
         let retvalue: any = val;
@@ -106,13 +118,26 @@ export class ProductsModel {
           rating: retvalue.rating!,
           comments: retvalue.comments!,
           sellername: '',
-          baseprice: retvalue.baseprice!
+          baseprice: retvalue.baseprice!,
+          ratingpermission: false
         };
         users.findById(retvalue.uid).then(val => {
           let user: any = val;
           itemReturn["sellername"] = user.name;
           // for (let i in itemReturn) console.log(itemReturn[i]);
-          resolve({ "statusCode": 0, "message": "Item retrieved", "payload": itemReturn })
+          // this.ifuserhaspurchased().then()
+          if (uid != undefined) {
+            this.ifuserhaspurchased(uid, id).then(val => {
+              if (val) itemReturn["ratingpermission"] = true;
+              else itemReturn["ratingpermission"] = false;
+              resolve({ "statusCode": 0, "message": "Item retrieved", "payload": itemReturn })
+
+            })
+              .catch(e => {
+                reject({ "statusCode": 2, "message": e, "payload": "" })
+              })
+          }
+          else resolve({ "statusCode": 0, "message": "Item retrieved", "payload": itemReturn })
         })
 
           .catch(e => {
@@ -144,7 +169,7 @@ export class ProductsModel {
               { "$set": { description: (body.description != '' && body?.description) ? body.description : products.ProductId, title: (body.title != '' && body?.title) ? body.title : products.title, categories: (body.categories != null && body?.categories) ? body.categories : products.categories, costing: (body.costing != null && body?.costing) ? body.costing : products.costing, productRemaining: (body.productRemaining != null && body?.productRemaining) ? body.productRemaining : products.productRemaining, baseprice: (body.baseprice != null && body?.baseprice) ? body.baseprice : products.baseprice, image: (body.image != null && body?.image) ? body.image : products.image } })
           })
           .then((val) => { resolve({ statusCode: 0, message: "Product updated" }); })
-          .catch(e => {reject({ statusCode: 2, message: e });})
+          .catch(e => { reject({ statusCode: 2, message: e }); })
       }
 
       else {
@@ -163,6 +188,53 @@ export class ProductsModel {
             reject({ statusCode: 2, message: e });
           })
       }
+    })
+  }
+
+
+
+  public static addreview(body: I3_1): Promise<IPostResponse> {
+    return new Promise((resolve, reject) => {
+      product.findById(body.id).then((prod: any) => {
+        product.updateOne({ _id: body.id, "comments.uid": body.uid }, { "$set": { "comments.$.content": body.content, "comments.$.rating": body.rating, "comments.$.date": body.date, "comments.$.email": body.email } }).then(val => {
+          if (val.nModified == 0 && val.n == 0) {
+            product.updateOne({ _id: body.id }, { $push: { comments: body } }).then(val => {
+              product.updateOne({ _id: body.id }, { rating: (Number(Number(body.rating) + Number(prod.rating))  / Number(prod.noOfUsers)) }).then(val => {
+                resolve({ statusCode: 0, message: "Rating added" });
+              })
+                .catch(e => {
+                  reject({ statusCode: 2, message: e });
+                })
+
+            })
+              .catch(e => {
+                reject({ statusCode: 2, message: e });
+              })
+          }
+          else {
+            let currrate = 0;
+            for(let x of prod.comments){
+              if(x.uid == body.uid){
+                  currrate = x.rating;
+                  break;
+              }
+            }
+            console.log(prod.rating, prod.noOfUsers, currrate, body.rating)
+            product.updateOne({ _id: body.id }, { rating: Number(Number(Number(prod.rating) * Number(prod.noOfUsers) - Number(currrate) + Number(body.rating)) / Number(prod.noOfUsers)) }).then(val => {
+              resolve({ statusCode: 0, message: "Rating added" });
+            })
+              .catch(e => {
+                reject({ statusCode: 2, message: e });
+              })
+          }
+        })
+          .catch(e => {
+            reject({ statusCode: 2, message: e });
+          })
+      })
+        .catch(e => {
+          reject({ statusCode: 2, message: e });
+        })
     })
   }
 

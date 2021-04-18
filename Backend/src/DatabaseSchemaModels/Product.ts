@@ -57,6 +57,15 @@ class Product {
             },
             content: {
                 type: String
+            },
+            email: {
+                type: String
+            },
+            rating: {
+                type: Number
+            },
+            date:{
+                type: Number
             }
         }],
 

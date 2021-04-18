@@ -21,6 +21,10 @@ export class ItemComponent implements OnInit {
   item: any;
 
   items: any;
+  ratingpermission:any;
+  userrate = 0;
+  usercomment:any;
+  userdate:Date;
 
   user: any;
   qty: any = 1;
@@ -36,10 +40,11 @@ export class ItemComponent implements OnInit {
   urls = {
     'cart': "http://localhost:5001/v1/consumer/cart",
     'default': "http://localhost:5001/v1/products/categories/items/item",
+    'comment': "http://localhost:5001/v1/products/product/comment"
   };
 
   constructor(private httpClient: HttpClient, private route: ActivatedRoute, private router: Router, private as: AuthService,
-    private fb: FormBuilder,private cs: CookieService) { }
+    private fb: FormBuilder, private cs: CookieService) { }
 
   form = this.fb.group({
     quantity: [5, Validators.required]
@@ -47,34 +52,81 @@ export class ItemComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if(this.cs.check('role')){
-      if(this.cs.get('role') == 'farmer'){
+    if (this.cs.check('role')) {
+      if (this.cs.get('role') == 'farmer') {
         this.router.navigate(['/home/farmer']);
       }
 
     }
 
+    this.prodId = this.route.snapshot.queryParams['id'];
+    this.data.itemsList.productId = this.prodId;
+
     this.as.getUser().subscribe(res => {
       this.user = res;
-      console.log(this.user.payload.uid);
+      console.log(this.user.payload);
       this.data.uid = this.user.payload.uid;
       if (res.payload == "Unauthorized") {
         this.router.navigate(['/401']);
       }
       this.callCart(this.user.payload.uid);
+      this.defaultApiCall();
+      
     })
-    this.prodId = this.route.snapshot.queryParams['id'];
-    this.data.itemsList.productId = this.prodId;
-    this.defaultApiCall();
+
 
   }
 
+  ratingCall(){
+    for(let x of this.item.comments)
+    {
+      if(x.uid == this.user.payload.uid){
+        this.usercomment = x.content;
+        this.userrate = x.rating;
+        //this.userdate = (Date)x.date;
+        console.log("Your review was found!!");
+      }
+    }
+  }
+
+  submitReview(){
+    console.log(this.usercomment);
+    console.log(this.userrate);
+    let data = {
+      uid: this.user.payload.uid,
+      email: this.user.payload.email,
+      content: this.usercomment,
+      rating: this.userrate,
+      date: Date.now(),
+      id: this.prodId
+    }
+
+    this.httpClient.post<any>(this.urls.comment, data).subscribe(
+      (res) => {
+        console.log(res);
+        this.defaultApiCall();
+      },
+      (err) => {
+        console.log(err);
+        if (err.status == 0 || err.status == 500) {
+          this.error500 = true;
+        }
+        else {
+          this.error = true;
+          this.errormessage = "Unable to retreive item. Please contact customer service or try again later.";
+        }
+      }
+    );
+  }
+
   defaultApiCall() {
-    this.httpClient.get<any>(this.urls.default + "?id=" + this.prodId).subscribe(
+    this.httpClient.get<any>(this.urls.default + "?id=" + this.prodId + "&uid=" + this.user.payload.uid).subscribe(
       (res) => {
         console.log(res);
         this.item = res.payload;
         console.log(this.item);
+        this.ratingpermission = res.payload.ratingpermission;
+        this.ratingCall();
       },
       (err) => {
         console.log(err);

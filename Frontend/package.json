@@ -12,7 +12,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~11.2.5",
-    "@angular/cdk": "11.2.4",
+    "@angular/cdk": "11.2.9",
     "@angular/common": "~11.2.5",
     "@angular/compiler": "~11.2.5",
     "@angular/core": "~11.2.5",
@@ -35,10 +35,12 @@
     "gulp": "^4.0.2",
     "http-server": "^0.12.3",
     "jquery": "^3.6.0",
+    "ng-particles": "^2.9.2",
     "ngx-cookie-service": "^11.0.2",
     "popper.js": "^1.16.1",
     "rxjs": "~6.6.6",
-    "tslib": "^2.1.0",
+    "tslib": "^2.2.0",
+    "tsparticles": "^1.26.2",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

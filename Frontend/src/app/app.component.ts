@@ -4,6 +4,7 @@ import { NavigationStart, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Subscription } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
+import { Container, Main } from 'tsparticles';
 
 
 export let browserRefresh = false;
@@ -15,6 +16,9 @@ export let browserRefresh = false;
 })
 
 export class AppComponent implements OnDestroy {
+
+  id = "tsparticles";
+
   x: boolean = true;
   opened: boolean = false;
   user: any;
@@ -152,6 +156,97 @@ export class AppComponent implements OnDestroy {
     this.cookieService.set('role', 'consumer', { path: '/' });
     //this.setValuerole("consumer");
     this.router.navigate(['/home']);
+  }
+
+  particlesOptions = {
+    background: {
+      color: {
+        value: "rgb(54, 106, 86)"
+      },
+      image: "radial-gradient(#000080, rgb(54, 106, 86))"
+    },
+    fpsLimit: 60,
+    interactivity: {
+      detectsOn: "canvas",
+      events: {
+        onClick: {
+          enable: true,
+          mode: "push"
+        },
+        onHover: {
+          enable: true,
+          mode: "push"
+        },
+        resize: true
+      },
+      modes: {
+        bubble: {
+          distance: 400,
+          duration: 2,
+          opacity: 0.8,
+          size: 40
+        },
+        push: {
+          quantity: 4
+        },
+        repulse: {
+          distance: 200,
+          duration: 0.4
+        }
+      }
+    },
+    particles: {
+      color: {
+        //value: "#ffffff"
+        value: ["#fdcf58", "#757676", "#f27d0c", "#800909", "#f07f13"]
+      },
+      links: {
+        color: "#ffffff",
+        distance: 150,
+        enable: true,
+        opacity: 0.5,
+        width: 1
+      },
+      collisions: {
+        enable: true
+      },
+      move: {
+        direction: "none",
+        enable: true,
+        outMode: "bounce",
+        random: false,
+        speed: 6,
+        straight: false
+      },
+      number: {
+        density: {
+          enable: true,
+          value_area: 800
+        },
+        value: 80
+      },
+      opacity: {
+        value: 0.5
+      },
+      shape: {
+        type: "spiral"
+      },
+      size: {
+        random: true,
+        value: 5
+      }
+    },
+    detectRetina: true
+  };
+
+  particlesLoaded(container: Container): void {
+    console.log(container);
+  }
+
+  particlesInit(main: Main): void {
+    console.log(main);
+
+    // Starting from 1.19.0 you can add custom presets or shape here, using the current tsParticles instance (main)
   }
 }
 

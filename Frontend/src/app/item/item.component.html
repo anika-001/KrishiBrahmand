@@ -14,13 +14,15 @@
             <div class="headinfo">
                 <div class="itemtitle">
                     {{item.title}}
-                    
+
                 </div>
                 <div class="baseprice">
                     ₹{{item.baseprice}} per kg
                 </div>
                 <div class="itemrating">
-                    <ngb-rating [rate]="item.rating" [readonly]="true" [max]="5" [starTemplate]="t"></ngb-rating>
+                    <div class="rating">
+                        <ngb-rating [rate]="item.rating" [readonly]="true" [max]="5" [starTemplate]="t"></ngb-rating>
+                    </div>
                 </div>
             </div>
 
@@ -63,11 +65,11 @@
                             <div class="quantitybutton qb1" (click)="subQty()">
                                 -
                             </div>
-                            
+
                             <div class="quantitybutton">
                                 {{qty}}
                             </div>
-                            
+
                             <div class="quantitybutton qb1" (click)="addQty()">
                                 +
                             </div>
@@ -89,7 +91,7 @@
                 </div>
                 <div class="addtocart">
                     <button class="addtocartbutton" (click)=addToCart(data)>
-                        Add to cart 
+                        Add to cart
                     </button>
                 </div>
             </div>
@@ -117,20 +119,35 @@
         <div class="commenttitle">
             Reviews:
         </div>
-        <div class="addcomment">
+        <div *ngIf="ratingpermission">
+            Your Review:
+            <br>
+            {{user.payload.email}}
+            {{userdate}}
+            <div class="rating">
+                Rate Product:
+                <ngb-rating rate [(rate)]="userrate" [readonly]="false" [max]="5" [starTemplate]="t"></ngb-rating>
+            </div>
+            <div class="addcomment">
+                <textarea placeholder="Write a review" type="number" class="ip review"
+                    [(ngModel)]="usercomment"></textarea>
+                <button class="addtocartbutton reviewsubmit" (click)=submitReview()>Submit</button>
+            </div>
         </div>
-        <div class="comment" *ngFor="let x of number">
+
+        <div class="comment" *ngFor="let x of item.comments">
             <div class="commentcontentcont">
                 <i class="fa fa-user commentusericon">
                     <!-- <i class="fa fa-user" style="background-color: aqua;"></i> -->
                 </i>
                 <div class="commentuserbody">
                     <div class="commentusername">
-                        vaishnavisdesai@Gmail.com
+                        {{x.email}} <span><ngb-rating [rate]="x.rating" [readonly]="true" [max]="5" [starTemplate]="t"></ngb-rating></span>
                     </div>
                     <div class="commentcontent">
-                        Was amazing! Were fresh and super delicious!
+                        {{x.content}}
                     </div>
+
                 </div>
             </div>
             <div class="commentstat">

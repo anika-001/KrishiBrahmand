@@ -147,7 +147,7 @@ export class PaymentComponent implements OnInit {
   RAZORPAY_OPTIONS = {
     "key": "rzp_test_uyT8kTeKSmlT7y",
     "amount": "10000",
-    "name": "Krishi Bazaar",
+    "name": "Krishi Brahmand",
     "order_id": "",
     "description": "Fresh from the Farm to your Doorstep",
     "image": "https://firebasestorage.googleapis.com/v0/b/krishibazaar-14ac4.appspot.com/o/RzpLogo.png?alt=media&token=158c43c9-b418-4f33-b90a-4fc4a267abe5",

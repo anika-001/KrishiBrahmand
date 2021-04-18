@@ -15,6 +15,7 @@
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     display: flex;
     flex-direction: column;
+    z-index: 100;
 }
 
 .product-button-cont{
@@ -71,6 +72,7 @@
 .heading_text{
     padding: 2%;
     background-color: white;
+    z-index: 1;
 }
 .add_images{
     // height: 80vh;
