@@ -25,6 +25,7 @@ import { ProductsStatisticsComponent } from './products-statistics/products-stat
 import { AidComponent } from './aid/aid.component';
 import { FarmerBidComponent } from './farmer-bid/farmer-bid.component';
 import { ConsumerBidComponent } from './consumer-bid/consumer-bid.component';
+import { ProdbidComponent } from './prodbid/prodbid.component';
 
 const routes: Routes = [
   {
@@ -139,6 +140,11 @@ const routes: Routes = [
   {
     path: 'consumerbid',
     component: ConsumerBidComponent
+  },
+
+  {
+    path: 'productbid',
+    component: ProdbidComponent
   },
 
   {

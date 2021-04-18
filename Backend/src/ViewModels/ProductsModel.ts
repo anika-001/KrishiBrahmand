@@ -234,8 +234,12 @@ export class ProductsModel {
           for (let x of res) {
             arr.push(x._id);
           }
-          bids.find({productId: { "$in": arr }}).then(val => {
-            resolve({ "statusCode": 0, "message": "Bid retrieved", "payload": val })
+          bids.find({productId: { "$in": arr }}).then((val: any) => {
+            let s1 = new Set()
+            for(let x of val){
+              s1.add(x.productId);
+            }
+            resolve({ "statusCode": 0, "message": "Bid retrieved", "payload": Array.from(s1) })
           })
           .catch(e => {
             reject({ "statusCode": 2, "message": e, "payload": "" })
@@ -246,8 +250,17 @@ export class ProductsModel {
         })
       }
 
-      else{
+      else if(role == "consumer"){
         bids.find({uid: id}).then(val => {
+          resolve({ "statusCode": 0, "message": "Bid retrieved", "payload": val })
+        })
+        .catch(e => {
+          reject({ "statusCode": 2, "message": e, "payload": "" })
+        })
+      }
+
+      else{
+        bids.find({productId: id}).then(val => {
           resolve({ "statusCode": 0, "message": "Bid retrieved", "payload": val })
         })
         .catch(e => {

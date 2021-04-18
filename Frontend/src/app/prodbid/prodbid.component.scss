@@ -1,0 +1,45 @@
+.main {
+    min-height: calc(94vh - 39px);
+    overflow: hidden;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    color: black;
+}
+
+.prodcard{
+    height: 20vh;
+    background-color: aqua;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.prodimage{
+    width: 20vh;
+    height: 20vh;
+}
+
+.prodinfo{
+    flex-basis: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.bidinput{
+    height: 5vh;
+    background-color: aquamarine;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.bids{
+    max-height: calc(69vh - 39px);
+    overflow-y: auto;
+}
+.bid{
+    height: 5vh;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.bidcol{
+    flex-basis: 24%;
+}
