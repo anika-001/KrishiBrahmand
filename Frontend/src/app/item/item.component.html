@@ -95,12 +95,12 @@
                     </button>
                 </div>
 
-                <div style = "width: 100%; display: flex;">
-                    <input class="ip" placeholder="price">
-                    <input class="ip" placeholder="quantity">
+                <div style = "width: 100%; display: flex; margin-top: 10px;">
+                    <input type="number" class="ip" placeholder="price" [(ngModel)]="bidCost">
+                    <input type="number" class="ip" placeholder="quantity" [(ngModel)]="bidQty">
                 </div>
                 <div class="addtocart">
-                    <button class="addtocartbutton" (click)=addToCart(data)>
+                    <button class="addtocartbutton" (click)=postBid()>
                         Add a bid
                     </button>
                 </div>

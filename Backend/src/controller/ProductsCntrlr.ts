@@ -44,7 +44,10 @@ class ProductsCntrlr {
       .post(Validator.validate, ProductsCntrlr.addreview);
 
     router.route('/product/bid')
-      .post(Validator.validate, ProductsCntrlr.addbid);
+      .post(Validator.validate, ProductsCntrlr.addbid)
+      .get(Validator.validate, ProductsCntrlr.addbid);
+
+    
   }
 
   /**
@@ -111,6 +114,22 @@ class ProductsCntrlr {
     //let body: I14 = req.body;
 
     ProductsModel.getItem(id, uid).then(resp => {
+      res.status(200).send(resp);
+    })
+      .catch(resp => {
+        res.status(500).send(resp);
+      });
+    //res.status(resp.status).send(resp.data);
+  }
+
+  public static getbid(req: express.Request, res: express.Response): void {
+    //console.log('getItem -', req.url);
+    let id: string = req.query.id?.toString()!;
+    let role: string = req.query.role?.toString()!;
+    //console.log("id =", id); // TODO Delete this later
+    //let body: I14 = req.body;
+
+    ProductsModel.getbid(id, role).then(resp => {
       res.status(200).send(resp);
     })
       .catch(resp => {
