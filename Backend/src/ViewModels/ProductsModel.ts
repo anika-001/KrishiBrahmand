@@ -195,7 +195,7 @@ export class ProductsModel {
   public static addabid(body: I3_2): Promise<IPostResponse> {
     return new Promise((resolve, reject) => {
 
-      bids.findOneAndUpdate({ uid: body.uid }, body).then(val => {
+      bids.findOneAndUpdate({ uid: body.uid, productId: body.productId }, body).then(val => {
         if (val) resolve({ statusCode: 0, message: "Bid added" });
         else {
           let bid = new bids(body);
