@@ -44,7 +44,10 @@ class ProductsCntrlr {
       .post(Validator.validate, ProductsCntrlr.addreview);
 
     router.route('/product/bid')
-      .post(Validator.validate, ProductsCntrlr.addbid);
+      .post(Validator.validate, ProductsCntrlr.addbid)
+      .get(Validator.validate, ProductsCntrlr.addbid);
+
+    
   }
 
   /**
