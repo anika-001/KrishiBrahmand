@@ -1,1 +1,69 @@
-<p>consumer-bid works!</p>
+<ng-template #t let-fill="fill">
+    <span class="star" [class.full]="fill === 100">
+        <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+    </span>
+</ng-template>
+
+<div class="main">
+
+    <div class="heading">
+        <div>
+            <i class="fa fa-plane" aria-hidden="true"></i>
+            My Shipments
+        </div>
+    </div>
+    <div class="shipmentbody">
+        <div class="ordersbodyongoing">
+            <!-- <div class="ongoingheading">
+                Ongoing Orders
+            </div> -->
+            <div class="ongoingbody" *ngIf="ship">
+                <div class="ongoingbodyorder" *ngFor="let date of keys">
+                    <div class="ongoingbodyorderheading">
+                        {{date}}
+                    </div>
+                    <div class="ongoingbodyorderbody">
+                        <div class="itemcard" *ngFor="let order of dict[date]" (click)=gotoItem(order)>
+                            <div class = "iteminfo">
+                                <div class = "itempic">
+                                     <div style="background-image: url({{order.image}}); background-size: cover; width:100%; height: 100%"> </div>
+                                </div>
+                                <div class = "itemmeta">
+                                    <div class = "itememtacont" style="font-weight: bolder; flex-basis: 40%;">{{order.title}}</div>
+                                    <!-- <div class = "itememtacont" style="color: silver; flex-basis: 20%;">Sold by {{order.sellername}}</div> -->
+                                    <div class = "itememtacont" style="flex-basis: 20%;">Quantity: {{order.quantity}}Kgs</div>
+                                    <div class = "itememtacont" style="flex-basis: 20%;">Total: ₹{{order.total}}</div>
+                                    <div class = "itememtacont" style="flex-basis: 20%; color: blue;">Discount: ₹{{order.discount}}</div>
+                                    <div class = "itememtacont" style="color: silver; flex-basis: 20%;">
+                                        <ngb-rating [rate]=4 [readonly]="true" [max]="5" [starTemplate]="t"></ngb-rating>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class = "orderinfo">
+                                <div class = "deliveryaddress">
+                                    <p><b>Delivery To:</b><br>
+                                   {{order.deliveryaddress.address}}<br>
+                                   {{order.deliveryaddress.district}}<br>
+                                   {{order.deliveryaddress.state}}<br>
+                                   {{order.deliveryaddress.pincode}}</p>
+                                </div>
+
+                                <div class = "logisticsinfo">
+                                    <div class = "logisticsinfocont" *ngIf = "order.hasOwnProperty('DeliveryBy')"><b>Estimated Delivery Date: </b>{{order.DeliveryBy| date:'mediumDate'}}</div>
+                                    <div class = "logisticsinfocont"><b>Status: </b>{{status[order.tracking - 1]}}</div>
+                                    <div class = "logisticsinfocont" *ngIf = "order.hasOwnProperty('DeliveryPerson')"><b>Delivery Person: </b>{{order.DeliveryPerson}}</div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="shipmentbody ob1" *ngIf="!ship">
+                No Shipments at the moment
+            </div>
+        </div>
+
+        
+    </div>
+</div>
