@@ -10,16 +10,27 @@ body{
     font-family: 'Montserrat',sans-serif;
 }
 
-.info{
+*{
+    color: black;
+    
+}
 
+.info{
+    backdrop-filter: blur(6px);
+    height: 20vh;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .siteinfo{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     height: 10vh;
 }
 
 .devinfo{
-    height: 20vh;
+    height: 10vh;
     display: flex;
     justify-content: space-evenly;
 }
@@ -30,13 +41,20 @@ body{
 }
 
 .photo{
-    flex-basis: 50%;
+    //flex-basis: 50%;
+    width: 10vh;
+    margin-right: 5%;
+    background-image: url('../../assets/ads/Frame\ 1.png');
 }
 
 .nameandemail{
     flex-basis: 50%;
     display: flex;
     flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    padding: 2%;
+    font-size: 150%;
 }
 
 .ne{
@@ -50,8 +68,9 @@ body{
     }
 }  
 #coverVideo {
-    height:20vh;
-     width:90vw;
+    height:35vh;
+     width:100vw;
+     background-color: var(--col4);
     position:absolute;
    display:flex;
    justify-content:center;
@@ -119,7 +138,7 @@ footer {
     //width: 100%;
     background: transparent;
     //bottom: 0;
-    //background-color: #333333;
+    height: 5vh;
     hr{z-index: 3;
         height: 1vh;
         border: 0;
