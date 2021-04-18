@@ -59,7 +59,7 @@ export class FarmerBidComponent implements OnInit {
           (res) => {
             this.bids = res.payload;
             console.log(this.bids);
-            if (this.bids == undefined) {
+            if (this.bids.length == 0) {
               this.bid = false;
             }
             else {
