@@ -89,17 +89,17 @@
                         Total : {{calcTotalCost()}}
                     </div> -->
                 </div>
-                <div class="addtocart">
+                <div class="addtocart" style="margin-top: 5px;">
                     <button class="addtocartbutton" (click)=addToCart(data)>
                         Add to cart
                     </button>
                 </div>
 
-                <div style = "width: 100%; display: flex; margin-top: 10px;">
+                <div style = "width: 100%; display: flex; margin-top: 30px;">
                     <input type="number" class="ip" placeholder="price" [(ngModel)]="bidCost">
                     <input type="number" class="ip" placeholder="quantity" [(ngModel)]="bidQty">
                 </div>
-                <div class="addtocart">
+                <div class="addtocart" style="margin-top: 5px;">
                     <button class="addtocartbutton" (click)=postBid()>
                         Add a bid
                     </button>
@@ -107,42 +107,23 @@
                 
             </div>
         </div>
-        <!-- <div class = "addtocartbuttoninside"></div> -->
-        <!-- <div class = "buyitemcont">
-            <div class = "buyitembody">
-                <div class = "buyitem-part">
-                    <div class = "addtocart">
-                        Add to cart
-                    </div>
-                </div>
-                <form [formGroup]="form" class = "buyitem-part">
-                    <input placeholder="Quantity in Kgs" formControlName="quantity" type="number" class="ip">
-                </form>
-                <div class = "buyitem-part">
-                    Price: 90
-                </div>
-            </div>
-        </div> -->
-        <!-- <div class="itemcosting">
-        </div> -->
     </div>
     <div class="comments">
         <div class="commenttitle">
             Reviews:
         </div>
-        <div *ngIf="ratingpermission">
-            Your Review:
+        <div *ngIf="ratingpermission" style="margin-top: 10px;">
+            <u>Edit Your Review-</u>
             <br>
-            {{user.payload.email}}
             {{userdate}}
             <div class="rating">
                 Rate Product:
                 <ngb-rating rate [(rate)]="userrate" [readonly]="false" [max]="5" [starTemplate]="t"></ngb-rating>
             </div>
             <div class="addcomment">
-                <textarea placeholder="Write a review" type="number" class="ip review"
+                <textarea placeholder="Write your comments" type="number" class="ip review"
                     [(ngModel)]="usercomment"></textarea>
-                <button class="addtocartbutton reviewsubmit" (click)=submitReview()>Submit</button>
+                <button class="addtocartbutton reviewsubmit" (click)=submitReview() style="margin-top: 5px;">Submit</button>
             </div>
         </div>
 
@@ -156,6 +137,7 @@
                         {{x.email}} <span>
                             <ngb-rating [rate]="x.rating" [readonly]="true" [max]="5" [starTemplate]="t"></ngb-rating>
                         </span>
+                        <p style="text-align:right;">{{x.date| date:'mediumDate'}}</p>
                     </div>
                     <div class="commentcontent">
                         {{x.content}}

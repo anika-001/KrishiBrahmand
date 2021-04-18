@@ -5,6 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Subscription } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 import { Container, Main } from 'tsparticles';
+import { MatSidenav } from '@angular/material/sidenav';
 
 
 
@@ -30,6 +31,7 @@ export class AppComponent implements OnDestroy {
   subscription: Subscription;
   //private role = new BehaviorSubject<string>("");
   show: Boolean = false;
+  userEmail:any;
 
   constructor(private as: AuthService, private router: Router, private cookieService: CookieService) {
     this.subscription = router.events.subscribe((event) => {
@@ -97,6 +99,13 @@ export class AppComponent implements OnDestroy {
       }
 
     }
+
+    this.as.getUserEmail().subscribe(res => {
+      this.userEmail = res;
+      console.log("User Email");
+      console.log(this.userEmail)
+    })
+
     // else{
     //   this.cookieService.set( 'role', 'consumer' );
     // }
@@ -124,6 +133,7 @@ export class AppComponent implements OnDestroy {
         // this.cs.delete('connect.sid', '/');
         this.cookieService.delete('role', '/');
         this.router.navigate(['/login']);
+        
       },
       (err) => {
         console.log(err);

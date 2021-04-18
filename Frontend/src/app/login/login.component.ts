@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
       this.user = res;
       console.log(this.user);
       console.log(res);
+      
       if(res.payload != "Unauthorized")
       {
         if(this.cs.check('role')){
@@ -112,6 +113,7 @@ export class LoginComponent implements OnInit {
             {
               this.router.navigate(['/401']);
             }
+            this.as.setUserEmail(res.payload.email);
             this.as.getProfile(res.payload.uid).subscribe(
               res2 => {
                 if(res2.payload.role == "farmer"){
