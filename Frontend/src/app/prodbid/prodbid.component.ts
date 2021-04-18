@@ -19,7 +19,7 @@ export class ProdbidComponent implements OnInit {
   bids: any;
   bid: boolean = true;
   vals: any = [];
-
+  item:any;
   prodId:any;
 
   urls = {
@@ -39,41 +39,20 @@ export class ProdbidComponent implements OnInit {
       }
       else {
         this.prodId = this.route.snapshot.queryParams['id'];
+        console.log(this.prodId);
         console.log("Inside Prod Bid Component");
         this.httpClient.get<any>(this.urls.bid + "?role=product" + "&id=" + this.prodId).subscribe(
           (res) => {
             this.bids = res.payload;
             console.log(this.bids);
+            this.callItem(this.prodId);
+            console.log(this.item);
             if (this.bids.length == 0) {
               this.bid = false;
             }
             else {
-              for (let prodId of this.bids) {
-                this.cs.getItem(prodId).subscribe(
-                  (res) => {
-
-                    this.vals.push({
-                      'prodId': prodId, 'image': res.payload.image, 'sellername': res.payload.sellername,
-                      'title': res.payload.title, 'description': res.payload.description
-                    });
-
-                    console.log(this.vals);
-                    // item["image"] = res.payload.image;
-                    // item["sellername"] = res.payload.sellername;
-                    // item["title"] = res.payload.title;
-                  },
-                  (err) => {
-                    console.log(err);
-                    if (err.status == 0 || err.status == 500) {
-                      this.error500 = true;
-                    }
-                    else {
-                      this.error = true;
-                      this.errormessage = "Unable to retreive item. Please contact customer service or try again later.";
-                    }
-                  }
-                );
-
+              for (let item of this.bids) {
+                this.callUser(item.uid, item);
               }
 
             }
@@ -94,17 +73,38 @@ export class ProdbidComponent implements OnInit {
     })
   }
 
+  callUser(uid:any, item:any){
+    this.as.getProfile(uid).subscribe(
+      (res) => {
+        console.log("Inside Call User function");
+        item["name"] = res.payload.name;
+        item["email"] = res.payload.email;
+        item["phone"] = res.payload.phone;
+        item["role"] = res.payload.role;
+        console.log(res.payload);
+      },
+      (err) => {
+        console.log(err);
+        if (err.status == 0 || err.status == 500) {
+          this.error500 = true;
+        }
+        else {
+          this.error = true;
+          this.errormessage = "Unable to retreive item. Please contact customer service or try again later.";
+        }
+      }
+    );
+  }
+
   callItem(prodId: any) {
     this.cs.getItem(prodId).subscribe(
       (res) => {
-
-        this.vals.push({
-          'prodId': prodId, 'image': res.payload.image, 'sellername': res.payload.sellername,
-          'title': res.payload.title
-        });
-        // item["image"] = res.payload.image;
-        // item["sellername"] = res.payload.sellername;
-        // item["title"] = res.payload.title;
+        console.log("Inside Call Item function");
+        this.item["image"] = res.payload.image;
+        this.item["sellername"] = res.payload.sellername;
+        this.item["title"] = res.payload.title;
+        this.item["description"] = res.payload.description;
+        console.log(this.item);
       },
       (err) => {
         console.log(err);
