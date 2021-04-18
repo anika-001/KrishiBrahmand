@@ -64,21 +64,11 @@ export class FarmerBidComponent implements OnInit {
             else {
               for (let item of this.bids) {
 
-                //let prodid = item.ItemsId.split("?")[2];
-                //this.callItem(prodid, order);
-                
+                let prodid = item.productId;
+                this.callItem(prodid, item);
                 
               }
-              console.log(this.dict);
-              console.log(this.keys);
-              this.keys.sort(function (a: any, b: any) {
-                var dateA = new Date(a);
-                var dateB = new Date(b);
-                return dateA >= dateB ? -1 : 1;
-              });
               
-              console.log("shipments");
-              console.log(this.shipments);
             }
 
           },
@@ -118,8 +108,8 @@ export class FarmerBidComponent implements OnInit {
   }
 
   gotoItem(item: any) {
-    let prodid = item.ItemsId.split("?")[2];
-    this.router.navigate(['/item'], { queryParams: { id: prodid } });
+    let prodid = item.productId;
+    this.router.navigate(['/prodbid'], { queryParams: { id: prodid } });
   }
 
 }
