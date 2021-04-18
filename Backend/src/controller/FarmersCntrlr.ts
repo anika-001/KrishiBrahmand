@@ -3,7 +3,7 @@ import * as express from 'express';
 
 import { Validator } from '../support/Validator';
 import { FarmersModel } from '../ViewModels/FarmersModel';
-import { I16 } from '../support/Interfaces';
+import { I16, I6_0 } from '../support/Interfaces';
 
 
 class FarmersCntrlr {
@@ -27,6 +27,9 @@ class FarmersCntrlr {
   public static setRouterMiddleWare(router: express.Router): void {
     router.route('/farmer/shipments')
       .get(Validator.validate, FarmersCntrlr.getShipments);
+
+    router.route('/farmer/bid')
+      .post(Validator.validate, FarmersCntrlr.postbid);
     // router.route('/farmer/address')
     //   .post(Validator.validate, FarmersCntrlr.postAddress);
 
@@ -46,6 +49,21 @@ class FarmersCntrlr {
     // let body: I16 = req.body;
 
     FarmersModel.getShipments(id).then(resp => {
+      res.status(200).send(resp);
+  })
+      .catch(resp => {
+          res.status(500).send(resp);
+      });
+    //res.status(resp.status).send(resp.data);
+  }
+
+  public static postbid(req: express.Request, res: express.Response): void {
+    console.log('getShipments -', req.url);
+    let body: I6_0 = req.body;
+    // console.log("farmer =", farmer); // TODO Delete this later
+    // let body: I16 = req.body;
+
+    FarmersModel.postbid(body).then(resp => {
       res.status(200).send(resp);
   })
       .catch(resp => {

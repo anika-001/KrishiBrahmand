@@ -189,6 +189,11 @@ export interface I5_2{
     
 }
 
+export interface I6_0{
+    farmuid: String;
+    consumeruid: String;
+    productid: String;
+}
 
 export interface I8 {
     email?: string;

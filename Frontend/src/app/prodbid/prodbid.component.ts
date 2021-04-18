@@ -21,6 +21,8 @@ export class ProdbidComponent implements OnInit {
   vals: any = [];
   item:any;
   prodId:any;
+  permission: Boolean = false;
+  user: any;
 
   urls = {
     "orders": "http://localhost:5001/v1/consumer/orders",
@@ -38,14 +40,16 @@ export class ProdbidComponent implements OnInit {
         this.router.navigate(['/401']);
       }
       else {
+        this.user = res.payload;
         this.prodId = this.route.snapshot.queryParams['id'];
+        this.callItem(this.prodId);
         console.log(this.prodId);
         console.log("Inside Prod Bid Component");
         this.httpClient.get<any>(this.urls.bid + "?role=product" + "&id=" + this.prodId).subscribe(
           (res) => {
             this.bids = res.payload;
             console.log(this.bids);
-            this.callItem(this.prodId);
+            // 
             console.log(this.item);
             if (this.bids.length == 0) {
               this.bid = false;
@@ -100,11 +104,15 @@ export class ProdbidComponent implements OnInit {
     this.cs.getItem(prodId).subscribe(
       (res) => {
         console.log("Inside Call Item function");
-        this.item["image"] = res.payload.image;
-        this.item["sellername"] = res.payload.sellername;
-        this.item["title"] = res.payload.title;
-        this.item["description"] = res.payload.description;
-        console.log(res);
+        this.item = res.payload;
+        if(this.user.uid == res.payload.uid){
+          this.permission = true;
+        }
+        // this.item["image"] = res.payload.image;
+        // this.item["sellername"] = res.payload.sellername;
+        // this.item["title"] = res.payload.title;
+        // this.item["description"] = res.payload.description;
+
       },
       (err) => {
         console.log(err);

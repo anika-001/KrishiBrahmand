@@ -1,12 +1,13 @@
-import { IGetResponse, IPostResponse } from '../support/Interfaces';
+import { I6_0, IGetResponse, IPostResponse } from '../support/Interfaces';
 import { StatusCodes } from 'http-status-codes';
 import { product } from '../DatabaseSchemaModels/Product';
 import { ongoingorders } from '../DatabaseSchemaModels/OngoingOrders';
 import { logisticsorders } from '../DatabaseSchemaModels/LogisticsOrders';
 import { Document } from 'mongoose';
+import * as nm from 'nodemailer';
 
 
-interface IProduct{
+interface IProduct {
   uid: string;
 }
 export class FarmersModel {
@@ -60,6 +61,26 @@ export class FarmersModel {
           return reject({ "statusCode": 2, "message": e, "payload": "" });
         })
 
+    })
+  }
+
+  public static postbid(body: I6_0): Promise<IPostResponse> {
+    return new Promise((resolve, reject) => {
+      resolve({ "statusCode": 0, "message": "mail sent"});
+      // var transporter = nm.createTransport({
+      //   service: 'gmail',
+      //   auth: {
+      //     user: 'projecthts.16.4@gmail.com',
+      //     pass: 'hts_project16'
+      //   }
+      // });
+
+      // var mailOptions = {
+      //   from: 'projecthts.16.4@gmail.com',
+      //   to: String(email),
+      //   subject: message,
+      //   html: "Hello,<br>" + body + "<br><div style = \" background-color: #FFF4F4; display: flex; justify-content: center; \"><a href=" + link + " style = \" font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; padding: 2%; background-color: black; margin: 5%; margin-left: 45%; border-radius: 5px; color: white; font-weight: bold; align-self: center; font-size: 150%; \">Click here</a></div>"
+      // };
     })
   }
 
