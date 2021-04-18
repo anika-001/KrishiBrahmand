@@ -36,12 +36,6 @@ export class ConsumerBidComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if(this.cs_.check('role')){
-      if(this.cs_.get('role') == 'consumer'){
-        this.router.navigate(['/home']);
-      }
-
-    }
 
     this.as.getUser().subscribe(res => {
 
