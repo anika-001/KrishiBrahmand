@@ -25,11 +25,12 @@ export class FarmerBidComponent implements OnInit {
 
   shipments: any;
   dict: any = {};
-  keys:any = [];
+  keys: any = [];
   ship: boolean = true;
 
-  bids:any;
-  bid:boolean = true;
+  bids: any;
+  bid: boolean = true;
+  vals: any=[];
 
   urls = {
     "orders": "http://localhost:5001/v1/consumer/orders",
@@ -40,8 +41,8 @@ export class FarmerBidComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if(this.cs_.check('role')){
-      if(this.cs_.get('role') == 'consumer'){
+    if (this.cs_.check('role')) {
+      if (this.cs_.get('role') == 'consumer') {
         this.router.navigate(['/home']);
       }
 
@@ -54,21 +55,42 @@ export class FarmerBidComponent implements OnInit {
       }
       else {
         console.log("Inside Farmer Bid Component");
-        this.httpClient.get<any>(this.urls.bid + "?role=farmer" +"&id="+res.payload.uid).subscribe(
+        this.httpClient.get<any>(this.urls.bid + "?role=farmer" + "&id=" + res.payload.uid).subscribe(
           (res) => {
-            this.bids = res;
+            this.bids = res.payload;
             console.log(this.bids);
-            if (this.bids == null) {
+            if (this.bids == undefined) {
               this.bid = false;
             }
             else {
-              for (let item of this.bids) {
+              for (let prodId of this.bids) {
+                this.cs.getItem(prodId).subscribe(
+                  (res) => {
+            
+                    this.vals.push({
+                      'prodId': prodId, 'image': res.payload.image, 'sellername': res.payload.sellername,
+                      'title': res.payload.title, 'description': res.payload.description
+                    });
 
-                let prodid = item.productId;
-                this.callItem(prodid, item);
-                
+                    console.log(this.vals);
+                    // item["image"] = res.payload.image;
+                    // item["sellername"] = res.payload.sellername;
+                    // item["title"] = res.payload.title;
+                  },
+                  (err) => {
+                    console.log(err);
+                    if (err.status == 0 || err.status == 500) {
+                      this.error500 = true;
+                    }
+                    else {
+                      this.error = true;
+                      this.errormessage = "Unable to retreive item. Please contact customer service or try again later.";
+                    }
+                  }
+                );
+
               }
-              
+
             }
 
           },
@@ -87,12 +109,17 @@ export class FarmerBidComponent implements OnInit {
     })
   }
 
-  callItem(prodId: any, item: any) {
+  callItem(prodId: any) {
     this.cs.getItem(prodId).subscribe(
       (res) => {
-        item["image"] = res.payload.image;
-        item["sellername"] = res.payload.sellername;
-        item["title"] = res.payload.title;
+
+        this.vals.push({
+          'prodId': prodId, 'image': res.payload.image, 'sellername': res.payload.sellername,
+          'title': res.payload.title
+        });
+        // item["image"] = res.payload.image;
+        // item["sellername"] = res.payload.sellername;
+        // item["title"] = res.payload.title;
       },
       (err) => {
         console.log(err);

@@ -20,17 +20,14 @@
             <div class="ongoingbody" *ngIf="bid">
                 
                     <div class="ongoingbodyorderbody">
-                        <div class="itemcard" *ngFor="let item of bids" (click)=gotoItem(item)>
+                        <div class="itemcard" *ngFor="let item of vals" (click)=gotoItem(item)>
                             <div class = "iteminfo">
                                 <div class = "itempic">
                                      <div style="background-image: url({{item.image}}); background-size: cover; width:100%; height: 100%"> </div>
                                 </div>
                                 <div class = "itemmeta">
                                     <div class = "itememtacont" style="font-weight: bolder; flex-basis: 40%;">{{item.title}}</div>
-                                    <!-- <div class = "itememtacont" style="color: silver; flex-basis: 20%;">Sold by {{order.sellername}}</div> -->
-                                    <div class = "itememtacont" style="flex-basis: 20%;">Quantity: {{item.quantity}}Kgs</div>
-                                    <div class = "itememtacont" style="flex-basis: 20%;">Total: ₹{{item.total}}</div>
-                                    <div class = "itememtacont" style="flex-basis: 20%; color: blue;">Discount: ₹{{item.discount}}</div>
+                                    <div class = "itememtacont" style="flex-basis: 20%;">Description: {{item.description}}</div>
                                     <div class = "itememtacont" style="color: silver; flex-basis: 20%;">
                                         <ngb-rating [rate]=4 [readonly]="true" [max]="5" [starTemplate]="t"></ngb-rating>
                                     </div>
