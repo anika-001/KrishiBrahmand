@@ -234,8 +234,12 @@ export class ProductsModel {
           for (let x of res) {
             arr.push(x._id);
           }
-          bids.find({productId: { "$in": arr }}).then(val => {
-            resolve({ "statusCode": 0, "message": "Bid retrieved", "payload": val })
+          bids.find({productId: { "$in": arr }}).then((val: any) => {
+            let s1 = new Set()
+            for(let x of val){
+              s1.add(x.productId);
+            }
+            resolve({ "statusCode": 0, "message": "Bid retrieved", "payload": s1 })
           })
           .catch(e => {
             reject({ "statusCode": 2, "message": e, "payload": "" })
