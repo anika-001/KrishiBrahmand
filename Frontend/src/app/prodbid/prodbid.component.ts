@@ -23,6 +23,9 @@ export class ProdbidComponent implements OnInit {
   prodId:any;
   permission: Boolean = false;
   user: any;
+  
+  bidCost:any;
+  bidQty:any;
 
   urls = {
     "orders": "http://localhost:5001/v1/consumer/orders",
@@ -75,6 +78,35 @@ export class ProdbidComponent implements OnInit {
         );
       }
     })
+  }
+
+  postBid() {
+    let bidData = {
+      uid: this.user.payload.uid,
+      productId: this.prodId,
+      cost: this.bidCost,
+      quantity: this.bidQty,
+      date: Date.now(),
+    }
+
+    //console.log(bidData);
+
+    this.httpClient.post<any>(this.urls.bid, bidData).subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (err) => {
+        console.log(err);
+        if (err.status == 0 || err.status == 500) {
+          this.error500 = true;
+        }
+        else {
+          this.error = true;
+          this.errormessage = "Unable to retreive item. Please contact customer service or try again later.";
+        }
+      }
+    );
+
   }
 
   callUser(uid:any, item:any){
