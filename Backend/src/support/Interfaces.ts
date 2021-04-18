@@ -193,6 +193,8 @@ export interface I6_0{
     farmuid: String;
     consumeruid: String;
     productid: String;
+    quantity: String;
+    cost: String;
 }
 
 export interface I8 {

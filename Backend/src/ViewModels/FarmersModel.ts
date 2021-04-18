@@ -5,6 +5,8 @@ import { ongoingorders } from '../DatabaseSchemaModels/OngoingOrders';
 import { logisticsorders } from '../DatabaseSchemaModels/LogisticsOrders';
 import { Document } from 'mongoose';
 import * as nm from 'nodemailer';
+import { account } from '../DatabaseSchemaModels/Account';
+import { users } from '../DatabaseSchemaModels/UserData';
 
 
 interface IProduct {
@@ -66,21 +68,39 @@ export class FarmersModel {
 
   public static postbid(body: I6_0): Promise<IPostResponse> {
     return new Promise((resolve, reject) => {
-      resolve({ "statusCode": 0, "message": "mail sent"});
-      // var transporter = nm.createTransport({
-      //   service: 'gmail',
-      //   auth: {
-      //     user: 'projecthts.16.4@gmail.com',
-      //     pass: 'hts_project16'
-      //   }
-      // });
 
-      // var mailOptions = {
-      //   from: 'projecthts.16.4@gmail.com',
-      //   to: String(email),
-      //   subject: message,
-      //   html: "Hello,<br>" + body + "<br><div style = \" background-color: #FFF4F4; display: flex; justify-content: center; \"><a href=" + link + " style = \" font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; padding: 2%; background-color: black; margin: 5%; margin-left: 45%; border-radius: 5px; color: white; font-weight: bold; align-self: center; font-size: 150%; \">Click here</a></div>"
-      // };
+      users.findOne({_id: body.farmuid}).then((farmer: any) => {
+        account.findOne({uid: body.consumeruid}).then((con: any) => {
+          var transporter = nm.createTransport({
+            service: 'gmail',
+            auth: {
+              user: 'projecthts.16.4@gmail.com',
+              pass: 'hts_project16'
+            }
+          });
+    
+          var mailOptions = {
+            from: 'projecthts.16.4@gmail.com',
+            to: String(con.email),
+            subject: "Bidding Request Accepted",
+            html: "Hello,<br>" + "Your bid for quantity " + body.quantity + " and cost " + body.cost + " has been acccepted. Please contact <br>" + "Name: " + farmer.name + "<br>phone number: " + farmer.phone + "<br>email: " + farmer.email
+          };
+          transporter.sendMail(mailOptions).then(res => {
+            resolve({ "statusCode": 0, "message": "mail sent"});
+          })
+          .catch(e => {
+            reject({ "statusCode": 2, "message": e});
+          })
+        })
+        .catch(e => {
+          reject({ "statusCode": 2, "message": e});
+        })
+      })
+      .catch(e => {
+        reject({ "statusCode": 2, "message": e});
+      })
+     
+
     })
   }
 
