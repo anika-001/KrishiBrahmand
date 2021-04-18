@@ -45,7 +45,7 @@ class ProductsCntrlr {
 
     router.route('/product/bid')
       .post(Validator.validate, ProductsCntrlr.addbid)
-      .get(Validator.validate, ProductsCntrlr.addbid);
+      .get(Validator.validate, ProductsCntrlr.getbid);
 
     
   }
