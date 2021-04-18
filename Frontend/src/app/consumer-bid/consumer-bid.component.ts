@@ -107,7 +107,7 @@ export class ConsumerBidComponent implements OnInit {
   
     gotoItem(item: any) {
       let prodid = item.productId;
-      this.router.navigate(['/prodbid'], { queryParams: { id: prodid } });
+      this.router.navigate(['/productbid'], { queryParams: { id: prodid } });
     }
   
   }
