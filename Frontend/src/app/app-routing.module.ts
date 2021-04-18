@@ -23,6 +23,8 @@ import {PaymentComponent} from './payment/payment.component';
 import { ShipmentsComponent } from './shipments/shipments.component';
 import { ProductsStatisticsComponent } from './products-statistics/products-statistics.component';
 import { AidComponent } from './aid/aid.component';
+import { FarmerBidComponent } from './farmer-bid/farmer-bid.component';
+import { ConsumerBidComponent } from './consumer-bid/consumer-bid.component';
 
 const routes: Routes = [
   {
@@ -127,6 +129,16 @@ const routes: Routes = [
   {
     path: 'aid',
     component: AidComponent
+  },
+
+  {
+    path: 'farmerbid',
+    component: FarmerBidComponent
+  },
+
+  {
+    path: 'consumerbid',
+    component: ConsumerBidComponent
   },
 
   {
