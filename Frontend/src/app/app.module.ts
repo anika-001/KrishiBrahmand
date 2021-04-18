@@ -49,7 +49,8 @@ import { PaymentComponent } from './payment/payment.component';
 import { ShipmentsComponent } from './shipments/shipments.component';
 import { ProductsStatisticsComponent } from './products-statistics/products-statistics.component';
 import { AidComponent } from './aid/aid.component';
-import { FooterComponent } from './footer/footer.component';
+import { FarmerBidComponent } from './farmer-bid/farmer-bid.component';
+import { ConsumerBidComponent } from './consumer-bid/consumer-bid.component';
 
 firebase.initializeApp(environment.firebaseConfig);
 
@@ -92,7 +93,8 @@ export class HammerConfig extends HammerGestureConfig {
     ShipmentsComponent,
     ProductsStatisticsComponent,
     AidComponent,
-    FooterComponent,
+    FarmerBidComponent,
+    ConsumerBidComponent,
   ],
   imports: [
     BrowserModule,
