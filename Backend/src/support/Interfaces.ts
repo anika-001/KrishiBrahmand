@@ -98,6 +98,14 @@ export interface I3_1{
     id: String
 }
 
+export interface I3_2{
+    uid: String,
+    productId: String,
+    cost: String,
+    quantity: Number,
+    date: Date,
+}
+
 export interface itemreturn{
     // id: "exoticvegetables" | "fruits" | "dailyvegetables" | "orgranic" | "exotic" | "herbsandsesoning";
     image: String,
