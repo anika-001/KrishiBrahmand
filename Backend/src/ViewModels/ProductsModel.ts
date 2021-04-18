@@ -214,6 +214,50 @@ export class ProductsModel {
     })
   }
 
+  public static getProduct(id: String): Promise<any> {
+    return new Promise((resolve, reject) => {
+      product.find({ uid: id }).then(res => {
+        return resolve(res);
+      })
+        .catch(e => {
+          return reject(e);
+        })
+    })
+  }
+
+
+  public static getbid(id: String, role: String): Promise<IGetResponse>{
+    return new Promise((resolve, reject) => {
+      if(role == "farmer"){
+        this.getProduct(id).then(res => {
+          let arr: any = [];
+          for (let x of res) {
+            arr.push(x._id);
+          }
+          bids.find({productId: { "$in": arr }}).then(val => {
+            resolve({ "statusCode": 0, "message": "Bid retrieved", "payload": val })
+          })
+          .catch(e => {
+            reject({ "statusCode": 2, "message": e, "payload": "" })
+          })
+        })
+        .catch(e => {
+          reject({ "statusCode": 2, "message": e, "payload": "" })
+        })
+      }
+
+      else{
+        bids.find({uid: id}).then(val => {
+          resolve({ "statusCode": 0, "message": "Bid retrieved", "payload": val })
+        })
+        .catch(e => {
+          reject({ "statusCode": 2, "message": e, "payload": "" })
+        })
+      }
+    })
+
+  }
+
 
   public static addreview(body: I3_1): Promise<IPostResponse> {
     return new Promise((resolve, reject) => {
