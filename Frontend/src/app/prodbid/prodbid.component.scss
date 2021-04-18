@@ -13,3 +13,13 @@
     height: 5vh;
     background-color: aquamarine;
 }
+
+.bid{
+    height: 5vh;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.bidcol{
+    flex-basis: 18%;
+}
