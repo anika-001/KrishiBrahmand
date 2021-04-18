@@ -122,6 +122,22 @@ class ProductsCntrlr {
     //res.status(resp.status).send(resp.data);
   }
 
+  public static getbid(req: express.Request, res: express.Response): void {
+    //console.log('getItem -', req.url);
+    let id: string = req.query.id?.toString()!;
+    let role: string = req.query.role?.toString()!;
+    //console.log("id =", id); // TODO Delete this later
+    //let body: I14 = req.body;
+
+    ProductsModel.getbid(id, role).then(resp => {
+      res.status(200).send(resp);
+    })
+      .catch(resp => {
+        res.status(500).send(resp);
+      });
+    //res.status(resp.status).send(resp.data);
+  }
+
   /**
   * The method addProduct. undefined
   *
