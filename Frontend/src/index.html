@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body class="mat-typography">
-  <div class = "translatebut" style = "background-color: var(--col4); position: fixed; top: 0; height: 39px; z-index: 10000; width: 100vw; display: flex; justify-content: center;">
+  <div class = "translatebut" style = "background-color: var(--col4); position: fixed; top: calc(100vh - 39px); height: 39px; z-index: 10000; width: 100vw; display: flex; justify-content: center;">
     <div id="google_translate_element" style=" height: 100%; width: fit-content;"></div>
   </div>
     <script>
@@ -22,7 +22,7 @@
       }
     </script>
     <script src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-    <div class = "website" style="position: absolute; top: 39px; width: fit-content; max-height: calc(100vh - 40px);">
+    <div class = "website" style="width: fit-content; max-height: calc(100vh - 40px);">
       <app-root></app-root>
     </div>
 </body>

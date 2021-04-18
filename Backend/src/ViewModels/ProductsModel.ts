@@ -1,4 +1,4 @@
-import { I3_0, I3_1, IGetResponse, IPostResponse, itemreturn } from '../support/Interfaces';
+import { I3_0, I3_1, I3_2, IGetResponse, IPostResponse, itemreturn } from '../support/Interfaces';
 import { StatusCodes } from 'http-status-codes';
 import { product } from '../DatabaseSchemaModels/Product';
 import { users } from '../DatabaseSchemaModels/UserData';
@@ -191,6 +191,11 @@ export class ProductsModel {
     })
   }
 
+  public static addabid(body: I3_2): Promise<IPostResponse>{
+    return new Promise((resolve, reject) => {
+
+    })
+  }
 
 
   public static addreview(body: I3_1): Promise<IPostResponse> {

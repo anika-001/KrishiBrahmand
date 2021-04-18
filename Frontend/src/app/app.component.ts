@@ -163,7 +163,7 @@ export class AppComponent implements OnDestroy {
       color: {
         value: "rgb(54, 106, 86)"
       },
-      image: "radial-gradient(#000080, rgb(54, 106, 86))"
+      image: "radial-gradient(#d9d7ca, #3c8d93)"
     },
     fpsLimit: 60,
     interactivity: {
