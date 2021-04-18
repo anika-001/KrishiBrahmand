@@ -21,10 +21,10 @@ export class ItemComponent implements OnInit {
   item: any;
 
   items: any;
-  ratingpermission:any;
+  ratingpermission: any;
   userrate = 0;
-  usercomment:any;
-  userdate:Date;
+  usercomment: any;
+  userdate: Date;
 
   user: any;
   qty: any = 1;
@@ -37,10 +37,15 @@ export class ItemComponent implements OnInit {
       "quantity": 0
     }
   }
+
+  bidCost:any;
+  bidQty:any;
+
   urls = {
     'cart': "http://localhost:5001/v1/consumer/cart",
     'default': "http://localhost:5001/v1/products/categories/items/item",
-    'comment': "http://localhost:5001/v1/products/product/comment"
+    'comment': "http://localhost:5001/v1/products/product/comment",
+    'bid': "http://localhost:5001/v1/products/product/bid"
   };
 
   constructor(private httpClient: HttpClient, private route: ActivatedRoute, private router: Router, private as: AuthService,
@@ -71,16 +76,44 @@ export class ItemComponent implements OnInit {
       }
       this.callCart(this.user.payload.uid);
       this.defaultApiCall();
-      
+
     })
 
 
   }
 
-  ratingCall(){
-    for(let x of this.item.comments)
-    {
-      if(x.uid == this.user.payload.uid){
+  postBid() {
+    let bidData = {
+      uid: this.user.payload.uid,
+      productId: this.prodId,
+      cost: this.bidCost,
+      quantity: this.bidQty,
+      date: Date.now(),
+    }
+
+    //console.log(bidData);
+
+    this.httpClient.post<any>(this.urls.bid, bidData).subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (err) => {
+        console.log(err);
+        if (err.status == 0 || err.status == 500) {
+          this.error500 = true;
+        }
+        else {
+          this.error = true;
+          this.errormessage = "Unable to retreive item. Please contact customer service or try again later.";
+        }
+      }
+    );
+
+  }
+
+  ratingCall() {
+    for (let x of this.item.comments) {
+      if (x.uid == this.user.payload.uid) {
         this.usercomment = x.content;
         this.userrate = x.rating;
         //this.userdate = (Date)x.date;
@@ -89,7 +122,7 @@ export class ItemComponent implements OnInit {
     }
   }
 
-  submitReview(){
+  submitReview() {
     console.log(this.usercomment);
     console.log(this.userrate);
     let data = {
