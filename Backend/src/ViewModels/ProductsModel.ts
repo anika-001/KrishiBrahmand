@@ -5,6 +5,7 @@ import { users } from '../DatabaseSchemaModels/UserData';
 import { pickup } from '../DatabaseSchemaModels/Pickup';
 import { DatabaseOperations } from '../support/DatabaseOperations';
 import { pastorders } from '../DatabaseSchemaModels/PastOrders';
+import { bids } from '../DatabaseSchemaModels/Bids';
 
 
 export class ProductsModel {
@@ -193,7 +194,13 @@ export class ProductsModel {
 
   public static addabid(body: I3_2): Promise<IPostResponse>{
     return new Promise((resolve, reject) => {
-
+      let bid = new bids(body);
+      bid.save().then(val => {
+        resolve({ statusCode: 0, message: "Bid added" });
+      })
+      .catch(e => {
+        reject({ statusCode: 2, message: e });
+      })
     })
   }
 
