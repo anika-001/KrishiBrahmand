@@ -256,6 +256,8 @@ export class AppComponent implements OnDestroy {
 
   particlesLoaded(container: Container): void {
     console.log(container);
+    document.getElementsByTagName("canvas")[0].height = window.screen.height;
+    document.getElementsByTagName("canvas")[0].width = window.screen.width;
   }
 
   particlesInit(main: Main): void {
