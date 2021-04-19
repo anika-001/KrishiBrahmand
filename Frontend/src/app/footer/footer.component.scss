@@ -27,6 +27,8 @@ body{
     flex-direction: column;
     justify-content: center;
     height: 10vh;
+    color: white;
+    font-size: 150%;
 }
 
 .devinfo{
@@ -45,6 +47,7 @@ body{
     width: 10vh;
     margin-right: 5%;
     background-image: url('../../assets/ads/Frame\ 1.png');
+    background-size: 100% 100%;
 }
 
 .nameandemail{

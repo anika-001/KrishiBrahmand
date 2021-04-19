@@ -24,7 +24,7 @@ export class AppComponent implements OnDestroy {
   x: boolean = true;
   opened: boolean = false;
   user: any;
-  title = 'Krishi-Bazaar';
+  title = 'Krishi-Brahmand';
   error500: boolean = false;
   selectedRole: string = "";
   //consumeron: boolean = false;
@@ -256,6 +256,8 @@ export class AppComponent implements OnDestroy {
 
   particlesLoaded(container: Container): void {
     console.log(container);
+    document.getElementsByTagName("canvas")[0].height = window.screen.height;
+    document.getElementsByTagName("canvas")[0].width = window.screen.width;
   }
 
   particlesInit(main: Main): void {
