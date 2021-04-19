@@ -3,8 +3,8 @@
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/anika-001/KrishiBrahmand?style=for-the-badge)
 ![GitHub](https://img.shields.io/github/license/anika-001/KrishiBrahMand?color=%23ffff00&style=for-the-badge)
-![GitHub forks](https://img.shields.io/github/forks/anika-001/KrishiBrahmand?style=for-the-badge)
 ![GitHub contributors](https://img.shields.io/github/contributors/anika-001/KrishiBrahmand?color=%00b3b3&style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/anika-001/KrishiBrahmand?color=%23ff69b4&style=for-the-badge)
 
 [![Krishi Brahmand : Fresh from Farm to Plate](http://img.youtube.com/vi/E6Qo4B_lS84/0.jpg)](http://www.youtube.com/watch?v=E6Qo4B_lS84 "Krishi Brahmand : Fresh from Farm to Plate")
 
