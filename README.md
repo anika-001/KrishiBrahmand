@@ -90,6 +90,6 @@ Thus, this project aims to help farmers achieve their true potential without the
 Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Credits
-Images: Unsplash<br>
-Videos: Pexels
+Images:  Unsplash<br>
+Videos:  Pexels
 
