@@ -66,9 +66,9 @@ Thus, this project aims to help farmers achieve their true potential without the
    ```
    ng serve
    ```
-4. Run build for Backend
+4. Building Backend
    ```
-   npm run dev
+   npm run build
    ```
 5. Run Backend
    ```
