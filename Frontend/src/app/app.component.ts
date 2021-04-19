@@ -24,7 +24,7 @@ export class AppComponent implements OnDestroy {
   x: boolean = true;
   opened: boolean = false;
   user: any;
-  title = 'Krishi-Bazaar';
+  title = 'Krishi-Brahmand';
   error500: boolean = false;
   selectedRole: string = "";
   //consumeron: boolean = false;
