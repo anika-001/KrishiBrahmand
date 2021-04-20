@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from '../services/auth.service';
-
+/*import {Chart} from 'chart.js';
+import { ChartsModule } from 'ng2-charts';*/
 
 @Component({
   selector: 'app-aid',
@@ -12,16 +13,43 @@ import { AuthService } from '../services/auth.service';
 })
 export class AidComponent implements OnInit {
   WeatherData:any;
-  
+    
+  public PieChart=[];
   pickups: any;
   error500: boolean = false;
 
   constructor(private httpClient: HttpClient, private router: Router, private as: AuthService,private cs: CookieService) { }
 
   urls = {}
-  
-
+ 
   ngOnInit(): void {
+   /* this.PieChart=new Chart('pieChart',{
+    type:'pie',
+    data:{labels:["Blue","Green","Pink"],
+  datasets:[{
+    label:'Vote Now',
+    data:[101,102,103],
+    backgroundColor:[
+      'rgba(40,23,211,0.9)','rgba(192,255,0,0.9)','rgba(239,23,241,0.9)',
+    ],
+  }]
+},
+
+options:{
+  title:{
+    Text:'Bar Chart',
+    display:true
+  },
+  scales:{
+    yAxes:[{
+      ticks:{
+        beginAtZero:true
+      }
+    }]
+  }
+}
+
+  });*/
     this.getWeatherData();
 
     if(this.cs.check('role')){

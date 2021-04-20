@@ -38,6 +38,7 @@
     "http-server": "^0.12.3",
     "jquery": "^3.6.0",
     "ng-particles": "^2.9.2",
+    "ng2-charts": "^2.4.2",
     "ngx-cookie-service": "^11.0.2",
     "popper.js": "^1.16.1",
     "rxjs": "~6.6.6",

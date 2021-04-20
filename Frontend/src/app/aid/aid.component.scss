@@ -232,3 +232,36 @@
       font-weight: 500;
       font-size: x-large;
   }
+  //statics
+ 
+
+/* Container for bars */
+.stats{
+  padding:10vh 10vw 10vh 10vh;
+  p{
+    color: #000;
+  }
+  h1,h2{
+    align-items: center;
+    color: #000;
+  }
+}
+
+.container1 {
+
+  box-sizing:border-box;
+  width:100%; /* Full width */
+  background-color: #ddd; 
+}
+
+.item {
+  text-align: right; 
+  padding-top: 10px; 
+  padding-bottom: 10px; 
+  color:#000; 
+}
+
+.Potatoes {width: 90%; background-color: #4CAF50;} 
+.Tomatoes {width: 80%; background-color: #2196F3;} 
+.Banana {width: 65%; background-color: #f44336;} 
+.Apples {width: 60%; background-color: #808080;} 
