@@ -1,20 +1,21 @@
-<p>aid works!</p>
-<!--<div id="divWeatherMain"> 
+<script src="node_modules/chart.js/src/chart.js"></script>
+<div id="divWeatherMain"> 
    <div *ngIf="WeatherData.isDay" class="weatherWidgetRow">
         <i class="fas fa-3x fa-sun sun"></i>  
     </div>  
-    <div *ngIf="!WeatherData.isDay" class="weatherWidgetRow">
+   <!-- <div *ngIf="!WeatherData.isDay" class="weatherWidgetRow">
         <i class="fas fa-3x fa-moon moon"></i>  
     </div>   
     <div class="weatherWidgetRow cloudDiv">
         <i class="fas fa-cloud fa-3x cloud"></i>
-    </div>
-    <div class="weatherWidgetRow" style="font-size: 32px;margin-top: 5px;">{{WeatherData.temp_celcius}}°</div>
-    <div class="weatherWidgetRow" style="font-size: 12px;">{{WeatherData.temp_min}}° / {{WeatherData.temp_max}}°</div>
-    <div class="weatherWidgetRow" style="font-size: 12px;">Feels Like: {{WeatherData.temp_feels_like}}°</div>
-    <div class="weatherWidgetRow" style="font-size: 25px;margin-top: 10px;">{{WeatherData.name}}</div>
-    <div class="weatherWidgetRow" style="font-size: 12px;">Humidity: {{WeatherData.main.humidity}}%</div>
-</div>-->
+    </div>-->
+    <div class="weatherWidgetRow" style="font-size: xx-large;">{{WeatherData.temp_celcius}}°</div>
+    
+    <div class="weatherWidgetRow" style="font-size: xx-large;">Feels Like: {{WeatherData.temp_feels_like}}°</div>
+    <div class="weatherWidgetRow" style="font-size: xx-large;">{{WeatherData.name}}</div>
+    <div class="weatherWidgetRow" style="font-size: xx-large;">Humidity: {{WeatherData.main.humidity}}%</div>
+</div>
+
 
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
@@ -144,4 +145,35 @@
         </div>
       </div>
     </div></a>
+</div>
+<!--Statics-->
+
+<div class="stats">
+  <h1>Market Statistics</h1>
+<h2>Recent trend of Market Price: Potatoes(per kg)</h2>
+<p>20-04-21</p>
+<div class="container1">
+  <div class="item Potatoes">$9</div>
+</div>
+
+<p>17-04-21</p>
+<div class="container1">
+  <div class="item Tomatoes">$8</div>
+</div>
+
+<p>15-04-21</p>
+<div class="container1">
+  <div class="item Banana">$6</div>
+</div>
+
+<p>13-04-21</p>
+<div class="container1">
+  <div class="item Apples">$5.5</div>
+</div>
+</div>
+
+
+<div style="display: block; ">
+  <canvas baseChart [data]="doughnutChartData_f" [labels]="doughnutChartLabels_f"
+    [chartType]="doughnutChartType_f"></canvas>
 </div>

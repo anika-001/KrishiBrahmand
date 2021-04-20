@@ -12,18 +12,28 @@
 }
 
 #divWeatherMain{
-    display: block;
-    border-radius: 10px;
-    width: 200px;
-    height: 220px;
-    background: rgb(0,0,0);
-    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(8,7,42,1) 75%, rgb(8, 10, 63) 100%);
+
+    display: flex;
+    top:0;
+    margin: 0;
+    padding: 5vh ;
+    align-items: center;
+    justify-content: space-between;
+    //border-radius: 10px;
+    //width: 200px;
+    //height: 220px;
+    background: linear-gradient(rgb(47,150,163),rgb(48,62,143));
     color: white;;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .weatherWidgetRow{
-    display:block;
+  width: 100%;
+  height: 8vh;
+  //position: relative;
+  //justify-content: space-between;
+  //padding: 0 6vw;
+   // display: inline-block;
     margin:0 auto;
     width: fit-content;
 }
@@ -222,3 +232,37 @@
       font-weight: 500;
       font-size: x-large;
   }
+  //statics
+ 
+
+/* Container for bars */
+.stats{
+  padding:10vh 10vw 10vh 10vh;
+  p{
+    color: #000;
+  }
+  h1,h2{
+    align-items: center;
+    color: #000;
+  }
+}
+
+.container1 {
+
+  box-sizing:border-box;
+  width:100%; /* Full width */
+  background-color: #ddd; 
+}
+
+.item {
+  text-align: right; 
+  padding-top: 10px; 
+  padding-bottom: 10px; 
+  color:#000; 
+}
+
+.Potatoes {width: 90%; background-color: #4CAF50;} 
+.Tomatoes {width: 80%; background-color: #2196F3;} 
+.Banana {width: 65%; background-color: #f44336;} 
+.Apples {width: 60%; background-color: #808080;} 
+
