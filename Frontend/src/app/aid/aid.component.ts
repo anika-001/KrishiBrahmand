@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from '../services/auth.service';
-/*import {Chart} from 'chart.js';
-import { ChartsModule } from 'ng2-charts';*/
+import {Chart} from 'chart.js';
+import { ChartsModule } from 'ng2-charts';
 
 @Component({
   selector: 'app-aid',
@@ -21,7 +21,9 @@ export class AidComponent implements OnInit {
   constructor(private httpClient: HttpClient, private router: Router, private as: AuthService,private cs: CookieService) { }
 
   urls = {}
- 
+  public doughnutChartLabels_f = ['Sangli', 'Pune', 'Nagpur', 'Mumbai'];
+  public doughnutChartData_f = [80, 160, 200, 100];
+  public doughnutChartType_f = 'doughnut';
   ngOnInit(): void {
    /* this.PieChart=new Chart('pieChart',{
     type:'pie',

@@ -30,6 +30,7 @@
     "angular-font-awesome": "^3.1.2",
     "angular-hammer": "^2.2.0",
     "bootstrap": "^4.6.0",
+    "chart.js": "^2.9.3",
     "dialogflow": "^4.0.3",
     "firebase": "^8.3.0",
     "font-awesome": "^4.7.0",

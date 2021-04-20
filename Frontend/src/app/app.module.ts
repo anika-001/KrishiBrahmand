@@ -1,6 +1,6 @@
 import { BrowserModule, HammerModule, HAMMER_GESTURE_CONFIG, HammerGestureConfig } from '@angular/platform-browser';
 import { Injectable, NgModule } from '@angular/core';
-
+import { ChartsModule } from 'ng2-charts';
 import * as Hammer from 'hammerjs';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -116,6 +116,7 @@ export class HammerConfig extends HammerGestureConfig {
     MatSelectModule,
     NgbModule,
     MatRadioModule,
+    ChartsModule,
     NgParticlesModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,

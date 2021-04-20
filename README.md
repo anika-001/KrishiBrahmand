@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 # KrishiBrahmand
 
@@ -6,6 +7,10 @@
 ![GitHub contributors](https://img.shields.io/github/contributors/anika-001/KrishiBrahmand?color=%00b3b3&style=for-the-badge)
 ![GitHub forks](https://img.shields.io/github/forks/anika-001/KrishiBrahmand?color=%23ff69b4&style=for-the-badge)
 
+=======
+# KrishiBrahmand
+
+>>>>>>> 897e18379c29d7c6bf68b4f2ddc65bf45d703ee6
 [![Krishi Brahmand : Fresh from Farm to Plate](http://img.youtube.com/vi/E6Qo4B_lS84/0.jpg)](http://www.youtube.com/watch?v=E6Qo4B_lS84 "Krishi Brahmand : Fresh from Farm to Plate")
 
 <!-- TABLE OF CONTENTS -->
