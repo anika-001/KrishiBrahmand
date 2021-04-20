@@ -3,8 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from '../services/auth.service';
-import {Chart} from 'chart.js';
-import { ChartsModule } from 'ng2-charts';
+
 
 @Component({
   selector: 'app-aid',
@@ -24,6 +23,94 @@ export class AidComponent implements OnInit {
   public doughnutChartLabels_f = ['Sangli', 'Pune', 'Nagpur', 'Mumbai'];
   public doughnutChartData_f = [80, 160, 200, 100];
   public doughnutChartType_f = 'doughnut';
+  public pieChartLabels = ['Sales Q1', 'Sales Q2', 'Sales Q3', 'Sales Q4'];
+  public pieChartData = [120, 150, 180, 90];
+  public pieChartType = 'pie';
+  public radarChartType='radar';
+  public radarChartLabels = ['Q1', 'Q2', 'Q3', 'Q4'];
+  public radarChartData = [
+    {data: [120, 130, 180, 70], label: '2017'},
+    {data: [90, 150, 200, 45], label: '2018'}
+  ];
+  public barChartOptions = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
+  public barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+  public barChartType = 'bar';
+  public barChartLegend = true;
+  public barChartData = [
+    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
+    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
+  ];
+  public polarAreaChartLabels = ['November Sales', 'December Sales', 'January Sales', 'March sales', 'April Sales'];
+  public polarAreaChartData= [300, 500, 100, 40, 120];
+  public polarAreaLegend = true;
+
+  public polarAreaChartType = 'polarArea';
+  public bubbleChartOptions = {
+    responsive: true,
+    scales: {
+      xAxes: [
+        {
+          ticks: {
+            min: 0,
+            max: 30,
+          }
+        }
+      ],
+      yAxes: [
+        {
+          ticks: {
+            min: 0,
+            max: 30,
+          }
+        }
+      ]
+    }
+  };
+  public bubbleChartType='bubble';
+  public bubbleChartLegend = true;
+
+  public bubbleChartData= [
+    {
+      data: [
+        { x: 10, y: 10, r: 10 },
+        { x: 15, y: 5, r: 15 },
+        { x: 26, y: 12, r: 23 },
+        { x: 7, y: 8, r: 8 },
+      ],
+      label: 'Bids',
+      backgroundColor: 'green',
+      borderColor: 'blue',
+      hoverBackgroundColor: 'purple',
+      hoverBorderColor: 'red',
+    },
+  ];
+
+  public bubbleChartColors= [
+    {
+      backgroundColor: [
+        'red',
+        'green',
+        'blue',
+        'purple',
+        'yellow',
+        'brown',
+        'magenta',
+        'cyan',
+        'orange',
+        'pink'
+      ]
+    }
+  ];
+  public doughnutChartLabels=['March Sales', 'April Sales', 'Febuary Sales'];
+  public doughnutChartData =[
+    [350, 450, 100],
+    [50, 150, 120],
+    [250, 130, 70],
+  ];
+  public doughnutChartType = 'doughnut';
   ngOnInit(): void {
    /* this.PieChart=new Chart('pieChart',{
     type:'pie',
