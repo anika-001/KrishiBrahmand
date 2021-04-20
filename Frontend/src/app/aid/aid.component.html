@@ -174,21 +174,24 @@
 
 <div class="stats-2">
 <div style="display: block; " class="chart-2">
+  <h1 style="color:#000;">Orders Fulfilled in Maharashtra</h1>
   <canvas baseChart [data]="doughnutChartData_f" [labels]="doughnutChartLabels_f"
     [chartType]="doughnutChartType_f"></canvas>
 </div>
 <div style="display: block" class="chart-2">
+  <h1 style="color:#000;">Your Quarterly Sales</h1>
   <canvas baseChart
           [data]="pieChartData"
           [labels]="pieChartLabels"
           [chartType]="pieChartType"></canvas>
 </div>
 <div style="display: block" class="chart-2">
+  <h1 style="color:#000;">Comparison of Annual Sales</h1>
   <canvas baseChart [datasets]="radarChartData" [labels]="radarChartLabels"
     [chartType]="radarChartType"></canvas>
 </div>
 <div>
-  <div style="display: block" class="chart-2">
+  <div style="display: block" class="chart-2"><h1 style="color:#000;">Comparison with Market Rate</h1>
     <canvas baseChart
             [datasets]="barChartData"
             [labels]="barChartLabels"
@@ -198,11 +201,9 @@
     </canvas>
   </div>
 </div>
+
 <div style="display: block" class="chart-2">
-  <canvas baseChart [datasets]="radarChartData" [labels]="radarChartLabels"
-    [chartType]="radarChartType"></canvas>
-</div>
-<div style="display: block" class="chart-2">
+  <h1 style="color:#000;">Monthly Sales</h1>
   <canvas baseChart
     [data]="polarAreaChartData"
     [labels]="polarAreaChartLabels"
@@ -211,24 +212,15 @@
   </canvas>
 </div>
 <div style="display: block" class="chart-2">
+  <h1 style="color:#000;">Item Sales Anually</h1>
   <canvas baseChart
     [data]="doughnutChartData"
     [labels]="doughnutChartLabels"
     [chartType]="doughnutChartType">
   </canvas>
 </div>
-<div>
-  <div style="display: block" class="chart-2">
-    <canvas baseChart
-            [datasets]="barChartData"
-            [labels]="barChartLabels"
-            [options]="barChartOptions"
-            [legend]="barChartLegend"
-            [chartType]="barChartType">
-    </canvas>
-  </div>
-</div>
-<div style="width: 50%;">
+
+<!-- <div style="width: 50%;">
 <div style="display: block ">
   <canvas baseChart
     [datasets]="bubbleChartData"
@@ -237,6 +229,6 @@
     [legend]="bubbleChartLegend"
     [chartType]="bubbleChartType">
   </canvas>
-</div></div>
+</div></div> -->
 
 </div>

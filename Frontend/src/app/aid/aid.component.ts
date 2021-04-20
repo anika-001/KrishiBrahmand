@@ -36,28 +36,23 @@ export class AidComponent implements OnInit {
     scaleShowVerticalLines: false,
     responsive: true
   };
-  public barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+  public barChartLabels = ['Potatoes', 'Tomatoes', 'Onions', 'Banana', 'Apples', 'Oranges', 'Papaya'];
   public barChartType = 'bar';
   public barChartLegend = true;
   public barChartData = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
+    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Market Rate'},
+    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Your Rate'}
   ];
   public polarAreaChartLabels = ['November Sales', 'December Sales', 'January Sales', 'March sales', 'April Sales'];
   public polarAreaChartData= [300, 500, 100, 40, 120];
   public polarAreaLegend = true;
 
   public polarAreaChartType = 'polarArea';
-  public bubbleChartOptions = {
+  /*public bubbleChartOptions = {
     responsive: true,
     scales: {
       xAxes: [
-        {
-          ticks: {
-            min: 0,
-            max: 30,
-          }
-        }
+        'Potatoes', 'Tomatoes', 'Onions', 'Banana', 'Apples', 'Oranges', 'Papaya'
       ],
       yAxes: [
         {
@@ -103,12 +98,12 @@ export class AidComponent implements OnInit {
         'pink'
       ]
     }
-  ];
-  public doughnutChartLabels=['March Sales', 'April Sales', 'Febuary Sales'];
+  ];*/
+  public doughnutChartLabels=['Potatoes', 'Tomatoes', 'Onions', 'Banana', 'Apples', 'Oranges', 'Papaya'];
   public doughnutChartData =[
-    [350, 450, 100],
-    [50, 150, 120],
-    [250, 130, 70],
+    [350, 450, 100,600,635,826,432],
+    [50, 150, 120,87,654,432,65],
+    [250, 130, 70,65,765,342,98],
   ];
   public doughnutChartType = 'doughnut';
   ngOnInit(): void {
