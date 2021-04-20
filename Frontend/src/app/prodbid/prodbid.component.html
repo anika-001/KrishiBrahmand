@@ -5,6 +5,8 @@
 </ng-template>
 
 <div class="main">
+    <br>
+    <br>
     <div class = "prodcard">
         <div class = "prodimage">
             <img src = "{{item.image}}" style = "width: 100%; height: 100%;">
@@ -27,11 +29,12 @@
                 Name: {{bid.name}}
             </div>
             <div class = "bidcol">
-                Quantity: {{bid.quantity}}
+                Price: Rs.{{bid.cost}}
             </div>
             <div class = "bidcol">
-                Price: {{bid.cost}}
+                Quantity: {{bid.quantity}}Kgs
             </div>
+            
             <div class = "bidcol" *ngIf = "permission && bid.status != 'Accepted'">
                 <button (click)="acceptBid(bid)">Accept</button>
             </div>

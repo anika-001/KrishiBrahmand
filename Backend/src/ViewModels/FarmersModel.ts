@@ -84,7 +84,7 @@ export class FarmersModel {
             from: 'projecthts.16.4@gmail.com',
             to: String(con.email),
             subject: "Bidding Request Accepted",
-            html: "Hello,<br>" + "Your bid for quantity " + body.quantity + " and cost " + body.cost + " has been acccepted. Please contact <br>" + "Name: " + farmer.name + "<br>phone number: " + farmer.phone + "<br>email: " + farmer.email
+            html: "Hello,<br>" + "Your bid for quantity " + body.quantity + "Kgs and cost Rs." + body.cost + " has been acccepted. Please contact the Farmer <br>" + "Name: " + farmer.name + "<br>Phone No.: " + farmer.phone + "<br>E-mail : " + farmer.email
           };
           transporter.sendMail(mailOptions).then(res => {
             bids.findByIdAndUpdate(body.bidid, {"status": "Accepted"}).then(val => {
